@@ -1,0 +1,323 @@
+\mode*
+
+\setmonofont{Verdana}
+\newmintedfile{java}{frame=single,linenos,samepage}
+\newmintedfile{antlr}{linenos}
+	
+\section{Java-Technologie kurz erklärt}
+
+Java ist eine Programmiersprache und Computerplattform, die erstmals 1995 von 
+Sun Microsystems veröffentlicht wurde. Es gibt viele Anwendungen und 
+Websites, die nicht funktionieren, es sei denn, Sie haben Java installiert, 
+und jeden Tag werden weitere erstellt. Java ist schnell, sicher und 
+zuverlässig. Von Laptops bis hin zu Rechenzentren, Spielkonsolen bis hin zu 
+wissenschaftlichen Supercomputern, Handys bis hin zum Internet.
+
+Am 20. April 2009 kündigte Oracle die Übernahme von Sun Microsystems für 
+7,4 Milliarden US-Dollar an, welche in den Folgemonaten durch verschiedene
+Behörden überprüft und anschliessend genehmigt wurde.
+
+Java als Entwicklungs- und Laufzeitumgebung kann in verschiedenen Varianten
+von den folgenden Seiten heruntergeladen und installiert werden:
+
+\subsection{Installation der Umgebung}
+
+\begin{frame}{Installation der Umgebung}
+	Wir unterscheiden im Wesentlichen zwischen den beiden Installationstypen
+	JRE ({\em Java Runtime Environment}) und JDK ({\em Java 
+	Development Kit}).
+	
+    \begin{itemize}
+		\item \href{https://java.com}{java.com}   
+		\item \href{https://openjdk.java.net}{openjdk.java.net}
+    \end{itemize}
+\end{frame}
+
+In der Softwareentwicklung konzentrieren wir uns ausschliesslich auf das JDK,
+da wir auf die vielen zusätzlichen {\em Tools} in der Entwicklung angewiesen
+sind.
+	
+\begin{frame}{Werkzeuge und Befehle}
+	Die JDK-Tools und ihre Befehle ermöglichen es uns, 
+	Entwicklungsaufgaben wie das Kompilieren und Ausführen eines Programms, 
+	das Paketieren von Quelldateien und vieles mehr zu erledigen.
+	
+	\mode<presentation>{Hier nur eine kleine Auswahl:}
+	\begin{itemize}
+		\item\href{https://docs.oracle.com/en/java/javase/11/tools/javac.html}
+		{javac}---Kompilieren von Klassen- und Schnittstellendefinitionen 
+		in Bytecode.
+		\item\href{https://docs.oracle.com/en/java/javase/11/tools/java.html}
+		{java}---Starten/Interpretieren eines Java Programms.
+		\item\href{https://docs.oracle.com/en/java/javase/11/tools/jar.html}
+		{jar}---Erstellen eines Java Archives.
+		\item\href{https://docs.oracle.com/en/java/javase/11/tools/jshell.html}
+		{jshell}---Interaktives Auswerten von Deklarationen, Anweisungen und 
+		Ausdrücken der Programmiersprache Java. 
+		\item<article>\href{https://docs.oracle.com/en/java/javase/11/tools/javap.html}
+		{javap}---Befehl, um eine oder mehrere Klassendateien zu 
+		disassemblieren.
+		\item<article>\href{https://docs.oracle.com/en/java/javase/11/tools/javadoc.html}
+		{javadoc}---Erstellen der Java Dokumentation
+		\item<article>\href{https://docs.oracle.com/en/java/javase/11/tools/keytool.html}
+		{keytool}---Befehl und Optionen zum Verwalten eines kryptografischer Schlüssel.
+		\item<article>\href{https://docs.oracle.com/en/java/javase/11/tools/jarsigner.html}
+		{jarsigner}---Signieren und verifizieren von Java Archiven
+	\end{itemize}
+\end{frame}
+
+Diese Liste stellt keinen Anspruch auf Vollständigkeit. Die komplette Dokumentation
+zu den einzelnen Umgebungen und deren {\em Tools} kann jederzeit unter
+\href{https://docs.oracle.com/en/java/}{docs.oracle.com} eingesehen werden.
+
+Vorsicht ist allerdings geboten, wenn es um den Einsatz und die Lizenzierung von Java geht.
+Oracle wird nach Januar 2019 keine weiteren Updates von Java SE 8 zur 
+gewerblichen Nutzung auf seinen Download-Sites veröffentlichen. Kunden, die 
+weiterhin Zugriff auf kritische Fehlerkorrekturen und Sicherheitslücken sowie 
+eine allgemeine Wartung von Java SE 8 bzw. früheren Versionen benötigen, 
+können einen langfristigen Support über Oracle Java SE Advanced erhalten. 
+Oracle Java SE Advanced Desktop oder Oracle Java SE Suite. Für weitere 
+Informationen und Details, wie Sie einen längerfristigen Support für Oracle 
+JDK 8 erhalten, finden Sie in der 
+\href{http://www.oracle.com/technetwork/java/eol-135779.html}
+{Oracle Java SE Support-Roadmap}.
+
+Die offizielle \href{https://www.oracle.com/corporate/pricing/#java-se}
+{Preisliste} hilft, sich mit dem Oracle Java SE Abonnement für On Premise, 
+Enterprise, Desktop, Server und Cloud Workloads vertraut zu machen.
+
+
+\begin{frame}{Beliebte Java-Lernressourcen}
+	\begin{itemize}
+		\item\textbf{Finch Robot}---Dieser kleine Roboter von 
+		\href{https://www.birdbraintechnologies.com/finch/}
+		{Bird Technology} nutzt verschiedene Sensoren,
+		die via Java angesteuert werden können.
+		\item\textbf{Oracle Academy}---Die 
+		\href{https://academy.oracle.com/en/training-self-study.html}
+		{Oracle Academy} bietet verschiedene 
+		Online-Kurse und Anleitungen
+		\item\textbf{Scratch}---Dies ist eine sehr einfache, am
+		\href{https://scratch.mit.edu/}{MIT} entwickelte Programmierumgebung.
+		Typischerweise wird diese im Vorschulalter eingesetzt. 
+		\item\textbf{BlueJ}---Als sehr professionelle und stark vereinfachte
+		(Entwicklungs-) Umgebung wird \href{http://www.bluej.org/}{BlueJ} 
+		auch im späteren Alter noch für Schulungszwecke verwendet.
+	\end{itemize}
+\end{frame}
+	
+\begin{Exercise}[%
+	title={Installation der Software},
+	label={ex:installation}]
+	
+	Bevor wir mit unseren Übungen starten müssen wir sicherstellen, dass Java und
+	seine {\em Tools} komplett und korrekt installiert sind.
+	
+	Bitte installieren Sie das {\em Java Development Kit} (JDK) gemäss 
+	\href{https://jdk.java.net/11/}{Anleitung}.
+	
+	Anschliessend überprüfen wir die korrekte Installation mit Hilfe der Konsole wie folgt:
+	
+	\begin{minted}[frame=single]{shell}
+$ java -version
+openjdk version "11.0.1" 2018-10-16
+OpenJDK Runtime Environment 18.9 (build 11.0.1+13)
+OpenJDK 64-Bit Server VM 18.9 (build 11.0.1+13, mixed mode)
+	\end{minted}
+	
+\end{Exercise}	
+
+\subsection{Interaktive Entwicklungsumgebung}
+
+Jeder Java-Entwickler benötigt einen Programmiereditor oder eine IDE, der bei den 
+grungierigeren Teilen des Schreibens von Java und der Verwendung von Klassenbibliotheken 
+und Frameworks helfen kann. Die Entscheidung, welche IDE zum Einsatz kommt, hängt von 
+mehreren Faktoren ab, darunter der Art der zu entwickelnden Projekte, dem vom 
+Entwicklungsteam verwendeten Prozess sowie dem Niveau und den Fähigkeiten des 
+Entwicklers. Weitere Überlegungen sind, ob das Team die Tools und Ihre persönlichen 
+Präferenzen standardisiert hat.
+
+\begin{frame}{Entwicklungsumgebungen}
+	Die drei am häufigsten für die Java-Entwicklung gewählten IDEs sind
+	
+    \begin{itemize}
+		\item \href{https://www.jetbrains.com/idea}{IntelliJ IDEA},   
+		\item \href{https://www.eclipse.org/}{Eclipse} und
+		\item \href{https://netbeans.org/}{NetBeans}
+    \end{itemize}
+\end{frame}
+
+Ein guter Vergleich dieser drei Umgebungen ist auch
+\href{https://www.javaworld.com/article/3114167/development-tools/choosing-your-java-ide.html}
+{hier} zu finden. Persönlich habe ich Eclipse in den Anfängen der IDE, später 
+NetBeans in den Schulungen und zu guter Letzt IntelliJ IDEA verwendet. Nach 
+jedem Wechsel spürte ich, dass sich meine Produktivität verbessert hatte.
+
+Ich habe mich für IntelliJ IDEA Ultimate entschieden. Obwohl es nicht kostenlos 
+wie Eclipse oder NetBeans ist, glaube ich, dass der Produktivitätsgewinn den 
+Preis wert ist. Für unsere Schulung ist es allerdings unerheblich, welches 
+Produkt wir einsetzten, auch wenn ich bestimmt mit IntelliJ IDEA die bessere 
+Unterstützung bieten kann.
+
+
+\section{Analyzing a Problem and Designing a Solution}
+
+
+\section{Entwicklung eines Java Programms}
+
+\subsection{Meine erstes Programm}
+
+Schauen wir uns nun endlich mal ein Java-Programm im Quelltext an, nachdem 
+wir jetzt so viel Theoretisches besprochen haben. Das nachfolgende Programm 
+gibt ``Hello World'' aus. Wir werden gleich im Detail besprechen, was die 
+einzelnen Zeilen bedeuten. Man muss sich dies allerdings nicht gleich merken 
+können, viele Details haben erst später eine grössere Bedeutung.
+
+\mode<presentation>
+\begin{frame}{Hello World Java}
+	Mein erstes Java Programm.
+	\vfill
+	\inputminted[%
+	frame=single,
+	firstline=3]{java}{../java/academy/HelloWorld.java}
+\end{frame}
+
+\mode*
+\begin{listing}[h]
+\javafile{../java/academy/HelloWorld.java}
+\caption{Hello World Java}
+\label{lst:hello-world}
+\end{listing}
+
+Der Quelltext besteht aus sieben Zeilen. Das erste was auffällt ist, 
+dass einige Zeilen eingerückt sind. Diese Einrückung dient ausschliesslich 
+der Lesbarkeit und ist für den Java Compiler nicht von Bedeutung. 
+
+Was bedeuten die einzelnen Zeilen?
+
+\begin{enumerate}
+	\item Java Deteien werden strukturiert in verschiedenen Verzeichnissen
+	abgelegt, wobei ein Verzeichnis gleichbedeutend mit einem
+	\mintinline{java}{package} ist. In unserem Fall ist die Datei im Verzeichnis 
+	`src/main/academy' abgelegt.
+	
+	\item Leere Zeilen und allgemen Leerzeichen (sog. {\em White Spaces}) werden
+	durch den Compiler ignoriert.
+
+	\item Hier wird die Klasse namens \mintinline{java}{HelloWorld} begonnen. 
+	Die Klasse ist öffentlich. Dies bedeutet, dass andere Programmteile diese 
+	Klasse mit benutzen dürfen. Wenn die im Quelltext beschriebene öffentliche 
+	Klasse HelloWorld heisst, dann hat die Datei zwingend den Namen 
+	`{\tt HelloWorld.java}', ansonsten meldet der Compiler einen Fehler. 
+	
+	\item In dieser Zeile wird eine sogenannte Methode mit dem Namen 
+	\mintinline{java}{main} angegeben. Methoden sind Funktionseinheiten die 
+	man wieder verwenden kann. Auch diese Methode hier ist öffentlich, kann 
+	also aus anderen Programmteilen heraus verwendet werden. 
+	
+	\item An dieser Stelle wird die Zeichenkette "Hello, World!" auf der Konsole 
+	ausgegeben. Hierzu verwenden wir die Methode `println()' der Klasse `System'.
+	Diese Konstrukte werden wir zu einem späteren Zeitpunkt noch vertieft 
+	betrachten.
+\end{enumerate}
+
+
+\subsection{Struktur einer Java Datei}
+
+Java, wie alle anderen Programmiersprachen, regelt seine formale Syntax
+sehr genau. Alle Java Dateien folgen einem Aufbau, der teils strikt vorgegeben, 
+teils in den Konventionen geregelt ist.
+
+Zur Darstellung der Syntax hat sich die {\em Erweiterte Backus-Naur-Form} 
+(\href{https://de.wikipedia.org/wiki/Erweiterte_Backus-Naur-Form}{EBNF})
+als Metasprache etabliert.
+
+\mode<presentation>
+\begin{frame}{Erweiterte Backus-Naur-Form (EBNF)}
+	Eine {\em compilationUnit}, resp. eine Java Datei kann in seiner 
+	einfachsten Form wie folgt dargestellt werden:
+	\vfill
+	\inputminted[%
+	firstline=44,lastline=46]{antlr}{Java.g4}
+\end{frame}
+
+\mode*
+\begin{listing}[H]
+\antlrfile[firstline=41,lastline=83]{Java.g4}
+\caption{Struktur einer Java Datei}
+\label{lst:java-file}
+\end{listing}
+
+\section{Deklarieren, initialisieren und verwenden von Variablen}
+
+\section{Erstellen von Objekten}
+
+\begin{listing}[H]
+\antlrfile[firstline=90,lastline=107]{Java.g4}
+\caption{Deklaration einer Klasse}
+\label{lst:java-file}
+\end{listing}
+
+
+
+\subsection{Das Projekt Lombok}
+
+Mit dem Projekt ``\href{https://projectlombok.org/}{Lombok}'' erreichen wir 
+eine Vereinfachung unseres Codes, indem sogenannte Wiederholungen automatisch 
+in die Datei `{\tt .class}' generiert werden und die Datei `{\tt .java}' somit 
+entlastet und somit lesbarer/wartbarer wird.
+
+Wir versuchen dies in Form einfacher Beispiele zu erläutern.
+
+\textbf{\\@NonNull}
+
+Die Parameter einer Funktion oder eines Konstruktors können bei der Verwendung 
+den Wert {\tt null} einnehmen, was möglicherweise einen ungewollten Ablauf 
+provozieren kann. Falls wir dies vermeiden wollen, dann bleibt uns nur eine 
+entsprechende Fehlerbehandlung. Es ist an dieser Stelle sehr rasch ersichtlich, 
+dass dies zwangläufig zu Wiederholungen in der Programmierung führen wird.
+
+\javafile{../java/academy/lombok/nonnull/VanillaJava.java}
+
+
+\mode<presentation>
+\begin{frame}[fragile]{$@$NonNull}
+	Bei jeder notwendigen Überprüfung der Argumente einer Funktion oder eines
+	Konstruktorst erstellen wir mehr oder weniger den selben Code.
+\inputminted[%
+	frame=single,
+	firstline=5]{java}{../java/academy/lombok/nonnull/VanillaJava.java}
+\end{frame}
+
+
+\mode<presentation>
+\begin{frame}[fragile]{$@$NonNull}
+	Viel einfacher sieht der Code aus, bei der Verwendung der Annotation 
+	\mintinline{java}{@NonNull}.
+	\vfill
+\inputminted[%
+	frame=single,
+	firstline=6]{java}{../java/academy/lombok/nonnull/WithLombok.java}
+\end{frame}
+
+\mode*
+
+Viel einfacher sieht der Code aus, bei der Verwendung der Annotation 
+\mintinline{java}{@NonNull}. Falls wir mit IntelliJ IDEA arbeiten, dann
+könnten wir das selbe Resultat mit der vordefinierten Annotation 
+\mintinline{java}{@NotNull} von JetBrains erreichen.
+	
+\begin{listing}[h]
+\javafile{../java/academy/lombok/nonnull/WithLombok.java}
+\label{lst:lombok-nonnull}
+\caption{NullPointer Handling bei der Parameterübergabe}
+\end{listing}
+
+
+
+\section{Using Operators and Decision Constructs}
+\section{Using Loop Constructs}
+\section{Developing and Using Methods}
+\section{Implementing Encapsulation and Constructors}
+\section{Creating and Using Arrays}
+\section{Implementing Inheritance}
