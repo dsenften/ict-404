@@ -4,10 +4,12 @@
 
 # TeX
 *.aux
+*.gz
 *.loe
 *.log
 *.lol
 *.out
+*.pyg
 *.toc
 *.nav
 *.snm

@@ -2,59 +2,54 @@
 
 \RequirePackage{talent-factory}
 
-\usepgfplotslibrary{dateplot}
 \usetheme[progressbar=frametitle]{metropolis}
 
 \hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=blue,
-    pdfpagemode=FullScreen,
+colorlinks=true,
+linkcolor=blue,
+filecolor=magenta,
+urlcolor=blue,
+pdfpagemode=FullScreen,
 }
+
+% ----------------------------------
 
 \title{Modul 404}
 \subtitle{Objektbasiert programmieren nach Vorgabe}
 
 \date{\today}
 \author{\href{mailto:daniel.senften@talent-factory.ch}{Daniel Senften}}
-\institute{Talent Factory\\ 
-	\vfill\color{gray}\tiny\sffamily$[$git$]$\textbullet{} 
-	Release:\gitReln{} \gitBranch{} (\gitAuthorDate)\\}
+\institute{Talent Factory\\
+\vfill\color{gray}\tiny\sffamily$[$git$]$\textbullet{}
+Release:\gitReln{} \gitBranch{} (\gitAuthorDate)\\}
 \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}    }
 
 % ----------------------------------
 
 \begin{document}
-\maketitle
 
-% Theme "metropolis" supports 4 different titleformats
-%   frame=regular
-%   frame=smallcaps
-%   frame=allsmallcaps
-%   frame=allcaps
-\metroset{titleformat frame=smallcaps}
+    \maketitle
+
+    % Theme "metropolis" supports 4 different titleformats
+    %   frame=regular
+    %   frame=smallcaps
+    %   frame=allsmallcaps
+    %   frame=allcaps
+    \metroset{titleformat frame=smallcaps}
 
 
-% In Abhängigkeit vom Umfang der einzelnen Kapitel werden diese
-% so (pro Seite) gruppiert, dass jede Seite jeweils einen kompletten
-% Schulungstag abdeckt.
+    % In Abhängigkeit vom Umfang der einzelnen Kapitel werden diese
+    % so (pro Seite) gruppiert, dass jede Seite jeweils einen kompletten
+    % Schulungstag abdeckt.
 
-\begin{frame}{Inhaltsverzeichnis}
-  \setbeamertemplate{section in toc}[sections numbered]
-  \tableofcontents[hideallsubsections,sections={1-5}]
-\end{frame}
+    \begin{frame}{Inhaltsverzeichnis}
+        \setbeamertemplate{section in toc}[sections numbered]
+        \tableofcontents[hideallsubsections,sections={1-5}]
+    \end{frame}
 
-\begin{frame}{Inhaltsverzeichnis}
-  \setbeamertemplate{section in toc}[sections numbered]
-  \tableofcontents[hideallsubsections,sections={6-10}]
-\end{frame}
+    \setmonofont{Verdana}
+    \newmintedfile{java}{frame=single,linenos,samepage}
 
-\begin{frame}{Inhaltsverzeichnis}
-  \setbeamertemplate{section in toc}[sections numbered]
-  \tableofcontents[hideallsubsections,sections={11-}]
-\end{frame}
-
-\input{manual.tex}
+    \input{manual.tex}
 
 \end{document}

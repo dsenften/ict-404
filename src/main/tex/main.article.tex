@@ -1,5 +1,5 @@
 \documentclass{manual}
-\setjobnamebeamerversion{main.beamer} 
+\setjobnamebeamerversion{main.beamer}
 
 \rhead{Modul 404}
 \lhead{Objektbasiert programmieren nach Vorgabe}
@@ -16,13 +16,16 @@
 % ----------------------------------
 
 \begin{document}
-    
-\input{manual.tex}
 
-\newpage\appendix
-\listofexercises
+    \setmonofont{Verdana}
+    \newmintedfile{java}{frame=single,linenos,samepage}
 
-\renewcommand{\listoflistingscaption}{Programmbeispiele}
-\newpage\listoflistings
+    \input{manual.tex}
+
+    \newpage\appendix
+    \listofexercises
+
+    \renewcommand{\listoflistingscaption}{Programmbeispiele}
+    \newpage\listoflistings
 
 \end{document}
