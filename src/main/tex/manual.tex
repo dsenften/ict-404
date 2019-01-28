@@ -5,6 +5,32 @@
 % =============================================================================
 
 
+\section{Modulidentifikation}
+\label{sec:identification}
+
+Für unsere Lernziele richten wir uns nach den Vorgaben des Verbandes
+\href{https://ict-berufsbildung-bern.ch}{ICT Berufsbildung Bern} und hier im Spezifischen
+nach den Kompetenzanforderungen für das
+\href{https://cf.ict-berufsbildung.ch/modules.php?name=Mbk&a=20101&cmodnr=404&noheader=1}
+{Modul 404}.
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Handlungsziele}
+
+    \begin{enumerate}
+        \item Aufgrund einer Vorgabe den Ablauf darstellen.
+        \item Eine Benutzerschnittstelle entwerfen und implementieren.
+        \item Erforderliche Daten bestimmen und Datentypen festlegen.
+        \item Programmvorgabe unter Nutzung vorhandener Komponenten mit deren Eigenschaften und Methoden, sowie
+        Operatoren und Kontrollstrukturen implementieren.
+        \item Beim Programmieren vorgegebene Standards und Richtlinien einhalten, das Programm inline dokumentieren und
+        dabei auf Wartbarkeit und Nachvollziehbarkeit achten.
+        \item Programm auf Einhaltung der Funktionalität testen, Fehler erkennen und beheben.
+    \end{enumerate}
+
+\end{frame}
+
+
 \section{Java-Technologie kurz erklärt}
 \label{sec:java-technologie}
 
@@ -126,24 +152,25 @@ Enterprise, Desktop, Server und Cloud Workloads vertraut zu machen.
 title={Installation der Software},
 label={ex:installation}]
 
-Bevor wir mit unseren Übungen starten müssen wir sicherstellen, dass Java und
-seine {\em Tools} komplett und korrekt installiert sind.
+    Bevor wir mit unseren Übungen starten müssen wir sicherstellen, dass Java und
+    seine {\em Tools} komplett und korrekt installiert sind.
 
-Bitte installieren Sie das {\em Java Development Kit} (JDK) gemäss
-\href{https://jdk.java.net/11/}{Anleitung}.
+    Bitte installieren Sie das {\em Java Development Kit} (JDK) gemäss
+    \href{https://jdk.java.net/11/}{Anleitung}.
 
-Anschliessend überprüfen wir die korrekte Installation mit Hilfe der Konsole wie folgt:
+    Anschliessend überprüfen wir die korrekte Installation mit Hilfe der Konsole wie folgt:
 
-\begin{minted}[frame=single]{shell}
-$ java -version
-openjdk version "11.0.1" 2018-10-16
-OpenJDK Runtime Environment 18.9 (build 11.0.1+13)
-OpenJDK 64-Bit Server VM 18.9 (build 11.0.1+13, mixed mode)
-\end{minted}
+    \begin{minted}[frame=single,autogobble]{text}
+        # java -version
+        openjdk version "11.0.1" 2018-10-16
+        OpenJDK Runtime Environment 18.9 (build 11.0.1+13)
+        OpenJDK 64-Bit Server VM 18.9 (build 11.0.1+13, mixed mode)
+    \end{minted}
 
 \end{Exercise}
 
 \subsection{Interaktive Entwicklungsumgebung}
+\label{subsec:ide}
 
 Jeder Java-Entwickler benötigt einen Programmiereditor oder eine IDE, der bei den
 grungierigeren Teilen des Schreibens von Java und der Verwendung von Klassenbibliotheken
@@ -155,15 +182,15 @@ Präferenzen standardisiert hat.
 
 
 \begin{frame}[fragile]
-\frametitle<presentation>{Entwicklungsumgebungen}
+    \frametitle<presentation>{Entwicklungsumgebungen}
 
-Die drei am häufigsten für die Java-Entwicklung gewählten IDEs sind
+    Die drei am häufigsten für die Java-Entwicklung gewählten IDEs sind
 
-\begin{itemize}
-\item \href{https://www.jetbrains.com/idea}{IntelliJ IDEA},
-\item \href{https://www.eclipse.org/}{Eclipse} und
-\item \href{https://netbeans.org/}{NetBeans}
-\end{itemize}
+    \begin{itemize}
+        \item \href{https://www.jetbrains.com/idea}{IntelliJ IDEA},
+        \item \href{https://www.eclipse.org/}{Eclipse} und
+        \item \href{https://netbeans.org/}{NetBeans}
+    \end{itemize}
 
 \end{frame}
 
@@ -184,9 +211,8 @@ Unterstützung bieten kann.
 %                                 CHAPTER  1
 % =============================================================================
 
-\section{Kursinhalt}
+\section{Objekte und Klassen}
 \label{sec:contents}
-
 
 \begin{frame}[fragile]
     \frametitle<presentation>{Kursinhalt}
@@ -199,6 +225,118 @@ Unterstützung bieten kann.
     \end{itemize}
 
 \end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Fundamentale Konzepte}
+
+    \begin{itemize}
+        \item Klassen
+        \item Objekte
+        \item Eigenschaften $|$ Attribute
+        \item Methoden
+        \item Parameter
+        \item \emph{Daten Typen}
+    \end{itemize}
+\end{frame}
+
+
+\subsection{Objekte und Klassen}
+\label{subsec:objects-classes}
+
+Wenn Sie ein Computerprogramm in einer objektorientierten Sprache schreiben,
+dann erstellen Sie im Computer ein Modell eines Auschnitts der realen Welt.
+Dieser Ausschnitt setzt sich aus den \emph{Objekten} zusammen, die im
+Anwendungsbereich (\emph{Problem Domain}) vorkommen.
+
+% LaTeX uses the '~' symbol as a non-breaking space.
+% https://en.wikibooks.org/wiki/LaTeX/FAQ#Non-breaking_spaces
+
+In der Abbildung~\fullref{fig:uml-class} sehen wir eine einfache Klasse,
+welche im vorliegenden Fall nur aus dem Namen selbst besteht. Der Name der Klasse,
+sowie alle weiteren Definitionen wie Eigenschaften (Attribute), Konstanten und Methoden
+folgen einer klaren Namenskonvention, auch bekannt unter
+\href{https://www.geeksforgeeks.org/java-naming-conventions/}{CamelCase}.
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Darstellung einer Klasse}
+
+    \begin{figure}[ht]
+        \centering
+        \begin{minipage}[c]{0.5\textwidth}
+            \centering
+            \begin{tikzpicture}
+                \umlclass[width=4cm]%
+                {Person}{Eigenschaften}{Methoden}
+            \end{tikzpicture}
+            \vfill
+        \end{minipage}
+        \begin{minipage}[c]{0.4\textwidth}
+            \begin{minted}[autogobble]{java}
+                public class Person {
+                // Eigenschaften
+                // Methoden
+                }
+            \end{minted}
+            \vfill
+        \end{minipage}
+        \mode<article>{\caption{Darstellung einer Klasse}}
+        \label{fig:uml-class}
+    \end{figure}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Klasse vs. Objekt}
+
+    Doch was ist eigentlich der Untersdchied zwischen Klassen und Objekten?
+
+    \begin{description}
+        \item[Objekte] stellen \emph{Dinge} aus der realen Welt oder aus einer Problemdomäne
+        dar (Beispiel: ``Das weisse Auto da unten auf dem Parkplatz'').
+        \item[Klassen] repräsentieren Objekte einer bestimmten Art (Beispiel: ``Auto'').
+    \end{description}
+
+\end{frame}
+
+
+\subsection{Instanzen erzeugen}
+\subsection{Methoden aufrufen}
+\subsection{Parameter}
+\subsection{Datentypen}
+
+
+\begin{Exercise}[%
+title={Ein einfacher Taschenrechner},
+label={ex:calculator}]
+
+    \subsubsection*{Erstellen eines neuen Projektes}
+
+    Wenn wir mit IntelliJ arbeiten geschieht alles im Rahmen eines Projekts.
+    Ein Projekt ist eine Darstellung einer entwickelten Komplettlösung, die
+    aus Quellcode, Bibliotheken und Konfigurationsdateien besteht.
+
+    Falls nicht bereits erledigt, müssen wir an dieser Stelle unser
+    \href{https://www.jetbrains.com/idea}{IntelliJ IDEA} zuerst noch installieren.
+
+    Wenn wir IntelliJ nach der Installation öffnen, werden wir vom
+    Willkommensbildschirm begrüsst:
+
+    \minibox{intellij-create-project}{Willkommensbildschirm}
+
+    An dieser Stelle können wir ein neue Projekt erstellen, ein bestehendes öffnen
+    oder in unserem Fall ein bestehendes Projekt aus einem \emph{Repository}, hier
+    \href{https://github.com/dsenften/example-simple-calculator.git}{GitHub},
+    klonen.
+
+    Versucht diese Installation des Projektes vorzunehmen und anschliessend
+    das Programm \texttt{academy.calculator.Calculator} zu starten. Wenn alles
+    korrekt installiert wurde, dann sieht die Projektstruktur wie folgt aus:
+
+    \minibox{simple-calculator}{Projektstruktur}
+
+\end{Exercise}
 
 
 % =============================================================================

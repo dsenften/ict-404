@@ -1,15 +1,15 @@
 \documentclass[12pt,aspectratio=169]{beamer}
 
-\RequirePackage{talent-factory}
+\RequirePackage{talent-factory} 
 
 \usetheme[progressbar=frametitle]{metropolis}
 
 \hypersetup{
-colorlinks=true,
-linkcolor=blue,
-filecolor=magenta,
-urlcolor=blue,
-pdfpagemode=FullScreen,
+    colorlinks  = true,
+    linkcolor   = blue,
+    filecolor   = magenta,
+    urlcolor    = blue,
+    pdfpagemode = FullScreen,
 }
 
 % ----------------------------------
@@ -20,9 +20,8 @@ pdfpagemode=FullScreen,
 \date{\today}
 \author{\href{mailto:daniel.senften@talent-factory.ch}{Daniel Senften}}
 \institute{Talent Factory\\
-\vfill\color{gray}\tiny\sffamily$[$git$]$\textbullet{}
-Release:\gitReln{} \gitBranch{} (\gitAuthorDate)\\}
-\titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}    }
+\vfill\color{gray}\tiny\sffamily$[$git$]$\textbullet{}\gitMark}
+\titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
 
 % ----------------------------------
 
@@ -41,10 +40,20 @@ Release:\gitReln{} \gitBranch{} (\gitAuthorDate)\\}
     % In Abhängigkeit vom Umfang der einzelnen Kapitel werden diese
     % so (pro Seite) gruppiert, dass jede Seite jeweils einen kompletten
     % Schulungstag abdeckt.
+    %
+    % Dies kann mit folgender Option erreicht werden.
+    %
+    %     \tableofcontents[sections={1-5}]
 
     \begin{frame}{Inhaltsverzeichnis}
+        \centering
         \setbeamertemplate{section in toc}[sections numbered]
-        \tableofcontents[hideallsubsections,sections={1-5}]
+        \begin{minipage}[t]{0.5\textwidth}
+            \tableofcontents[hideallsubsections,sections={1-3}]
+        \end{minipage}
+        \begin{minipage}[t]{0.4\textwidth}
+            \tableofcontents[hideallsubsections,sections={4-6}]
+        \end{minipage}
     \end{frame}
 
     \setmonofont{Verdana}
