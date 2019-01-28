@@ -6,8 +6,10 @@
 *.aux
 *.gz
 *.loe
+*.lof
 *.log
 *.lol
+*.lot
 *.out
 *.pyg
 *.toc
@@ -17,12 +19,6 @@
 _minted*
 main.article.pdf
 main.beamer.pdf
-
-# Compiled class file
-*.class
-
-# Log file
-*.log
 
 # BlueJ files
 *.ctxt
