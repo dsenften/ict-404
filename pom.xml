@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>talent-factory</groupId>
-    <artifactId>gibb-404</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>ict-404</artifactId>
+    <version>0.2.0</version>
     <organization>
         <name>Talent Factory</name>
         <url>http://www.talent-factory.ch</url>
@@ -35,6 +35,15 @@
     <build>
 
         <plugins>
+
+            <plugin>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m5.1</version>
+                <configuration>
+                    <!-- see goals wiki page for configuration options -->
+                </configuration>
+            </plugin>
 
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
