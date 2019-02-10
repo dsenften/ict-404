@@ -31,7 +31,7 @@ nach den Kompetenzanforderungen für das
 \end{frame}
 
 
-\section{Java-Technologie kurz erklärt}
+\section{Bereitsstellen der Software}
 \label{sec:java-technologie}
 
 Java ist eine Programmiersprache und Computerplattform, die erstmals 1995 von
@@ -58,6 +58,8 @@ von den folgenden Seiten heruntergeladen und installiert werden:
     Wir unterscheiden im Wesentlichen zwischen den beiden Installationstypen
     JRE ({\em Java Runtime Environment}) und JDK ({\em Java
     Development Kit}).
+
+    Die wichtigsten {\em Links} zu diesen Umgebungen finden wir hier:
 
     \begin{itemize}
         \item \href{https://java.com}{java.com}
@@ -148,6 +150,34 @@ Enterprise, Desktop, Server und Cloud Workloads vertraut zu machen.
 \end{frame}
 
 
+%
+% In einer ersten Übung wollen wir die Java Entwicklungsumgebung installieren.
+% Dies ist notwendig, dass wir die anschliessenden Beispiele gemeinsam anschauen
+% und erweitern können.
+%
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle{Übung - Installation der Software}
+    Bevor wir mit unseren Übungen starten müssen wir sicherstellen,
+    dass Java und seine {\em Tools} komplett und korrekt installiert sind.
+
+    Bitte installieren Sie das {\em Java Development Kit} (OpenJDK) gemäss
+    <\href{https://jdk.java.net/11/}{jdk.java.net/11}>.
+
+    \vfill
+    Anschliessende Kontrolle der Installation mit:
+
+    \begin{minted}[frame=single,autogobble]{text}
+        # java -version
+        openjdk version "11.0.1" 2018-10-16
+        ...
+    \end{minted}
+
+\end{frame}
+
+
+\mode*
+
 \begin{Exercise}[%
 title={Installation der Software},
 label={ex:installation}]
@@ -155,7 +185,7 @@ label={ex:installation}]
     Bevor wir mit unseren Übungen starten müssen wir sicherstellen, dass Java und
     seine {\em Tools} komplett und korrekt installiert sind.
 
-    Bitte installieren Sie das {\em Java Development Kit} (JDK) gemäss
+    Bitte installieren Sie das {\em Java Development Kit} (OpenJDK) gemäss
     \href{https://jdk.java.net/11/}{Anleitung}.
 
     Anschliessend überprüfen wir die korrekte Installation mit Hilfe der Konsole wie folgt:
@@ -187,8 +217,8 @@ Präferenzen standardisiert hat.
     Die drei am häufigsten für die Java-Entwicklung gewählten IDEs sind
 
     \begin{itemize}
-        \item \href{https://www.jetbrains.com/idea}{IntelliJ IDEA},
-        \item \href{https://www.eclipse.org/}{Eclipse} und
+        \item \href{https://www.jetbrains.com/idea}{IntelliJ IDEA}
+        \item \href{https://www.eclipse.org/}{Eclipse}
         \item \href{https://netbeans.org/}{NetBeans}
     \end{itemize}
 
@@ -207,25 +237,56 @@ Preis wert ist. Für unsere Schulung ist es allerdings unerheblich, welches
 Produkt wir einsetzten, auch wenn ich bestimmt mit IntelliJ IDEA die bessere
 Unterstützung bieten kann.
 
+
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Übung - Installation der Entwicklungsumgebung}
+
+    Ich habe mich für IntelliJ IDEA Ultimate entschieden. Obwohl es nicht kostenlos
+    wie Eclipse oder NetBeans ist, glaube ich, dass der Produktivitätsgewinn den
+    Preis wert ist.
+
+    Für die Ausbildung können wir die Umgebung allerdings kostenfrei nutzen.
+
+    Installiert kann diese Software via <\href{https://www.jetbrains.com/idea/download}
+    {www.jetbrains.com/idea/download}>
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Übung - Eingeben der Lizenz}
+
+    \begin{minipage}[b]{0.5\textwidth}
+        \image{intellij-license}{IntelliJ IDEA Lizenz}
+    \end{minipage}
+    \begin{minipage}[b]{0.4\textwidth}
+        Während der Dauer dieser Ausbildung dürfen wir die Schulungslizenz
+        kostenfrei nutzen.
+
+        \parskip1em
+        Wir referenzieren an dieser Stelle eine sogenannte {\em floating license},
+        die uns von der Talent Factory zur Verfügung gestellt wurde.
+    \end{minipage}
+    
+\end{frame}
+
+
+\mode*
+\begin{Exercise}[%
+title={Installation der Entwicklungsumgebung},
+label={ex:installation-intellij}]
+
+% TODO Die Installation muss noch beschrieben werden
+\fxfatal{Die Installation muss noch beschrieben werden.}
+
+\end{Exercise}
+
 % =============================================================================
 %                                 CHAPTER  1
 % =============================================================================
 
 \section{Objekte und Klassen}
 \label{sec:contents}
-
-\begin{frame}[fragile]
-    \frametitle<presentation>{Kursinhalt}
-
-    \begin{itemize}
-        \item Einführung in die objektorientierte Programmierung$\ldots$
-        \item $\ldots$mit einem starken Software-Engineering-Fundament$\ldots$
-        \item $\ldots$mit dem Ziel, qualitativ hochwertige Softwaresysteme zu
-        entwickeln und zu warten.
-    \end{itemize}
-
-\end{frame}
-
 
 \begin{frame}[fragile]
     \frametitle<presentation>{Fundamentale Konzepte}
@@ -263,24 +324,23 @@ folgen einer klaren Namenskonvention, auch bekannt unter
 
     \begin{figure}[ht]
         \centering
-        \begin{minipage}[c]{0.5\textwidth}
+        \begin{minipage}[b]{0.5\textwidth}
             \centering
             \begin{tikzpicture}
                 \umlclass[width=4cm]%
                 {Person}{Eigenschaften}{Methoden}
             \end{tikzpicture}
-            \vfill
         \end{minipage}
-        \begin{minipage}[c]{0.4\textwidth}
-            \begin{minted}[autogobble]{java}
+        \begin{minipage}[b]{0.4\textwidth}
+            \begin{minted}[frame=single,autogobble]{java}
                 public class Person {
-                // Eigenschaften
-                // Methoden
+                    // Eigenschaften
+                    // Methoden
                 }
             \end{minted}
-            \vfill
         \end{minipage}
-        \mode<article>{\caption{Darstellung einer Klasse}}
+        \mode<article>{\caption{UML Diagramm vs Implementation}}
+        \mode<presentation>{\centering UML Diagramm vs Implementation}
         \label{fig:uml-class}
     \end{figure}
 
