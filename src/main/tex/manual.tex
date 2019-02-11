@@ -1,5 +1,7 @@
 \mode*
 
+%\newmintedfile{java}{frame=single,linenos,samepage}
+
 % =============================================================================
 %                                 CHAPTER  0
 % =============================================================================
@@ -31,7 +33,7 @@ nach den Kompetenzanforderungen für das
 \end{frame}
 
 
-\section{Java-Technologie kurz erklärt}
+\section{Bereitsstellen der Software}
 \label{sec:java-technologie}
 
 Java ist eine Programmiersprache und Computerplattform, die erstmals 1995 von
@@ -58,6 +60,8 @@ von den folgenden Seiten heruntergeladen und installiert werden:
     Wir unterscheiden im Wesentlichen zwischen den beiden Installationstypen
     JRE ({\em Java Runtime Environment}) und JDK ({\em Java
     Development Kit}).
+
+    Die wichtigsten {\em Links} zu diesen Umgebungen finden wir hier:
 
     \begin{itemize}
         \item \href{https://java.com}{java.com}
@@ -148,6 +152,34 @@ Enterprise, Desktop, Server und Cloud Workloads vertraut zu machen.
 \end{frame}
 
 
+%
+% In einer ersten Übung wollen wir die Java Entwicklungsumgebung installieren.
+% Dies ist notwendig, dass wir die anschliessenden Beispiele gemeinsam anschauen
+% und erweitern können.
+%
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle{Übung - Installation der Software}
+    Bevor wir mit unseren Übungen starten müssen wir sicherstellen,
+    dass Java und seine {\em Tools} komplett und korrekt installiert sind.
+
+    Bitte installieren Sie das {\em Java Development Kit} (OpenJDK) gemäss
+    <\href{https://jdk.java.net/11/}{jdk.java.net/11}>.
+
+    \vfill
+    Anschliessende Kontrolle der Installation mit:
+
+    \begin{minted}[frame=single,autogobble]{text}
+        # java -version
+        openjdk version "11.0.1" 2018-10-16
+        ...
+    \end{minted}
+
+\end{frame}
+
+
+\mode*
+
 \begin{Exercise}[%
 title={Installation der Software},
 label={ex:installation}]
@@ -155,7 +187,7 @@ label={ex:installation}]
     Bevor wir mit unseren Übungen starten müssen wir sicherstellen, dass Java und
     seine {\em Tools} komplett und korrekt installiert sind.
 
-    Bitte installieren Sie das {\em Java Development Kit} (JDK) gemäss
+    Bitte installieren Sie das {\em Java Development Kit} (OpenJDK) gemäss
     \href{https://jdk.java.net/11/}{Anleitung}.
 
     Anschliessend überprüfen wir die korrekte Installation mit Hilfe der Konsole wie folgt:
@@ -187,8 +219,8 @@ Präferenzen standardisiert hat.
     Die drei am häufigsten für die Java-Entwicklung gewählten IDEs sind
 
     \begin{itemize}
-        \item \href{https://www.jetbrains.com/idea}{IntelliJ IDEA},
-        \item \href{https://www.eclipse.org/}{Eclipse} und
+        \item \href{https://www.jetbrains.com/idea}{IntelliJ IDEA}
+        \item \href{https://www.eclipse.org/}{Eclipse}
         \item \href{https://netbeans.org/}{NetBeans}
     \end{itemize}
 
@@ -207,25 +239,56 @@ Preis wert ist. Für unsere Schulung ist es allerdings unerheblich, welches
 Produkt wir einsetzten, auch wenn ich bestimmt mit IntelliJ IDEA die bessere
 Unterstützung bieten kann.
 
+
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Übung - Installation der Entwicklungsumgebung}
+
+    Ich habe mich für IntelliJ IDEA Ultimate entschieden. Obwohl es nicht kostenlos
+    wie Eclipse oder NetBeans ist, glaube ich, dass der Produktivitätsgewinn den
+    Preis wert ist.
+
+    Für die Ausbildung können wir die Umgebung allerdings kostenfrei nutzen.
+
+    Installiert kann diese Software via <\href{https://www.jetbrains.com/idea/download}
+    {www.jetbrains.com/idea/download}>
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Übung - Eingeben der Lizenz}
+
+    \begin{minipage}[b]{0.5\textwidth}
+        \image{intellij-license}{IntelliJ IDEA Lizenz}
+    \end{minipage}
+    \begin{minipage}[b]{0.4\textwidth}
+        Während der Dauer dieser Ausbildung dürfen wir die Schulungslizenz
+        kostenfrei nutzen.
+
+        \parskip1em
+        Wir referenzieren an dieser Stelle eine sogenannte {\em floating license},
+        die uns von der Talent Factory zur Verfügung gestellt wurde.
+    \end{minipage}
+    
+\end{frame}
+
+
+\mode*
+\begin{Exercise}[%
+title={Installation der Entwicklungsumgebung},
+label={ex:installation-intellij}]
+
+% TODO Die Installation muss noch beschrieben werden
+\fxfatal{Die Installation muss noch beschrieben werden.}
+
+\end{Exercise}
+
 % =============================================================================
 %                                 CHAPTER  1
 % =============================================================================
 
 \section{Objekte und Klassen}
 \label{sec:contents}
-
-\begin{frame}[fragile]
-    \frametitle<presentation>{Kursinhalt}
-
-    \begin{itemize}
-        \item Einführung in die objektorientierte Programmierung$\ldots$
-        \item $\ldots$mit einem starken Software-Engineering-Fundament$\ldots$
-        \item $\ldots$mit dem Ziel, qualitativ hochwertige Softwaresysteme zu
-        entwickeln und zu warten.
-    \end{itemize}
-
-\end{frame}
-
 
 \begin{frame}[fragile]
     \frametitle<presentation>{Fundamentale Konzepte}
@@ -252,7 +315,7 @@ Anwendungsbereich (\emph{Problem Domain}) vorkommen.
 % LaTeX uses the '~' symbol as a non-breaking space.
 % https://en.wikibooks.org/wiki/LaTeX/FAQ#Non-breaking_spaces
 
-In der Abbildung~\fullref{fig:uml-class} sehen wir eine einfache Klasse,
+In der Abbildung~\ref{fig:uml-class} sehen wir eine einfache Klasse,
 welche im vorliegenden Fall nur aus dem Namen selbst besteht. Der Name der Klasse,
 sowie alle weiteren Definitionen wie Eigenschaften (Attribute), Konstanten und Methoden
 folgen einer klaren Namenskonvention, auch bekannt unter
@@ -263,24 +326,23 @@ folgen einer klaren Namenskonvention, auch bekannt unter
 
     \begin{figure}[ht]
         \centering
-        \begin{minipage}[c]{0.5\textwidth}
+        \begin{minipage}[b]{0.5\textwidth}
             \centering
             \begin{tikzpicture}
                 \umlclass[width=4cm]%
                 {Person}{Eigenschaften}{Methoden}
             \end{tikzpicture}
-            \vfill
         \end{minipage}
-        \begin{minipage}[c]{0.4\textwidth}
-            \begin{minted}[autogobble]{java}
+        \begin{minipage}[b]{0.4\textwidth}
+            \begin{minted}[frame=single,autogobble]{java}
                 public class Person {
-                // Eigenschaften
-                // Methoden
+                    // Eigenschaften
+                    // Methoden
                 }
             \end{minted}
-            \vfill
         \end{minipage}
-        \mode<article>{\caption{Darstellung einer Klasse}}
+        \mode<article>{\caption{UML Diagramm vs Implementation}}
+        \mode<presentation>{\centering UML Diagramm vs Implementation}
         \label{fig:uml-class}
     \end{figure}
 
@@ -300,11 +362,85 @@ folgen einer klaren Namenskonvention, auch bekannt unter
 
 \end{frame}
 
+Objekte können klassifiziert werden als alle Objekte einer bestimmten Art und
+eine Klasse beschreibt genau dies auf abstrakte Art.
+
+Betrachten wir unsere erste Klasse---in diesem Fall unser erstes Programm---in
+seiner einfachsten Form (s. Listing~\ref{lst:hello-world}, Seite~\pageref{lst:hello-world}).
+
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Meine erste Java Klasse}
+
+    \inputminted[frame=single,samepage]{java}{../java/academy/HelloWorld.java}
+
+\end{frame}
+
+\mode*
+\begin{listing}[ht]
+    \inputminted[frame=single,linenos,samepage]{java}
+        {../java/academy/HelloWorld.java}
+    \caption{Erstes Programm: \emph{HelloWorld}}
+    \label{lst:hello-world}
+\end{listing}
+
+Typischerweise wir eine Klasse in Java in einer Datei unter dem selben Namen abgelegt.
+Hierbei ist wichtig die Gross- und Kleinschreibung zu beachten.
+
+\begin{Exercise}[%
+title={Meine erste Java Klasse: \emph{HelloWorld}},
+label={ex:calculator}]
+
+    Ertslle die Klasse \mintinline{java}{HelloWorld}, so wie sie unter Listing~\ref{lst:hello-world}
+    vorgestellt wurde.
+    
+\end{Exercise}
+
+\begin{Answer}
+    Meine Antwort.
+\end{Answer}
+
+
+Der Aufbau einer Java Datei kann sehr einfach durch eine Metasprache, der sogenannten
+\href{https://de.wikipedia.org/wiki/Erweiterte_Backus-Naur-Form}{Erweiterte Backus-Naur-Form}
+(EBNF) dargestellt werden.
+
+\inputminted[firstline=41,lastline=46]{antlr}{Java.g4}
+
+
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Sichtbarkeit von Objekten}
+
+    Es existiern vier unterschiedliche Zugriffsstufen für die
+    Objekte (Daten und Methoden).
+    
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{p{3cm}|c|c|c|c}
+            Modifier                     & Class & Package & Subclass & Universe \\ \hline
+            \mintinline{java}{private}   &  x    &         &          &          \\
+            \texttt{default}             &  x    &    x    &          &          \\
+            \mintinline{java}{protected} &  x    &    x    &     x    &          \\
+            \mintinline{java}{public}    &  x    &    x    &     x    &    x
+        \end{tabular}
+        \mode<article>{\caption{Sichtbarkeit von Objekten}}
+    \end{table}
+
+\end{frame}
+
 
 \subsection{Instanzen erzeugen}
+\label{subsec:create-instance}
+
 \subsection{Methoden aufrufen}
+\label{subsec:call-method}
+
 \subsection{Parameter}
+\label{subsec:parameter}
+
 \subsection{Datentypen}
+\label{subsec:datatypes}
 
 
 \begin{Exercise}[%

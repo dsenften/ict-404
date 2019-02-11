@@ -6,6 +6,7 @@ rm -f *.lof
 rm -f *.log
 rm -f *.lol
 rm -f *.lot
+rm -f *.lox
 rm -f *.nav
 rm -f *.out
 rm -f *.pyg
