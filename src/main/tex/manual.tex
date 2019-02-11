@@ -1,5 +1,7 @@
 \mode*
 
+%\newmintedfile{java}{frame=single,linenos,samepage}
+
 % =============================================================================
 %                                 CHAPTER  0
 % =============================================================================
@@ -313,7 +315,7 @@ Anwendungsbereich (\emph{Problem Domain}) vorkommen.
 % LaTeX uses the '~' symbol as a non-breaking space.
 % https://en.wikibooks.org/wiki/LaTeX/FAQ#Non-breaking_spaces
 
-In der Abbildung~\fullref{fig:uml-class} sehen wir eine einfache Klasse,
+In der Abbildung~\ref{fig:uml-class} sehen wir eine einfache Klasse,
 welche im vorliegenden Fall nur aus dem Namen selbst besteht. Der Name der Klasse,
 sowie alle weiteren Definitionen wie Eigenschaften (Attribute), Konstanten und Methoden
 folgen einer klaren Namenskonvention, auch bekannt unter
@@ -360,11 +362,85 @@ folgen einer klaren Namenskonvention, auch bekannt unter
 
 \end{frame}
 
+Objekte können klassifiziert werden als alle Objekte einer bestimmten Art und
+eine Klasse beschreibt genau dies auf abstrakte Art.
+
+Betrachten wir unsere erste Klasse---in diesem Fall unser erstes Programm---in
+seiner einfachsten Form (s. Listing~\ref{lst:hello-world}, Seite~\pageref{lst:hello-world}).
+
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Meine erste Java Klasse}
+
+    \inputminted[frame=single,samepage]{java}{../java/academy/HelloWorld.java}
+
+\end{frame}
+
+\mode*
+\begin{listing}[ht]
+    \inputminted[frame=single,linenos,samepage]{java}
+        {../java/academy/HelloWorld.java}
+    \caption{Erstes Programm: \emph{HelloWorld}}
+    \label{lst:hello-world}
+\end{listing}
+
+Typischerweise wir eine Klasse in Java in einer Datei unter dem selben Namen abgelegt.
+Hierbei ist wichtig die Gross- und Kleinschreibung zu beachten.
+
+\begin{Exercise}[%
+title={Meine erste Java Klasse: \emph{HelloWorld}},
+label={ex:calculator}]
+
+    Ertslle die Klasse \mintinline{java}{HelloWorld}, so wie sie unter Listing~\ref{lst:hello-world}
+    vorgestellt wurde.
+    
+\end{Exercise}
+
+\begin{Answer}
+    Meine Antwort.
+\end{Answer}
+
+
+Der Aufbau einer Java Datei kann sehr einfach durch eine Metasprache, der sogenannten
+\href{https://de.wikipedia.org/wiki/Erweiterte_Backus-Naur-Form}{Erweiterte Backus-Naur-Form}
+(EBNF) dargestellt werden.
+
+\inputminted[firstline=41,lastline=46]{antlr}{Java.g4}
+
+
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Sichtbarkeit von Objekten}
+
+    Es existiern vier unterschiedliche Zugriffsstufen für die
+    Objekte (Daten und Methoden).
+    
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{p{3cm}|c|c|c|c}
+            Modifier                     & Class & Package & Subclass & Universe \\ \hline
+            \mintinline{java}{private}   &  x    &         &          &          \\
+            \texttt{default}             &  x    &    x    &          &          \\
+            \mintinline{java}{protected} &  x    &    x    &     x    &          \\
+            \mintinline{java}{public}    &  x    &    x    &     x    &    x
+        \end{tabular}
+        \mode<article>{\caption{Sichtbarkeit von Objekten}}
+    \end{table}
+
+\end{frame}
+
 
 \subsection{Instanzen erzeugen}
+\label{subsec:create-instance}
+
 \subsection{Methoden aufrufen}
+\label{subsec:call-method}
+
 \subsection{Parameter}
+\label{subsec:parameter}
+
 \subsection{Datentypen}
+\label{subsec:datatypes}
 
 
 \begin{Exercise}[%
