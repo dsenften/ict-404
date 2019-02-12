@@ -15,13 +15,6 @@ import java.util.Map;
  */
 public class Canvas {
 
-    // Hinweis: Die Implementierung dieser Klasse (insbesondere die
-    // Verwaltung der Farben und Identitäten der Figuren) ist etwas
-    // komplizierter als notwendig. Dies ist absichtlich so, weil damit
-    // die Schnittstellen und Exemplarvariablen der Figuren-Klassen
-    // für den Lernanspruch dieses Projekts einfacher und klarer
-    // sein können.
-
     private static Canvas canvasSingleton;
 
     /**
@@ -164,7 +157,7 @@ public class Canvas {
     /***************************************************************************
      * Interne Klasse DrawingArea - die Klasse für die GUI-Komponente, die
      * tatsächlich im Canvas-Fenster angezeigt wird. Diese Klasse definiert
-     * ein JPanel mit der zusätzlichen Möglichkeit, das auf ihm gezeichnet Image
+     * ein JPanel mit der zusätzlichen Möglichkeit, das auf ihm gezeichnet HomeSweetHome
      * aufzufrischen (erneut zu zeichnen).
      */
     private class DrawingArea extends JPanel {
