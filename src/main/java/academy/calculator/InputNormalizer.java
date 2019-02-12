@@ -21,7 +21,6 @@ class InputNormalizer {
             }
             numbers = numbers.substring(numbers.indexOf("]") + 1);
         }
-        System.out.println(" delimiters.toString() = " + delimiters.toString());
         return delimiters.toString();
     }
 
