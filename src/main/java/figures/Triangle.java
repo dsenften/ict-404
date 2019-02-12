@@ -28,7 +28,7 @@ public class Triangle {
     /**
      * Erzeuge ein Triangle mit einer Standardfarbe an einer Standardposition.
      */
-     Triangle() {
+     public Triangle() {
         height = 60;
         width = 70;
         xPosition = 210;
@@ -40,7 +40,7 @@ public class Triangle {
     /**
      * Mache dieses Triangle sichtbar. Wenn es bereits sichtbar ist, tue nichts.
      */
-     void setVisible() {
+     public void setVisible() {
         isVisible = true;
         draw();
     }
@@ -85,7 +85,7 @@ public class Triangle {
     /**
      * Bewege dieses Triangle horizontal um 'entfernung' Bildschirmpunkte.
      */
-    private void moveHorizontal(int distance) {
+    public void moveHorizontal(int distance) {
         delete();
         xPosition += distance;
         draw();
@@ -94,7 +94,7 @@ public class Triangle {
     /**
      * Bewege dieses Triangle vertikal um 'entfernung' Bildschirmpunkte.
      */
-    private void moveVertical(int distance) {
+    public void moveVertical(int distance) {
         delete();
         yPosition += distance;
         draw();
