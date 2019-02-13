@@ -418,6 +418,20 @@ Der Aufbau einer Java Datei kann sehr einfach durch eine Metasprache, der sogena
 \end{frame}
 
 
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Übung: Ein einfacher Taschenrechner}
+    Für unsere nächste Übung erstellen wir ein neues Projekt aus einem
+    \emph{Repository}. Da es sich um ein öffentliches Projekt handelt sollte
+    der Zugriff auch ohne einen persönlichen Zugang möglich sein.
+
+    Das Projekt ist unter folgendem Link zu finden.
+
+    \href{https://github.com/dsenften/example-simple-calculator.git}
+         {https://github.com/dsenften/example-simple-calculator.git}
+\end{frame}
+
+\mode*
 % ----------------------------------------------------------------------------
 \begin{Exercise}[%
 title={Ein einfacher Taschenrechner},
@@ -447,6 +461,7 @@ label={ex:calculator}]
     korrekt installiert wurde, dann sieht die Projektstruktur wie folgt aus:
 
     \minibox{simple-calculator}{Projektstruktur}
+    
 
 \end{Exercise}
 
@@ -454,14 +469,82 @@ label={ex:calculator}]
 \subsection{Instanzen erzeugen}
 \label{subsec:create-instance}
 
+Anhand des Beispieles aus Übung~\ref{ex:calculator} können wir sehr schön aufzeigen,
+wie ein Objekt einer Bestimmten Klasse erzeugt wird.
+
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Instanzen erzeugen}
+    \inputminted[frame=single,samepage,firstline=3]{java}
+        {../java/academy/Calculator/Calculator.java}
+\end{frame}
+
+\mode*
+\begin{listing}[ht]
+    \inputminted[frame=single,linenos,samepage]{java}
+        {../java/academy/Calculator/Calculator.java}
+    \caption{Einfacher Additions-Rechner}
+    \label{lst:example-calculator}
+\end{listing}
+
+
 \subsection{Methoden aufrufen}
 \label{subsec:call-method}
 
+\begin{frame}[fragile]
+    \frametitle<presentation>{Darstellen von einfachen Grafiken}
+    Für die nächsten Beispiele verwenden wir ein anderes Projekt, welches wir
+    auch unter GitHub finden: \mode<article>{\href{https://github.com/dsenften/example-figures.git}
+    {example-figures}.}
+
+    \mode<presentation>{%
+        \href{https://github.com/dsenften/example-figures.git}
+             {https://github.com/dsenften/example-figures.git}}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Erzeugen von Objekten}
+    Basierend auf den installierten Klassen wollen wir nun die zur Verfügung
+    gestellten Klassen wie als Objekte erzeugen und
+    darstellen.
+
+    \begin{block}{Übung}
+        Erzeugen und darstellen eines Kreis.
+        \begin{minted}[autogobble]{java}
+            Circle circle = new Circle();
+            circle.setVisible();
+        \end{minted}
+    \end{block}
+\end{frame}
+
+% ---------------------------------------------------------------------------
 \subsection{Parameter}
 \label{subsec:parameter}
 
+
+% ---------------------------------------------------------------------------
 \subsection{Datentypen}
 \label{subsec:datatypes}
+
+\begin{frame}[fragile]
+\begin{table}[h]
+    \frametitle<presentation>{Einfache Datentypen in Java}
+    \centering
+    \begin{tabular}{|l|r|l|} \hline
+        \textbf{Datentyp}          & \textbf{Grösse} & \textbf{Wertebereich}                             \\ \hline
+        \mintinline{java}{boolean} &                 & \mintinline{java}{true}/\mintinline{java}{false}  \\ \hline
+        \mintinline{java}{char}    & 16 bit          & $0 \ldots 65'535$                                 \\ \hline
+        \mintinline{java}{byte}    &  8 bit          & $-128 \ldots 127$                                 \\ \hline
+        \mintinline{java}{short}   & 16 bit          & $-32'768 \ldots 32'767$                           \\ \hline
+        \mintinline{java}{int}     & 32 bit          & $-2'147'483'648 \ldots 2'147'483'647$             \\ \hline
+        \mintinline{java}{long}    & 64 bit          & $-9'223'372'036'854'775'808 \ldots 9'223'372'036'854'775'807$  \\ \hline
+        \mintinline{java}{float}   & 32 bit          & $\pm 1.402'398 \times 10^{-45}  \ldots 3.402'823 \times 10^{38}$  \\ \hline
+        \mintinline{java}{double}  & 64 bit          & $\pm 4.922'656 \times 10^{-324} \ldots 1.797'693 \times 10^{308}$ \\ \hline
+    \end{tabular}
+    \mode<article>{\caption{Einfache Datentypen in Java}}
+\end{table}
+\end{frame}
 
 
 % =============================================================================
@@ -492,6 +575,19 @@ label={ex:calculator}]
 \section{Objektinteraktion}
 \label{sec:interaction}
 
+% TODO Thematik "call-by-value" erläutern
+\fxfatal{Thematik \emph{call by value} erläutern.}
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Beispiel: Laborkurse}
+    Ein einfaches Beispiel mit Kursen und Studenten. Es zeigt einmal mehr auf, wie wir
+    Objekte, Attribute und Methoden verwenden. In einem späteren Abschnitt werden wir
+    an dieser Stelle die Vererbung integrieren.
+
+    \href{https://github.com/dsenften/example-course.git}
+         {https://github.com/dsenften/example-course.git}
+
+\end{frame}
 
 % =============================================================================
 %                                 CHAPTER  4
@@ -500,3 +596,117 @@ label={ex:calculator}]
 \section{Objektsammlungen}
 \label{sec:collections}
 
+\subsection{Generische Klassen}
+\label{subsec:generics}
+
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Einfacher \emph{Cache} ohne \emph{Generics}}
+    \only<1>{\inputminted[frame=single,firstline=3]{java}
+        {../java/generics/CacheString.java}}
+    \only<2>{\inputminted[frame=single,firstline=3]{java}
+        {../java/generics/CacheShirt.java}}
+\end{frame}
+
+
+\mode*
+Durch die Implementation verschiedener \emph{Cache} Klassen handeln wir
+uns eine sehr starke Abhängigkeit ein und schreiben gleichzeitig redundanten
+Code.
+
+
+\begin{listing}[ht]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \inputminted[frame=single,linenos]{java}{../java/generics/CacheString.java}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \inputminted[frame=single]{java}{../java/generics/CacheShirt.java}
+    \end{minipage}
+    \caption{Einfacher \emph{Cache} ohne \emph{Generics}}
+    \label{lst:non-generic-classes}
+\end{listing}
+
+Durch die Verwendung generischer Klassen können wir dieses Problem sehr elegant
+lösen.
+
+
+%\framecode{../java/generics/Cache.java}{Verwenden generischer Klassen}
+\begin{frame}[fragile]
+	\frametitle<presentation>{Verwenden generischer Klassen}
+    \mode<presentation>{\inputminted[frame=single,autogobble,firstline=3]{java}
+        {../java/generics/Cache.java}}
+    \mode<article>{\inputminted[frame=single,autogobble,linenos,samepage]{java}
+        {../java/generics/Cache.java}}
+\end{frame}
+
+
+\subsection{Sammlungen $|$ \emph{Collections}}
+\label{subsec:collections}
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Collections}
+    \begin{itemize}
+        \item Eine Sammlung ist eine Objekt, welche eine Reihe anderer
+            Objekte verwaltet
+        \begin{itemize}
+            \item Einzelne Objekte einer Sammlung nennen wir Elemente
+            \item Einfache Datentype sind nicht erlaubt
+        \end{itemize}
+        \item Wir sprechen an dieser Stelle auch gerne von abstrakten Datentypen
+        \begin{itemize}
+            \item \emph{Stack}, \emph{Queue}, \emph{Hash}
+        \end{itemize}
+        \item Das \emph{Collection API} basiert stark auf generischen Klassen
+    \end{itemize}
+\end{frame}
+
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \umlclass[type=interface]{Collection}{}{%
+            int size() \\
+            boolean isEmpty() \\
+            boolean contains(Object o) \\
+            boolean add(E e) \\
+            boolean remove(Object o)
+        }
+
+        \umlclass[type=interface,below left=3cm and 1cm of Collection,anchor=north]{Set}{}{%
+            int size() \\
+            void clear() \\
+            boolean isEmpty() \\
+            boolean equals(Object o);
+        }
+        \umlVHVinherit{Set}{Collection}
+
+        \umlclass[type=interface,right=8cm of Set.north,anchor=north]{List}{}{%
+            int size() \\
+            boolean isEmpty() \\
+            boolean add(E e) \\
+            boolean remove(Object o)
+        }
+        \umlVHVinherit{List}{Collection}
+
+        \umlclass[type=interface,below left=2cm and 0.0cm of Set,anchor=north]{NavigableSet}{}{}
+        \umlVHVinherit{NavigableSet}{Set}
+
+        \umlclass[type=interface,right=4cm of NavigableSet.north,anchor=north]{SortedSet}{}{}
+        \umlVHVinherit{SortedSet}{Set}
+
+        \umlclass[below left=2cm and 0.0cm of List,anchor=north]{ArrayList}{}{%
+            int indexOf(Object o) \\
+            Iterator<E> iterator()
+        }
+        \umlVHVimpl{ArrayList}{List}
+
+        \umlclass[right=5cm of ArrayList.north,anchor=north]{Stack}{}{%
+            E pop() \\
+            E push(E item)
+        }
+        \umlVHVimpl{Stack}{List}
+
+    \end{tikzpicture}
+    \caption{Collection API}
+\end{figure}
