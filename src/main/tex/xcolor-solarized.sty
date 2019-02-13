@@ -1,0 +1,96 @@
+%%
+%% This is file `xcolor-solarized.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% xcolor-solarized.dtx  (with options: `package')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2015 by Julien Cretel <jubobs.tex at gmail.com>
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%% 
+%%     http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is Julien Cretel.
+%% 
+%% This work currently consists of the files xcolor-solarized.dtx,
+%% xcolor-solarized.ins, and the derived file xcolor-solarized.sty.
+%% 
+
+\NeedsTeXFormat{LaTeX2e}[2011/06/27]
+\ProvidesPackage{xcolor-solarized}
+  [2016/08/05 v0.4 xcolor definitions for Ethan Schoonover's
+   Solarized theme]
+\RequirePackage{xcolor}[2007/01/21]
+\RequirePackage{kvoptions}[2011/06/30]
+\SetupKeyvalOptions{
+  family=solarized,
+  prefix=solarized@
+}
+\DeclareStringOption[solarized-]{prefix}
+\DeclareDefaultOption{%
+  \OptionNotUsed
+  \PackageError{xcolor-solarized}{Unknown `\CurrentOption' option}
+}
+\ProcessKeyvalOptions*
+\newcommand\solarized@definecolor[2]
+  {\expandafter\definecolor\expandafter{\solarized@prefix #1}{RGB}{#2}}
+\solarized@definecolor{base03} {000, 043, 054}
+\solarized@definecolor{base02} {007, 054, 066}
+\solarized@definecolor{base01} {088, 110, 117}
+\solarized@definecolor{base00} {101, 123, 131}
+\solarized@definecolor{base0}  {131, 148, 150}
+\solarized@definecolor{base1}  {147, 161, 161}
+\solarized@definecolor{base2}  {238, 232, 213}
+\solarized@definecolor{base3}  {253, 246, 227}
+\solarized@definecolor{yellow} {181, 137, 000}
+\solarized@definecolor{orange} {203, 075, 022}
+\solarized@definecolor{red}    {220, 050, 047}
+\solarized@definecolor{magenta}{211, 054, 130}
+\solarized@definecolor{violet} {108, 113, 196}
+\solarized@definecolor{blue}   {038, 139, 210}
+\solarized@definecolor{cyan}   {042, 161, 152}
+\solarized@definecolor{green}  {133, 153, 000}
+\newcommand\solarizedPalette[1][3em]{%
+  \newcommand\solarized@square{\rule{#1}{#1}}
+  \newcommand\solarized@showcolor[1]{%
+    \textcolor{\solarized@prefix ##1}{\solarized@square}%
+  }
+  \noindent
+  \begin{tabular}{cccc cccc}
+    \solarized@showcolor{base03} &
+    \solarized@showcolor{base02} &
+    \solarized@showcolor{base01} &
+    \solarized@showcolor{base00} &
+    \solarized@showcolor{base0}  &
+    \solarized@showcolor{base1}  &
+    \solarized@showcolor{base2}  &
+    \solarized@showcolor{base3}  \\
+    base03 & base02 & base01 & base00 &
+    base0  & base1  & base2  & base3  \\[#1]
+    \solarized@showcolor{yellow} &
+    \solarized@showcolor{orange} &
+    \solarized@showcolor{red}    &
+    \solarized@showcolor{magenta}&
+    \solarized@showcolor{violet} &
+    \solarized@showcolor{blue}   &
+    \solarized@showcolor{cyan}   &
+    \solarized@showcolor{green}  \\
+    yellow & orange & red  & magenta &
+    violet & blue   & cyan & green
+  \end{tabular}
+}
+\endinput
+%%
+%% End of file `xcolor-solarized.sty'.
