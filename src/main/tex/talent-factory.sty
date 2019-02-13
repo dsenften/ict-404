@@ -1,0 +1,99 @@
+%%
+%% Copyright (C) 2014 by Julien Cretel <jubobs.tex at gmail.com>
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%
+%%     http://www.latex-project.org/lppl.txt
+%%
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%%
+%% The Current Maintainer of this work is Julien Cretel.
+%%
+%% This work currently consists of the file gitdags.sty.
+%%
+\NeedsTeXFormat{LaTeX2e}[2011/06/27]
+\ProvidesClass{talent-factory}
+  [2019/01/11 v1.0 A package containing Telent-Factory specific definitions]
+
+\RequirePackage[german]{babel}
+\selectlanguage{german}
+
+\RequirePackage{amssymb}
+
+\RequirePackage[answerdelayed,lastexercise]{exercise}
+\RequirePackage{filecontents}
+\RequirePackage{fixme}
+
+\RequirePackage[mark]{gitinfo2}
+\renewcommand{\gitMark}{Release\gitRels: \gitBranch{} (\gitAuthorDate)}
+
+\RequirePackage{graphicx}
+
+\RequirePackage[german]{fancyref}
+\RequirePackage{hyperref}
+\hypersetup{
+	colorlinks  = true,
+	linkcolor   = black,
+	filecolor   = magenta,
+	urlcolor    = blue,
+	citecolor   = blue,
+	anchorcolor = blue,
+	pdfpagemode = FullScreen,
+}
+
+\RequirePackage{minted}
+\RequirePackage{multicol} % https://de.overleaf.com/learn/latex/Multiple_columns
+
+\RequirePackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\RequirePackage{tikz}
+\RequirePackage{tikz-uml}
+\RequirePackage{tikz-qtree}
+
+
+\newcommand\image[2]{%
+  \begin{figure}[ht]
+	\centering		
+    \mode<presentation>{\includegraphics[width=6cm]{../../../images/#1.png}}
+    \mode<article>{\includegraphics[width=12cm]{../../../images/#1.png}}
+    \mode<article>{\caption{#2}}
+    \label{fig:#1}
+  \end{figure}
+}
+
+%% Funktioniert noch 
+\newcommand\framecode[2]{%
+	\mode*
+	\begin{frame}[fragile]
+		\frametitle<presentation>{#2}
+  		\begin{figure}[ht]
+			\centering		
+    		\mode<presentation>{\inputminted[frame=single,autogobble]{java}{#1}}
+    		\mode<article>{\inputminted[frame=single,autogobble,linenos]{java}{#1}}
+    		\mode<article>{\caption{#2}}
+    		\label{fig:#1}
+		\end{figure}
+	\end{frame}
+}
+
+
+%
+% Diese Redefinition für die Integration von Bildern war notwendig,
+% da die Version '\image' in der Umgebung 'Exercise' nicht funktioniert.
+\newcommand\minibox[2]{%
+    \begin{minipage}{\textwidth}
+        \centering
+        \includegraphics[width=10cm]{../../../images/#1.png}
+        \captionof{figure}{#2}
+        \label{fig:#1}
+    \end{minipage}
+}
+
+\endinput
