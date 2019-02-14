@@ -546,6 +546,9 @@ wie ein Objekt einer Bestimmten Klasse erzeugt wird.
 \end{table}
 \end{frame}
 
+Die hier aufgeführten Gleitkommazahlen \texttt{float} und \texttt{double} sind
+nach dem Standard \href{https://de.wikipedia.org/wiki/IEEE_754}{IEEE 754} abgelegt.
+
 
 % =============================================================================
 %                                 CHAPTER  2
@@ -627,33 +630,75 @@ Code.
     \label{lst:non-generic-classes}
 \end{listing}
 
-Durch die Verwendung generischer Klassen können wir dieses Problem sehr elegant
-lösen.
 
-
-%\framecode{../java/generics/Cache.java}{Verwenden generischer Klassen}
 \begin{frame}[fragile]
-	\frametitle<presentation>{Verwenden generischer Klassen}
+	\frametitle<presentation>{Schreiben generischer Klassen}
     \mode<presentation>{\inputminted[frame=single,autogobble,firstline=3]{java}
         {../java/generics/Cache.java}}
-    \mode<article>{\inputminted[frame=single,autogobble,linenos,samepage]{java}
-        {../java/generics/Cache.java}}
 \end{frame}
+
+\source{../java/generics/Cache.java}{Definieren einer generischen Klasse}
+
+Durch die Verwendung generischer Klassen können wir dieses Problem sehr elegant
+lösen. Die spezielle Schreibweise der Klasse \texttt{Cache} verwenden wir in
+einem Programm wie folgt:
+
+\mintinline{java}{Cache<String> cache = new Cache<>();}
+
+Die hier eingeführte Notation mit den spitzen Klammern müssen wir allerdings noch
+etwas ausführlicher betrachten. Die Klasse selbst, die wir hier verwenden heisst
+\texttt{Cache}, aber sie erfordert die Angabe eines zweiten Typs als Parameter,
+wenn sie zur Deklaration von Attributen oder anderen Variablen verwendet wird.
+
+Diese generischen Klassen definieren, im Gegensatz zu allen bisher betrachteten
+Klassen, nich einen einzelnen Typ, sondern beliebig viele Typen. Wir können
+beispielsweise weitere Objekte definieren:
+
+\begin{minted}[autogobble]{java}
+    private Cache<Integer> cache = new Cache<>();
+    private Cache<Person> cache = new Cache<>();
+    private Cache<Circle> cache = new Cache<>();
+\end{minted}
+
+
 
 
 \subsection{Sammlungen $|$ \emph{Collections}}
 \label{subsec:collections}
 
+Bis zu diesem Punkt haben wir nur einfache Objekte betrachtet, die wir
+wahlweise auch mit einer anderen Bezeichnung (Attribut, Eigenschaft)
+benutzten. So trafen wir auf folgende Deklarationen:
+
+\begin{minted}[autogobble]{java}
+    private int age;
+    private String firstName;
+    private Circle circle;
+\end{minted}
+
+Neben diesen einfachen Strukturen sind auch statische Vektoren und
+mehrdimensionale Array mögliche. So sind wir auch folgender Deklarationen
+begegnet:
+
+\begin{minted}[autogobble]{java}
+    String[] args; // Statischer (eindimensionaler) Array fester Grösse
+\end{minted}
+
+Wollen wir allerdings eine dynamische Anzahl von Objekten in einer Datenstruktur
+speichern, dann ist dies nur mit entsprechenden Datentypen möglich. In Java
+sprechen wir vom sogenannten \emph{Collection API}. Generell wird an dieser
+Stelle auch gerne der Begriff der \emph{Abstrakten Datentypen} verwendet.
+
 \begin{frame}[fragile]
     \frametitle<presentation>{Collections}
     \begin{itemize}
-        \item Eine Sammlung ist eine Objekt, welche eine Reihe anderer
+        \item Eine Sammlung ist eine Objekt, welches eine Reihe anderer
             Objekte verwaltet
         \begin{itemize}
             \item Einzelne Objekte einer Sammlung nennen wir Elemente
-            \item Einfache Datentype sind nicht erlaubt
+            \item Einfache/Primitive Datentype sind nicht erlaubt
         \end{itemize}
-        \item Wir sprechen an dieser Stelle auch gerne von abstrakten Datentypen
+        \item Es existieren viele vordefinierten Typen
         \begin{itemize}
             \item \emph{Stack}, \emph{Queue}, \emph{Hash}
         \end{itemize}
@@ -661,6 +706,12 @@ lösen.
     \end{itemize}
 \end{frame}
 
+In der Abblildung~\ref{uml:collection-api} (Seite~\pageref{uml:collection-api}) ist
+nur ein kleiner Ausschnitt des \emph{Collection API's} dargestellt. Um sich einen
+kompletten Überblich zu machen ist sicher die
+\href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Collection.html}
+{Java Dokumentation} ein guter Start. Auch die an dieser Stelle erwähnten Methoden sind
+nur auszugweise aufgeführt.
 
 \begin{figure}[ht]
     \centering
@@ -709,4 +760,14 @@ lösen.
 
     \end{tikzpicture}
     \caption{Collection API}
+    \label{uml:collection-api}
 \end{figure}
+
+Mit unserem Vorwissen in der Verwendung generischer Klassen konnen wir nun
+eine Liste für eine beliebige Anzahl von Obkten eines bestimmten Typs wie
+folgt deklarieren und gleichzeitig initialisieren:
+
+\begin{minted}[autogobble,samepage]{java}
+    ArrayList<Student> students = new ArrayList<>();
+    myPersonList.add(new Student("Senften, Daniel", "1234-123-45"));
+\end{minted}
