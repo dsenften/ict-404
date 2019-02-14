@@ -27,7 +27,7 @@ public class Circle {
      * Erzeuge einen neuen Circle an einer Standardposition mit einer
      * Standardfarbe.
      */
-    Circle() {
+    public Circle() {
         diameter = 68;
         xPosition = 230;
         yPosition = 90;
@@ -37,7 +37,7 @@ public class Circle {
     /**
      * Mache diesen Circle sichtbar. Wenn es bereits sichtbar ist, tue nichts.
      */
-    void setVisible() {
+    public void setVisible() {
         isVisible = true;
         draw();
     }
@@ -82,7 +82,7 @@ public class Circle {
     /**
      * Bewege diesen Circle horizontal um 'entfernung' Bildschirmpunkte.
      */
-    private void moveHorizontal(int distance) {
+    public void moveHorizontal(int distance) {
         delete();
         xPosition += distance;
         draw();
@@ -91,7 +91,7 @@ public class Circle {
     /**
      * Bewege diesen Circle vertikal um 'entfernung' Bildschirmpunkte.
      */
-    private void moveVertical(int distance) {
+    public void moveVertical(int distance) {
         delete();
         yPosition += distance;
         draw();

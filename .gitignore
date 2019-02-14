@@ -17,7 +17,10 @@
 *.nav
 *.snm
 *.vrb
+
 _minted*
+
+exam.pdf
 main.article.pdf
 main.beamer.pdf
 
