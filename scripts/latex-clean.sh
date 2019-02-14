@@ -16,5 +16,6 @@ rm -f *.vrb
 
 rm -rf _minted*
 
+rm -f exam.pdf
 rm -f main.article.pdf
 rm -f main.beamer.pdf

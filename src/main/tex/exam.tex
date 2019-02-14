@@ -1,0 +1,158 @@
+\documentclass[12pt,a4paper]{exam}
+
+\RequirePackage{talent-factory}
+\RequirePackage[top=3cm,bottom=2cm,left=2cm,right=1.5cm,headsep=10pt,a4paper]{geometry} % Page margins
+
+\newcommand{\class}{Modul 404}
+\newcommand{\examnum}{Test 1}
+\newcommand{\examdate}{15.02.2019}
+\newcommand{\timelimit}{45 Minuten}
+
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{\class}{\examnum\ - Seite \thepage\ / \numpages}{\examdate}
+\runningheadrule
+
+\begin{document}
+
+    \setmainfont{Verdana}
+    \parindent0em\parskip1em
+
+    % Deutsche Schreibweise diverser Labels
+    \pointpoints{Punkt}{Punkte}
+
+
+    \noindent
+    \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r @{\extracolsep{6pt}} l}
+        \textbf{\class}           & \textbf{Name:} & \makebox[2in]{\hrulefill} \\
+        \textbf{\examnum}         &                & \\
+        \textbf{\examdate}        &                & \\
+        \textbf{Zeit: \timelimit} & Dozent         & \makebox[2in]{Daniel Senften}
+    \end{tabular*}\\
+    \rule[1ex]{\textwidth}{1pt}
+
+    Dieser Test besteht aus \numpages\ Seiten (inkl. Titelseite) und
+    \numquestions\ Fragen. Wenn alle Fragen richtig beantwortet werden,
+    dann sind maximal \numpoints\ möglich..
+
+
+    \begin{center}
+        \textbf{Punktetabelle}\footnote{Diese Tabelle wird durch den Dozenten
+        nach der Prüfung ausgefüllt} \\ \vskip1em
+        \addpoints
+
+        \hqword{Aufgabe}
+        \hpword{Punktzah}
+        \htword{\textbf{Total}}
+        \hsword{Erreicht}
+        \gradetable[h][questions]
+    \end{center}
+
+    \noindent
+    \rule[1ex]{\textwidth}{1pt}
+
+    \begin{questions}
+
+        \question[1] Calculate 2+2.
+        \addpoints
+
+        \question[20] Consider the function $f(x)=3x^3+2x^2+x+1$.
+        \noaddpoints % to omit double points count
+        \begin{parts}
+            \part[10] Calculate $f'(x)$.
+            \part[10] Calculate $f''(x)$.
+        \end{parts}
+        \addpoints
+
+        \question[2] One of these things is not like the others; one of these
+        things is not the same. Which one is different?
+        \begin{choices}
+            \choice John
+            \choice Paul
+            \choice George
+            \choice Ringo
+            \choice Socrates
+        \end{choices}
+
+        \question[2] One of these things is not like the others; one of these
+        things is not the same. Which one is different?
+        \begin{oneparchoices}
+            \choice John
+            \choice Paul
+            \choice George
+            \choice Ringo
+            \choice Socrates
+        \end{oneparchoices}
+
+        \question[3] Mark box if true.
+        \addpoints
+        \begin{checkboxes}
+            \choice 2+2=4
+            \choice $\frac{d}{dx} (x^2+1) = 2x+1$
+            \choice The Moon is made of cheese.
+        \end{checkboxes}
+
+        {%
+        \checkboxchar{$\Box$} % changing checkbox style locally
+        \question[4] Welches sind korrekte Definitionen der \mintinline{java}{main()} Methode,
+        damit das Programm gestartet werden kann
+        \addpoints
+        \begin{checkboxes}
+            \choice \mintinline{java}{public static main(String[] args)}
+            \choice \mintinline{java}{public static void main(String... args)}
+            \choice \mintinline{java}{public void main(String[] args)}
+            \choice \mintinline{java}{public static void main(String args[])}
+        \end{checkboxes}
+        }%
+
+        {%
+        % changing choice items style locally
+        \renewcommand*\thechoice{\arabic{choice}}
+        \renewcommand*\choicelabel{\thechoice)}
+        %
+        \question[2] Element with $Z=92$ is:
+        \begin{multicols}{2}
+            \begin{choices}
+                \choice H
+                \choice O
+                \choice F
+                \choice S
+                \choice Ba
+                \choice Pb
+                \choice U
+                \choice Pu
+            \end{choices}
+        \end{multicols}
+        }%
+
+        \question[10]
+        Mit folgender Klasse soll ein Objekt eines bestimmten Datentyps (z.B.
+        \mintinline{java}{Integer}) erstellt und anschliessend die Methode
+        \mintinline{java}{add()} aufgerufen werden.
+        \inputminted[autogobble,linenos,firstline=3]{java}{../java/generics/Cache.java}
+        \makeemptybox{2in}
+
+        \newpage
+        \question[10]
+        Objekte und Klassen bauen auf folgenden (nicht abschliessenden) Konzepten auf.
+        Was verstehen wir unter den einzelnen Punkten. Gefragt ist eine kurze, stichwortartige
+        Umschreibung von:
+        \begin{itemize}
+            \item Klasse
+            \item Objekt
+            \item Eigenschaft
+            \item Methode
+            \item Datentyp
+        \end{itemize}
+        \makeemptybox{\fill}
+
+        \newpage\question[10]
+        Gegeben ist die folgende Klasse:
+        \inputminted[autogobble,linenos]{java}{../java/academy/calculator/InputValidator.java}
+
+        Was ist das Resultat, wenn ich dieses Programm (Zeile 25) starte:
+        \makeemptybox{\fill}
+
+    \end{questions}
+
+\end{document}
