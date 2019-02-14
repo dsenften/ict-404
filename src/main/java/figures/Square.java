@@ -26,7 +26,7 @@ public class Square {
      * Erzeuge ein neues Square mit einer Standardfarbe an einer
      * Standardposition.
      */
-     Square() {
+     public Square() {
         size = 60;
         xPosition = 310;
         yPosition = 120;
@@ -37,7 +37,7 @@ public class Square {
     /**
      * Mache dieses Square sichtbar. Wenn es bereits sichtbar ist, tue nichts.
      */
-     void setVisible() {
+     public void setVisible() {
         isVisible = true;
         draw();
     }
@@ -82,7 +82,7 @@ public class Square {
     /**
      * Bewege dieses Square horizontal um 'entfernung' Bildschirmpunkte.
      */
-    private void moveHorizontal(int distance) {
+    public void moveHorizontal(int distance) {
         delete();
         xPosition += distance;
         draw();
@@ -91,9 +91,9 @@ public class Square {
     /**
      * Bewege dieses Square vertikal um 'entfernung' Bildschirmpunkte.
      */
-    private void moveVertical(int entfernung) {
+    public void moveVertical(int distance) {
         delete();
-        yPosition += entfernung;
+        yPosition += distance;
         draw();
     }
 
@@ -101,9 +101,9 @@ public class Square {
      * Ändere die Größe dieses Quadrates in 'neueGroesse'. 'neueGroesse' muss
      * groesser gleich Null sein.
      */
-    public void setSize(int neueGroesse) {
+    public void setSize(int size) {
         delete();
-        size = neueGroesse;
+        this.size = size;
         draw();
     }
 
