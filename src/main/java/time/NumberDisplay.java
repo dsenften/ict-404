@@ -11,8 +11,7 @@ package time;
  * Wenn der Wert einer NumberDisplay erhöht wird, wird bei Erreichen
  * des Limits der Wert automatisch auf null zur�ckgesetzt.
  */
-public class NumberDisplay
-{
+public class NumberDisplay {
     private int limit;
     private int value;
 
@@ -20,8 +19,7 @@ public class NumberDisplay
      * Konstruktor für Exemplare der Klasse NumberDisplay.
      * Setzt das Limit, bei dem die Anzeige zurückgesetzt wird.
      */
-    public NumberDisplay(int limit)
-    {
+    public NumberDisplay(int limit) {
         this.limit = limit;
         value = 0;
     }
@@ -29,8 +27,7 @@ public class NumberDisplay
     /**
      * Liefere den aktuellen Wert als int.
      */
-    public int getValue()
-    {
+    public int getValue() {
         return value;
     }
 
@@ -40,12 +37,10 @@ public class NumberDisplay
      * kleiner als zehn ist, wird die Anzeige mit einer führenden
      * null eingerückt.
      */
-    public String getDisplayValue()
-    {
-        if(value < 10) {
+    public String getDisplayValue() {
+        if (value < 10) {
             return "0" + value;
-        }
-        else {
+        } else {
             return "" + value;
         }
     }
@@ -55,9 +50,8 @@ public class NumberDisplay
      * Wenn der angegebene Wert unter null oder über dem Limit liegt,
      * tue nichts.
      */
-    public void setValue(int value)
-    {
-        if((value >= 0) && (value < limit)) {
+    public void setValue(int value) {
+        if ((value >= 0) && (value < limit)) {
             this.value = value;
         }
     }
@@ -66,8 +60,7 @@ public class NumberDisplay
      * Erhöhe den Wert um eins. Wenn das Limit erreicht ist, setze
      * den Wert wieder auf null.
      */
-    public void incrementValue()
-    {
+    public void incrementValue() {
         value = (value + 1) % limit;
     }
 }
