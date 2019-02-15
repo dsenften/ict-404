@@ -3,7 +3,7 @@
 %\newmintedfile{java}{frame=single,linenos,samepage}
 
 % =============================================================================
-%                                 CHAPTER  0
+%                                 CHAPTER
 % =============================================================================
 
 
@@ -32,6 +32,10 @@ nach den Kompetenzanforderungen für das
 
 \end{frame}
 
+
+% =============================================================================
+%                                 CHAPTER
+% =============================================================================
 
 \section{Bereitsstellen der Software}
 \label{sec:java-technologie}
@@ -284,7 +288,7 @@ label={ex:installation-intellij}]
 \end{Exercise}
 
 % =============================================================================
-%                                 CHAPTER  1
+%                                 CHAPTER
 % =============================================================================
 
 \section{Objekte und Klassen}
@@ -551,7 +555,7 @@ nach dem Standard \href{https://de.wikipedia.org/wiki/IEEE_754}{IEEE 754} abgele
 
 
 % =============================================================================
-%                                 CHAPTER  2
+%                                 CHAPTER
 % =============================================================================
 
 \section{Klassendefinitionen}
@@ -572,7 +576,7 @@ nach dem Standard \href{https://de.wikipedia.org/wiki/IEEE_754}{IEEE 754} abgele
 
 
 % =============================================================================
-%                                 CHAPTER  3
+%                                 CHAPTER
 % =============================================================================
 
 \section{Objektinteraktion}
@@ -593,7 +597,7 @@ nach dem Standard \href{https://de.wikipedia.org/wiki/IEEE_754}{IEEE 754} abgele
 \end{frame}
 
 % =============================================================================
-%                                 CHAPTER  4
+%                                 CHAPTER
 % =============================================================================
 
 \section{Objektsammlungen}
@@ -771,3 +775,37 @@ folgt deklarieren und gleichzeitig initialisieren:
     ArrayList<Student> students = new ArrayList<>();
     myPersonList.add(new Student("Senften, Daniel", "1234-123-45"));
 \end{minted}
+
+
+% =============================================================================
+%                                 CHAPTER
+% =============================================================================
+
+\section{Klassendesign durch Vererbung}
+\label{sec:inheritance}
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Vererbung $|$ Inheritance}
+    \mode<presentation>{\inputminted[frame=single,autogobble,firstline=8,lastline=18]{java}
+        {../java/inheritance/Employee.java}}
+\end{frame}
+
+Wir wenden an dieser Stelle absichtlich die Unterstützung der
+\href{https://projectlombok.org/features/all}{Lombok} Annotationen an, damit
+der Quelltext etwas übersichtlicher wird.
+
+\source{../java/inheritance/Employee.java}{Klasse: \emph{Employee}}
+
+% -----------------
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Vererbung $|$ Inheritance}
+    \mode<presentation>{\inputminted[frame=single,autogobble,firstline=8,lastline=16]{java}
+        {../java/inheritance/Manager.java}}
+\end{frame}
+
+Wir wenden an dieser Stelle absichtlich die Unterstützung der
+\href{https://projectlombok.org/features/all}{Lombok} Annotationen an, damit
+der Quelltext etwas übersichtlicher wird.
+
+\source{../java/inheritance/Manager.java}{Klasse: \emph{Manager}}
