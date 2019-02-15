@@ -15,19 +15,16 @@ import java.awt.event.KeyEvent;
  * @author Michael Kölling und David J. Barnes
  * @version 31.07.2011
  */
-public class Watch
-{
+public class Watch {
     private JFrame window;
     private JLabel label;
     private Display display;
     private boolean isRunning = false;
-    private TimerThread timerThread;
 
     /**
      * Konstruktor für ein Exemplar von Watch
      */
-    public Watch()
-    {
+    public Watch() {
         displayWindow();
         display = new Display();
     }
@@ -35,26 +32,23 @@ public class Watch
     /**
      *
      */
-    private void start()
-    {
+    private void start() {
         isRunning = true;
-        timerThread = new TimerThread();
+        TimerThread timerThread = new TimerThread();
         timerThread.start();
     }
 
     /**
      *
      */
-    private void stop()
-    {
+    private void stop() {
         isRunning = false;
     }
 
     /**
      *
      */
-    private void advance()
-    {
+    private void advance() {
         display.clockSignal();
         label.setText(display.getWatch());
     }
@@ -62,20 +56,18 @@ public class Watch
     /**
      * 'Info'-Funktion: Zeige Informationen zur Anwendung.
      */
-    private void showInfo()
-    {
-        JOptionPane.showMessageDialog (window,
-                    "Watch Version 1.0\n" +
-                    "Eine einfache Benutzeroberfläche für das 'Java lernen mit BlueJ'-Projekt Zeitanzeige",
-                    "Info Watch",
-                    JOptionPane.INFORMATION_MESSAGE);
+    private void showInfo() {
+        JOptionPane.showMessageDialog(window,
+                "Watch Version 1.0\n" +
+                        "Eine einfache Benutzeroberfläche für das 'Java lernen mit BlueJ'-Projekt Zeitanzeige",
+                "Info Watch",
+                JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
      * 'Beenden'-Funktion: Beenden der Anwendung.
      */
-    private void exit()
-    {
+    private void exit() {
         System.exit(0);
     }
 
@@ -83,8 +75,7 @@ public class Watch
     /**
      * Erzeuge das Swing-Fenster und seinen Inhalt.
      */
-    private void displayWindow()
-    {
+    private void displayWindow() {
         window = new JFrame("Watch");
         JPanel contentPane = (JPanel) window.getContentPane();
         contentPane.setBorder(new EmptyBorder(1, 60, 1, 60));
@@ -107,20 +98,26 @@ public class Watch
 
         JButton startButton = new JButton("start");
         startButton.addActionListener(new ActionListener() {
-                               public void actionPerformed(ActionEvent e) { start(); }
-                           });
+            public void actionPerformed(ActionEvent e) {
+                start();
+            }
+        });
         toolbar.add(startButton);
 
         JButton stopButton = new JButton("stop");
         stopButton.addActionListener(new ActionListener() {
-                               public void actionPerformed(ActionEvent e) { stop(); }
-                           });
+            public void actionPerformed(ActionEvent e) {
+                stop();
+            }
+        });
         toolbar.add(stopButton);
 
         JButton advanceButton = new JButton("advance");
         advanceButton.addActionListener(new ActionListener() {
-                               public void actionPerformed(ActionEvent e) { advance(); }
-                           });
+            public void actionPerformed(ActionEvent e) {
+                advance();
+            }
+        });
         toolbar.add(advanceButton);
 
         // Werkzeugleiste mit Flow-Layout zur räumlichen Trennung in ein Panel legen
@@ -134,19 +131,18 @@ public class Watch
 
         // Das Fenster in die Bildschirmmitte platzieren und anzeigen
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        window.setLocation(d.width/2 - window.getWidth()/2, d.height/2 - window.getHeight()/2);
+        window.setLocation(d.width / 2 - window.getWidth() / 2, d.height / 2 - window.getHeight() / 2);
         window.setVisible(true);
     }
 
     /**
      * Erzeugen der Menüzeile.
      *
-     * @param window   Das Fenster, in das die Menüleiste eingefügtwerden soll.
+     * @param window Das Fenster, in das die Menüleiste eingefügtwerden soll.
      */
-    private void showMenu(JFrame window)
-    {
+    private void showMenu(JFrame window) {
         final int SHORTCUT_MASK =
-            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
 
         JMenuBar menuLine = new JMenuBar();
         window.setJMenuBar(menuLine);
@@ -159,37 +155,37 @@ public class Watch
         menuLine.add(menue);
 
         eintrag = new JMenuItem("Info...");
-            eintrag.addActionListener(new ActionListener() {
-                               public void actionPerformed(ActionEvent e) { showInfo(); }
-                           });
+        eintrag.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                showInfo();
+            }
+        });
         menue.add(eintrag);
 
         menue.addSeparator();
 
         eintrag = new JMenuItem("exit");
-            eintrag.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
-            eintrag.addActionListener(new ActionListener() {
-                               public void actionPerformed(ActionEvent e) { exit(); }
-                           });
+        eintrag.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, SHORTCUT_MASK));
+        eintrag.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                exit();
+            }
+        });
         menue.add(eintrag);
     }
 
-    class TimerThread extends Thread
-    {
-        public void run()
-        {
+    class TimerThread extends Thread {
+        public void run() {
             while (isRunning) {
                 advance();
                 pause();
             }
         }
 
-        private void pause()
-        {
+        private void pause() {
             try {
                 Thread.sleep(300);   // Pause für 300 Millisekunden
-            }
-            catch (InterruptedException exc) {
+            } catch (InterruptedException ignored) {
             }
         }
     }
