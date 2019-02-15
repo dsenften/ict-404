@@ -4,25 +4,23 @@ package time;
  * Die Klasse Display implementiert die Anzeige einer Digitaluhr.
  * Die Anzeige zeigt Stunden und Minuten. Der Anzeigebereich reicht von
  * 00:00 (Mitternacht) bis 23:59 (eine Minute vor Mitternacht).
- *
+ * <p>
  * Eine Display sollte minütlich "Taktsignale" (über die Operation
  * "clockSignal") erhalten, damit sie die Anzeige aktualisieren
  * kann. Dies geschieht, wie man es bei einer Watch erwartet: Die
  * Stunden erhöhen sich, wenn das Minutenlimit einer Stunde erreicht
  * ist.
  */
-public class Display
-{
+public class Display {
     private NumberDisplay hours;
     private NumberDisplay minutes;
-    private String timeDisplay;    // simuliert die tatsächliche Anzeige
+    private String displayString;    // simuliert die tatsächliche Anzeige
 
     /**
      * Konstruktor für ein Exemplar von Display.
      * Mit diesem Konstruktor wird die Anzeige auf 00:00 initialisiert.
      */
-    public Display()
-    {
+    public Display() {
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
         updateDisplay();
@@ -34,8 +32,7 @@ public class Display
      * initialisiert, der durch 'stunde' und 'minute'
      * definiert ist.
      */
-    public Display(int hour, int minute)
-    {
+    public Display(int hour, int minute) {
         this.hours = new NumberDisplay(24);
         this.minutes = new NumberDisplay(60);
         setWatch(hour, minute);
@@ -46,10 +43,9 @@ public class Display
      * sie sorgt dafür, dass die Anzeige um eine Minute
      * weiter gestellt wird.
      */
-    public void clockSignal()
-    {
+    public void clockSignal() {
         minutes.incrementValue();
-        if(minutes.getValue() == 0) {  // Limit wurde erreicht!
+        if (minutes.getValue() == 0) {  // Limit wurde erreicht!
             hours.incrementValue();
         }
         updateDisplay();
@@ -59,8 +55,7 @@ public class Display
      * Setze die Uhrzeit dieser Anzeige auf die gegebene 'stunde' und
      * 'minute'.
      */
-    public void setWatch(int hour, int minute)
-    {
+    public void setWatch(int hour, int minute) {
         this.hours.setValue(hour);
         this.minutes.setValue(minute);
         updateDisplay();
@@ -69,17 +64,15 @@ public class Display
     /**
      * Liefere die aktuelle Uhrzeit dieser Display im Format SS:MM.
      */
-    public String getWatch()
-    {
-        return timeDisplay;
+    public String getWatch() {
+        return displayString;
     }
 
     /**
      * Aktualisiere die interne Zeichenkette, die die Zeitanzeige h�lt.
      */
-    private void updateDisplay()
-    {
-        timeDisplay = hours.getDisplayValue() + ":"
-                      + minutes.getDisplayValue();
+    private void updateDisplay() {
+        displayString = hours.getDisplayValue() + ":"
+                + minutes.getDisplayValue();
     }
 }
