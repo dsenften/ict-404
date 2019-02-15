@@ -1,4 +1,5 @@
 \documentclass[12pt,a4paper]{exam}
+\usepackage{natbib}
 
 \RequirePackage{talent-factory}
 \RequirePackage[top=3cm,bottom=2cm,left=2cm,right=1.5cm,headsep=10pt,a4paper]{geometry} % Page margins
@@ -27,22 +28,22 @@
         \textbf{\class}           & \textbf{Name:} & \makebox[2in]{\hrulefill} \\
         \textbf{\examnum}         &                & \\
         \textbf{\examdate}        &                & \\
-        \textbf{Zeit: \timelimit} & Dozent         & \makebox[2in]{Daniel Senften}
+        \textbf{Zeit: \timelimit} & Dozent:        & \makebox[2in]{Daniel Senften}
     \end{tabular*}\\
     \rule[1ex]{\textwidth}{1pt}
 
     Dieser Test besteht aus \numpages\ Seiten (inkl. Titelseite) und
     \numquestions\ Fragen. Wenn alle Fragen richtig beantwortet werden,
-    dann sind maximal \numpoints\ möglich..
+    dann sind maximal \numpoints\ möglich.
 
 
     \begin{center}
         \textbf{Punktetabelle}\footnote{Diese Tabelle wird durch den Dozenten
-        nach der Prüfung ausgefüllt} \\ \vskip1em
+        nach der Prüfung ausgefüllt.} \\ \vskip1em
         \addpoints
 
         \hqword{Aufgabe}
-        \hpword{Punktzah}
+        \hpword{Punkte}
         \htword{\textbf{Total}}
         \hsword{Erreicht}
         \gradetable[h][questions]
@@ -51,51 +52,96 @@
     \noindent
     \rule[1ex]{\textwidth}{1pt}
 
+% ===========================================================================
+
     \begin{questions}
 
-        \question[1] Calculate 2+2.
+        \question[10] Gegeben sind folgende beiden Klassen. Zeichne das vollständige
+        UML Diagramm.
+
+        \begin{minipage}{0.45\textwidth}
+            \inputminted[autogobble,linenos,frame=single]{java}{../java/academy/One.java}
+        \end{minipage}
+        \begin{minipage}{0.49\textwidth}
+            \inputminted[autogobble,frame=single]{java}{../java/academy/Two.java}
+        \end{minipage}
+        \makeemptybox{5cm}
         \addpoints
 
-        \question[20] Consider the function $f(x)=3x^3+2x^2+x+1$.
-        \noaddpoints % to omit double points count
-        \begin{parts}
-            \part[10] Calculate $f'(x)$.
-            \part[10] Calculate $f''(x)$.
-        \end{parts}
+        % -----------------------------------------------
+        \newpage
+        \question[6] Denken Sie an unser Projekt \emph{Time}, in welchem wir eine digitale
+        Uhr simulierten. Was würde passieren, wenn wir die Methode \mintinline{java}
+        {setValue()} mit einem ungültigen Wert aufrufen? Ist das eine gute Lösung? Können
+        Sie sich eine bessere vorstellen?
+
+        % setValue()
+        \inputminted[autogobble,firstline=58,lastline=63]
+            {java}{../java/time/NumberDisplay.java}
+        \makeemptybox{5cm}
         \addpoints
 
-        \question[2] One of these things is not like the others; one of these
-        things is not the same. Which one is different?
-        \begin{choices}
-            \choice John
-            \choice Paul
-            \choice George
-            \choice Ringo
-            \choice Socrates
-        \end{choices}
+        % -----------------------------------------------
+        \question[4] Was würde passieren, wenn wir den Oparator \texttt{>=} in der Methode
+        \mintinline{java}{setValue()} durch \texttt{>} ersetzen würden, und zwar auf folgende
+        Weise:
 
-        \question[2] One of these things is not like the others; one of these
-        things is not the same. Which one is different?
-        \begin{oneparchoices}
-            \choice John
-            \choice Paul
-            \choice George
-            \choice Ringo
-            \choice Socrates
-        \end{oneparchoices}
+        \mintinline{java}{if((value > 0) && (value < limit))}
+        \makeemptybox{5cm}
+        \addpoints
 
-        \question[3] Mark box if true.
+        % -----------------------------------------------
+        {%
+        \checkboxchar{$\Box$} % changing checkbox style locally
+        \question[5] Die boolsche Algebra ist ein sehr wichtiger Bestandteil in der
+        Softwareentwicklung. Welcher der folgenden Ausdrücke liefern den Wert \texttt{true}?
+
         \addpoints
         \begin{checkboxes}
-            \choice 2+2=4
-            \choice $\frac{d}{dx} (x^2+1) = 2x+1$
-            \choice The Moon is made of cheese.
+            \choice \mintinline{java}{! (4 < 5)}
+            \choice \mintinline{java}{! false}
+            \choice \mintinline{java}{(2 > 2) || ((4 == 4) && (1 < 0))}
+            \choice \mintinline{java}{(2 > 2) || (4 == 4) && (1 < 0)}
+            \choice \mintinline{java}{(34 != 33) && ! false}
         \end{checkboxes}
+        }%
 
+        % -----------------------------------------------
+        \newpage
+        \question[5] Schreiben Sie einen Ausdruck mit zwei boolschen Variablen \texttt{a}
+        und \texttt{b}, der \texttt{true} liefert, wenn nur genau eine von beiden \texttt{true}
+        ist, und \texttt{false} liefert, wenn \texttt{a} und \texttt{b} beide \texttt{false}
+        oder beide \texttt{true} sind\footnote{Dieser Ausdruck bezeichnet man auch als
+        exklusives Oder}.
+
+        \makeemptybox{5cm}
+        \addpoints
+
+        % -----------------------------------------------
+        \question[10] Ändern Sie die 24-Stunden-Anzeige in eine 12-Stunden-Anzeige
+        mit einem entsprechenden \emph{Suffix} von \texttt{am} (Vormittag) resp.
+        \texttt{pm} (Nachmittag).
+
+        % updateDisplay()
+        \inputminted[autogobble,firstline=74,lastline=77]
+            {java}{../java/time/Display.java}
+        \makeemptybox{10cm}
+        \addpoints
+
+        % -----------------------------------------------
+        \newpage
+        \question[10]
+        Mit folgender Klasse soll ein Objekt eines bestimmten Datentyps (z.B.
+        \mintinline{java}{Integer}) erstellt und anschliessend die Methode
+        \mintinline{java}{add()} aufgerufen werden.
+        \inputminted[autogobble,linenos,firstline=3]{java}{../java/generics/Cache.java}
+        \makeemptybox{2in}
+
+        % -----------------------------------------------
         {%
         \checkboxchar{$\Box$} % changing checkbox style locally
         \question[4] Welches sind korrekte Definitionen der \mintinline{java}{main()} Methode,
-        damit das Programm gestartet werden kann
+        damit das Programm gestartet werden kann.
         \addpoints
         \begin{checkboxes}
             \choice \mintinline{java}{public static main(String[] args)}
@@ -105,33 +151,7 @@
         \end{checkboxes}
         }%
 
-        {%
-        % changing choice items style locally
-        \renewcommand*\thechoice{\arabic{choice}}
-        \renewcommand*\choicelabel{\thechoice)}
-        %
-        \question[2] Element with $Z=92$ is:
-        \begin{multicols}{2}
-            \begin{choices}
-                \choice H
-                \choice O
-                \choice F
-                \choice S
-                \choice Ba
-                \choice Pb
-                \choice U
-                \choice Pu
-            \end{choices}
-        \end{multicols}
-        }%
-
-        \question[10]
-        Mit folgender Klasse soll ein Objekt eines bestimmten Datentyps (z.B.
-        \mintinline{java}{Integer}) erstellt und anschliessend die Methode
-        \mintinline{java}{add()} aufgerufen werden.
-        \inputminted[autogobble,linenos,firstline=3]{java}{../java/generics/Cache.java}
-        \makeemptybox{2in}
-
+        % -----------------------------------------------
         \newpage
         \question[10]
         Objekte und Klassen bauen auf folgenden (nicht abschliessenden) Konzepten auf.
@@ -146,7 +166,9 @@
         \end{itemize}
         \makeemptybox{\fill}
 
-        \newpage\question[10]
+        % -----------------------------------------------
+        \newpage
+        \question[10]
         Gegeben ist die folgende Klasse:
         \inputminted[autogobble,linenos]{java}{../java/academy/calculator/InputValidator.java}
 
