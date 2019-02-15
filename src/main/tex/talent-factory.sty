@@ -24,11 +24,12 @@
 \RequirePackage[german]{babel}
 \selectlanguage{german}
 
-\RequirePackage{amssymb}
+\RequirePackage{amsmath, amssymb}
 
 \RequirePackage[answerdelayed,lastexercise]{exercise}
 \RequirePackage{filecontents}
 \RequirePackage{fixme}
+\RequirePackage{fontspec}
 
 \RequirePackage[mark]{gitinfo2}
 \renewcommand{\gitMark}{Release\gitRels: \gitBranch{} (\gitAuthorDate)}
@@ -68,21 +69,17 @@
   \end{figure}
 }
 
-%% Funktioniert noch 
-\newcommand\framecode[2]{%
-	\mode*
-	\begin{frame}[fragile]
-		\frametitle<presentation>{#2}
-  		\begin{figure}[ht]
-			\centering		
-    		\mode<presentation>{\inputminted[frame=single,autogobble]{java}{#1}}
-    		\mode<article>{\inputminted[frame=single,autogobble,linenos]{java}{#1}}
-    		\mode<article>{\caption{#2}}
-    		\label{fig:#1}
-		\end{figure}
-	\end{frame}
-}
 
+%
+% Integrieren von Quelldateien im Script
+\newcommand\source[2]{%
+    \begin{listing}[ht]
+        \centering
+        \begin{minipage}{0.8\textwidth}
+            \inputminted[frame=single,autogobble,linenos]{java}{#1}
+        \end{minipage}
+        \caption{#2}
+    \end{listing}}
 
 %
 % Diese Redefinition für die Integration von Bildern war notwendig,
