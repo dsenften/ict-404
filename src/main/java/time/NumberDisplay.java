@@ -51,7 +51,7 @@ public class NumberDisplay
     }
 
     /**
-     * Setze den Wert der Anzeige auf den angegebenen 'ersatzwert'.
+     * Setze den Wert der Anzeige auf den angegebenen 'value'.
      * Wenn der angegebene Wert unter null oder über dem Limit liegt,
      * tue nichts.
      */
