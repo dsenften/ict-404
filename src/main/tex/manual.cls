@@ -33,7 +33,7 @@
 \DefineNamedColor{named}{Pantone}{cmyk}{55,15,0,0}
 
 \RequirePackage[top=3cm,bottom=2cm,left=2cm,right=1.5cm,headsep=10pt,a4paper]{geometry} % Page margins
-    
+
 \RequirePackage{boxedminipage} % Surround parts of graphics with box
 \RequirePackage{nextpage}
 \RequirePackage{times}
