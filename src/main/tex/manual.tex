@@ -273,7 +273,7 @@ Unterstützung bieten kann.
         Wir referenzieren an dieser Stelle eine sogenannte {\em floating license},
         die uns von der Talent Factory zur Verfügung gestellt wurde.
     \end{minipage}
-    
+
 \end{frame}
 
 
@@ -282,8 +282,21 @@ Unterstützung bieten kann.
 title={Installation der Entwicklungsumgebung},
 label={ex:installation-intellij}]
 
-% TODO Die Installation muss noch beschrieben werden
-\fxfatal{Die Installation muss noch beschrieben werden.}
+    Für die Entwicklung und die Zusammenarbeit mit dem vorhandenen Git \emph{Repository}
+    und für die Generierung der Unterlagen (Skript und Folien) werden wir noch weitere
+    Werkzeuge nutzen, die wir vorgängig installieren müssen.
+
+    \begin{enumerate}
+        \item \href{https://www.jetbrains.com/idea}{IntelliJ IDEA}
+        \item Git für \href{https://git-scm.com/download/mac}{Mac},
+        \href{https://git-scm.com/download/win}{Windows} oder
+        \href{https://git-scm.com/download/linux}{Linux}.
+        \item \TeX\ Live für \href{http://tug.org/cgi-bin/mactex-download/MacTeX.pkg}{Mac},
+        \href{http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe}{Windows} oder
+        \href{http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz}{Linux}.
+        \item \href{https://www.python.org/downloads/}{Python v7.3.2}
+        \item \href{http://pygments.org/}{Pygments}
+    \end{enumerate}
 
 \end{Exercise}
 
@@ -340,8 +353,8 @@ folgen einer klaren Namenskonvention, auch bekannt unter
         \begin{minipage}[b]{0.4\textwidth}
             \begin{minted}[frame=single,autogobble]{java}
                 public class Person {
-                    // Eigenschaften
-                    // Methoden
+                // Eigenschaften
+                // Methoden
                 }
             \end{minted}
         \end{minipage}
@@ -383,14 +396,13 @@ seiner einfachsten Form (s. Listing~\ref{lst:hello-world}, Seite~\pageref{lst:he
 \mode*
 \begin{listing}[ht]
     \inputminted[frame=single,linenos,samepage]{java}
-        {../java/academy/HelloWorld.java}
+    {../java/academy/HelloWorld.java}
     \caption{Erstes Programm: \emph{HelloWorld}}
     \label{lst:hello-world}
 \end{listing}
 
 Typischerweise wir eine Klasse in Java in einer Datei unter dem selben Namen abgelegt.
 Hierbei ist wichtig die Gross- und Kleinschreibung zu beachten.
-
 
 
 Der Aufbau einer Java Datei kann sehr einfach durch eine Metasprache, der sogenannten
@@ -406,15 +418,15 @@ Der Aufbau einer Java Datei kann sehr einfach durch eine Metasprache, der sogena
 
     Es existiern vier unterschiedliche Zugriffsstufen für die
     Objekte (Daten und Methoden).
-    
+
     \begin{table}[ht]
         \centering
         \begin{tabular}{p{3cm}|c|c|c|c}
-            Modifier                     & Class & Package & Subclass & Universe \\ \hline
-            \mintinline{java}{private}   &  x    &         &          &          \\
-            \texttt{default}             &  x    &    x    &          &          \\
-            \mintinline{java}{protected} &  x    &    x    &     x    &          \\
-            \mintinline{java}{public}    &  x    &    x    &     x    &    x
+            Modifier & Class & Package & Subclass & Universe \\ \hline
+            \mintinline{java}{private}   & x & & &          \\
+            \texttt{default}             & x & x & &          \\
+            \mintinline{java}{protected} & x & x & x &          \\
+            \mintinline{java}{public}    & x & x & x & x
         \end{tabular}
         \mode<article>{\caption{Sichtbarkeit von Objekten}}
     \end{table}
@@ -432,7 +444,7 @@ Der Aufbau einer Java Datei kann sehr einfach durch eine Metasprache, der sogena
     Das Projekt ist unter folgendem Link zu finden.
 
     \href{https://github.com/dsenften/example-simple-calculator.git}
-         {https://github.com/dsenften/example-simple-calculator.git}
+    {https://github.com/dsenften/example-simple-calculator.git}
 \end{frame}
 
 \mode*
@@ -465,7 +477,7 @@ label={ex:calculator}]
     korrekt installiert wurde, dann sieht die Projektstruktur wie folgt aus:
 
     \minibox{simple-calculator}{Projektstruktur}
-    
+
 
 \end{Exercise}
 
@@ -480,13 +492,13 @@ wie ein Objekt einer Bestimmten Klasse erzeugt wird.
 \begin{frame}[fragile]
     \frametitle<presentation>{Instanzen erzeugen}
     \inputminted[frame=single,samepage,firstline=3]{java}
-        {../java/academy/Calculator/Calculator.java}
+    {../java/academy/Calculator/Calculator.java}
 \end{frame}
 
 \mode*
 \begin{listing}[ht]
     \inputminted[frame=single,linenos,samepage]{java}
-        {../java/academy/Calculator/Calculator.java}
+    {../java/academy/Calculator/Calculator.java}
     \caption{Einfacher Additions-Rechner}
     \label{lst:example-calculator}
 \end{listing}
@@ -502,8 +514,8 @@ wie ein Objekt einer Bestimmten Klasse erzeugt wird.
     {example-figures}.}
 
     \mode<presentation>{%
-        \href{https://github.com/dsenften/example-figures.git}
-             {https://github.com/dsenften/example-figures.git}}
+    \href{https://github.com/dsenften/example-figures.git}
+    {https://github.com/dsenften/example-figures.git}}
 
 \end{frame}
 
@@ -532,22 +544,23 @@ wie ein Objekt einer Bestimmten Klasse erzeugt wird.
 \label{subsec:datatypes}
 
 \begin{frame}[fragile]
-\begin{table}[h]
-    \frametitle<presentation>{Einfache Datentypen in Java}
-    \centering
-    \begin{tabular}{|l|r|l|} \hline
-        \textbf{Datentyp}          & \textbf{Grösse} & \textbf{Wertebereich}                             \\ \hline
-        \mintinline{java}{boolean} &                 & \mintinline{java}{true}/\mintinline{java}{false}  \\ \hline
-        \mintinline{java}{char}    & 16 bit          & $0 \ldots 65'535$                                 \\ \hline
-        \mintinline{java}{byte}    &  8 bit          & $-128 \ldots 127$                                 \\ \hline
-        \mintinline{java}{short}   & 16 bit          & $-32'768 \ldots 32'767$                           \\ \hline
-        \mintinline{java}{int}     & 32 bit          & $-2'147'483'648 \ldots 2'147'483'647$             \\ \hline
-        \mintinline{java}{long}    & 64 bit          & $-9'223'372'036'854'775'808 \ldots 9'223'372'036'854'775'807$  \\ \hline
-        \mintinline{java}{float}   & 32 bit          & $\pm 1.402'398 \times 10^{-45}  \ldots 3.402'823 \times 10^{38}$  \\ \hline
-        \mintinline{java}{double}  & 64 bit          & $\pm 4.922'656 \times 10^{-324} \ldots 1.797'693 \times 10^{308}$ \\ \hline
-    \end{tabular}
-    \mode<article>{\caption{Einfache Datentypen in Java}}
-\end{table}
+    \begin{table}[h]
+        \frametitle<presentation>{Einfache Datentypen in Java}
+        \centering
+        \begin{tabular}{|l|r|l|}
+            \hline
+            \textbf{Datentyp}          & \textbf{Grösse} & \textbf{Wertebereich}                             \\ \hline
+            \mintinline{java}{boolean} & & \mintinline{java}{true}/\mintinline{java}{false}  \\ \hline
+            \mintinline{java}{char}    & 16 bit & $0 \ldots 65'535$                                 \\ \hline
+            \mintinline{java}{byte}    & 8 bit & $-128 \ldots 127$                                 \\ \hline
+            \mintinline{java}{short}   & 16 bit & $-32'768 \ldots 32'767$                           \\ \hline
+            \mintinline{java}{int}     & 32 bit & $-2'147'483'648 \ldots 2'147'483'647$             \\ \hline
+            \mintinline{java}{long}    & 64 bit & $-9'223'372'036'854'775'808 \ldots 9'223'372'036'854'775'807$  \\ \hline
+            \mintinline{java}{float}   & 32 bit & $\pm 1.402'398 \times 10^{-45}  \ldots 3.402'823 \times 10^{38}$  \\ \hline
+            \mintinline{java}{double}  & 64 bit & $\pm 4.922'656 \times 10^{-324} \ldots 1.797'693 \times 10^{308}$ \\ \hline
+        \end{tabular}
+        \mode<article>{\caption{Einfache Datentypen in Java}}
+    \end{table}
 \end{frame}
 
 Die hier aufgeführten Gleitkommazahlen \texttt{float} und \texttt{double} sind
@@ -582,19 +595,73 @@ nach dem Standard \href{https://de.wikipedia.org/wiki/IEEE_754}{IEEE 754} abgele
 \section{Objektinteraktion}
 \label{sec:interaction}
 
-% TODO Thematik "call-by-value" erläutern
-\fxfatal{Thematik \emph{call by value} erläutern.}
+\subsection{Wie werden die Daten übergeben}
+\label{subsec:pass-by-value}
 
-\begin{frame}[fragile]
-    \frametitle<presentation>{Beispiel: Laborkurse}
-    Ein einfaches Beispiel mit Kursen und Studenten. Es zeigt einmal mehr auf, wie wir
-    Objekte, Attribute und Methoden verwenden. In einem späteren Abschnitt werden wir
-    an dieser Stelle die Vererbung integrieren.
+Bei der Objektinteraktion und der damit verbundenen Parameterübergabe
+stellt sich immer wieder wir Frage: "Wie werden die Parameter übergeben?"
+(\emph{pass-by reference or pass-by value?})
 
-    \href{https://github.com/dsenften/example-course.git}
-         {https://github.com/dsenften/example-course.git}
+Java manipuliert Objekte nach Referenz, und alle Objektvariablen sind
+Referenzen. Java übergibt jedoch keine Methodenargumente als Referenz,
+sondern übergibt sie als Wert.
 
-\end{frame}
+Hierzu das folgende Beispiel:
+\inputminted[frame=single,autogobble,linenos,firstline=7,lastline=11]{java}
+        {../java/parameters/PassByValue.java}
+
+Wenn \texttt{badSwap()} zurückkehrt, behalten die als Argumente übergebenen
+Variablen ihre ursprünglichen Werte bei. Die Methode wird auch fehlschlagen,
+wenn wir den Argumenttyp von \texttt{int} auf \texttt{Object} ändern, da Java
+auch Objektreferenzen nach Wert übergibt.
+
+Wie sieht es hiermit aus:
+
+\begin{listing}[ht]
+    \centering
+    \begin{minipage}{0.8\textwidth}
+        \inputminted[frame=single,autogobble,linenos,firstline=13,lastline=30]{java}
+        {../java/parameters/PassByValue.java}
+    \end{minipage}
+    \caption{Pass-by reference or pass-by value?}
+\end{listing}
+
+
+Wenn wir \texttt{main()} ausführen, sehen wir die folgende Ausgabe:
+\begin{minted}[autogobble]{text}
+    X: 0 Y: 0
+    X: 0 Y: 0
+    X: 100 Y:100
+    X: 0 Y: 0
+\end{minted}
+
+Die Methode ändert erfolgreich den Wert von \texttt{pnt1}, obwohl er vom
+als Wert (\emph{pass-by value}) übergeben wird; ein Austausch von \texttt{pnt1}
+und \texttt{pnt2} schlägt jedoch fehl! Das ist die Hauptquelle der Verwirrung.
+In der \texttt{main()} Methode sind \texttt{pnt1} und \texttt{pnt2} nichts
+anderes als Objektreferenzen. Wenn Sie \texttt{pnt1} und \texttt{pnt2} an
+die \texttt{tricky()}-Methode übergeben, übergibt Java die Referenzen wie
+jeder andere Parameter nach Wert. Das bedeutet, dass die an die Methode
+übergebenen Referenzen tatsächlich Kopien der ursprünglichen Referenzen sind.
+
+
+% -----------------
+\begin{Exercise}[%
+title={Verwalten von Studenten und Kursbelegungen},
+label={ex:course}]
+
+    \begin{frame}[fragile]
+        \frametitle<presentation>{Beispiel: Laborkurse}
+        Ein einfaches Beispiel mit Kursen und Studenten. Es zeigt einmal mehr auf, wie wir
+        Objekte, Attribute und Methoden verwenden. In einem späteren Abschnitt werden wir
+        an dieser Stelle die Vererbung integrieren.
+
+        \href{https://github.com/dsenften/example-course.git}
+        {https://github.com/dsenften/example-course.git}
+
+    \end{frame}
+
+\end{Exercise}
 
 % =============================================================================
 %                                 CHAPTER
@@ -610,9 +677,9 @@ nach dem Standard \href{https://de.wikipedia.org/wiki/IEEE_754}{IEEE 754} abgele
 \begin{frame}[fragile]
     \frametitle<presentation>{Einfacher \emph{Cache} ohne \emph{Generics}}
     \only<1>{\inputminted[frame=single,firstline=3]{java}
-        {../java/generics/CacheString.java}}
+    {../java/generics/CacheString.java}}
     \only<2>{\inputminted[frame=single,firstline=3]{java}
-        {../java/generics/CacheShirt.java}}
+    {../java/generics/CacheShirt.java}}
 \end{frame}
 
 
@@ -636,9 +703,9 @@ Code.
 
 
 \begin{frame}[fragile]
-	\frametitle<presentation>{Schreiben generischer Klassen}
+    \frametitle<presentation>{Schreiben generischer Klassen}
     \mode<presentation>{\inputminted[frame=single,autogobble,firstline=3]{java}
-        {../java/generics/Cache.java}}
+    {../java/generics/Cache.java}}
 \end{frame}
 
 \source{../java/generics/Cache.java}{Definieren einer generischen Klasse}
@@ -697,7 +764,7 @@ Stelle auch gerne der Begriff der \emph{Abstrakten Datentypen} verwendet.
     \frametitle<presentation>{Collections}
     \begin{itemize}
         \item Eine Sammlung ist eine Objekt, welches eine Reihe anderer
-            Objekte verwaltet
+        Objekte verwaltet
         \begin{itemize}
             \item Einzelne Objekte einer Sammlung nennen wir Elemente
             \item Einfache/Primitive Datentype sind nicht erlaubt
@@ -721,44 +788,44 @@ nur auszugweise aufgeführt.
     \centering
     \begin{tikzpicture}
         \umlclass[type=interface]{Collection}{}{%
-            int size() \\
-            boolean isEmpty() \\
-            boolean contains(Object o) \\
-            boolean add(E e) \\
-            boolean remove(Object o)
+        int size() \\
+        boolean isEmpty() \\
+        boolean contains(Object o) \\
+        boolean add(E e) \\
+        boolean remove(Object o)
         }
 
-        \umlclass[type=interface,below left=3cm and 1cm of Collection,anchor=north]{Set}{}{%
-            int size() \\
-            void clear() \\
-            boolean isEmpty() \\
-            boolean equals(Object o);
+        \umlclass[type=interface,below left=1cm and 2cm of Collection,anchor=north]{Set}{}{%
+        int size() \\
+        void clear() \\
+        boolean isEmpty() \\
+        boolean equals(Object o);
         }
         \umlVHVinherit{Set}{Collection}
 
-        \umlclass[type=interface,right=8cm of Set.north,anchor=north]{List}{}{%
-            int size() \\
-            boolean isEmpty() \\
-            boolean add(E e) \\
-            boolean remove(Object o)
+        \umlclass[type=interface, below right=1cm and 1cm of Collection,anchor=north]{List}{}{%
+        int size() \\
+        boolean isEmpty() \\
+        boolean add(E e) \\
+        boolean remove(Object o)
         }
         \umlVHVinherit{List}{Collection}
 
-        \umlclass[type=interface,below left=2cm and 0.0cm of Set,anchor=north]{NavigableSet}{}{}
+        \umlclass[type=interface,below left=1.5cm and 0.0cm of Set,anchor=north]{NavigableSet}{}{}
         \umlVHVinherit{NavigableSet}{Set}
 
-        \umlclass[type=interface,right=4cm of NavigableSet.north,anchor=north]{SortedSet}{}{}
+        \umlclass[type=interface,below right=1.5cm and -1cm of Set,anchor=north]{SortedSet}{}{}
         \umlVHVinherit{SortedSet}{Set}
 
-        \umlclass[below left=2cm and 0.0cm of List,anchor=north]{ArrayList}{}{%
-            int indexOf(Object o) \\
-            Iterator<E> iterator()
+        \umlclass[below left=1.5cm and 0.0cm of List,anchor=north]{ArrayList}{}{%
+        int indexOf(Object o) \\
+        Iterator<E> iterator()
         }
         \umlVHVimpl{ArrayList}{List}
 
-        \umlclass[right=5cm of ArrayList.north,anchor=north]{Stack}{}{%
-            E pop() \\
-            E push(E item)
+        \umlclass[below right=1.5cm and 0.0cm of List,anchor=north]{Stack}{}{%
+        E pop() \\
+        E push(E item)
         }
         \umlVHVimpl{Stack}{List}
 
@@ -784,28 +851,144 @@ folgt deklarieren und gleichzeitig initialisieren:
 \section{Klassendesign durch Vererbung}
 \label{sec:inheritance}
 
-\begin{frame}[fragile]
-    \frametitle<presentation>{Vererbung $|$ Inheritance}
-    \mode<presentation>{\inputminted[frame=single,autogobble,firstline=8,lastline=18]{java}
-        {../java/inheritance/Employee.java}}
-\end{frame}
+In diesem Abschnitt kommen einige weitere objektorientierte Konzepte vor, mit welchen
+wir die Struktur unserer Anwendung(en) verbessern. Hierbei spielen Konzepte
+wie Vererbung und Polymorphie eine zentrale Rolle.
 
-Wir wenden an dieser Stelle absichtlich die Unterstützung der
-\href{https://projectlombok.org/features/all}{Lombok} Annotationen an, damit
-der Quelltext etwas übersichtlicher wird.
-
-\source{../java/inheritance/Employee.java}{Klasse: \emph{Employee}}
 
 % -----------------
+\begin{frame}
+    \frametitle<presentation>{Vorteile durch Vererbung}
+    \begin{itemize}
+        \item\bfarticle{Vermeidung von Code-Duplizierung}
+        \mode<article>{%
+        Die Verwendung von Vererbung vermeidet, dass gleiche oder weitgehend
+        ähnliche Quellabschnitte geschrieben werden.}
+        \item\bfarticle{Wiederverwendung von Quelltext}
+        \mode<article>{%
+        Bestehender Quelltext kann wiederverwendet werden. Wenn bereits eine
+        Klasse besteht, die unseren Anforderungen sehr nahekommt, dann können
+        wir sehr oft in einer Subklasse die bereits vorhandene Implementierung
+        wiederverwenden.}
+        \item\bfarticle{Einfachere Wartung}
+        \mode<article>{%
+        Die Wartung der anwendung wird vereinfacht, denn die Beziehungen zwischen
+        den Klassen sind explizit ausgedrückt. Eine Änderung an Objekten (Attributen
+        oder Methoden) muss nur einmal vorgenommen werden. An dieser Stelle ist
+        der \href{https://www.jetbrains.com/help/idea/tutorial-introduction-to-refactoring.html}
+        {Refactoring Mechanismuss} unserer IDE eine weitere, grosse Hilfe.}
+        \item\bfarticle{Erweiterbarkeit}
+        \mode<article>{%
+        Durch Vererbung ist es wesentlich einfacher, eine bestehende Anwendung zu
+        erweitern.}
+    \end{itemize}
+\end{frame}
 
+
+
+% -----------------
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Vererbungshierarchie in der Biologie}
+    \begin{minipage}[b]{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \umlclass{Employee}{name}{}
+            \umlclass[y=-3.4]{Manager}{department}{}
+            \umlVHVinherit{Manager}{Employee}
+        \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}[b]{0.6\textwidth}
+        \begin{minted}[autogobble]{java}
+            Employee emp = new Employee();
+            emp.setName("Peter");
+        \end{minted}
+        \rule[1ex]{\textwidth}{0.25pt}
+        \vfill
+        \begin{minted}[autogobble]{java}
+            Manager mgr = new Manager("Jack");
+            mgr.setName("Peter");
+
+            // Zugang zu allen Methoden von
+            // Manager via Casting
+            ((Manager) mgr).getDepartment();
+        \end{minted}
+    \end{minipage}
+\end{frame}
+\mode*
+
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \umlemptyclass{Animal}
+
+        \umlemptyclass[below left=1cm and 1cm of Animal,anchor=north]{Mammal}
+        \umlemptyclass[below right=1cm and 1cm of Animal,anchor=north]{Bird}
+        \umlVHVinherit{Mammal}{Animal}
+        \umlVHVinherit{Bird}{Animal}
+
+        \umlemptyclass[below left=1cm and 1cm of Mammal,anchor=north]{Dog}
+        \umlemptyclass[below right=1cm and 1cm of Mammal,anchor=north]{Cat}
+        \umlVHVinherit{Dog}{Mammal}
+        \umlVHVinherit{Cat}{Mammal}
+
+        \umlemptyclass[below right=1cm and 1cm of Bird,anchor=north]{Chicken}
+        \umlVHVinherit{Chicken}{Bird}
+
+        \umlemptyclass[below left=1cm and 1cm of Dog,anchor=north]{Doberman}
+        \umlemptyclass[below right=1cm and 1cm of Dog,anchor=north]{Poodle}
+        \umlVHVinherit{Doberman}{Dog}
+        \umlVHVinherit{Poodle}{Dog}
+
+    \end{tikzpicture}
+    \caption{Klassen Hierarchie}
+    \label{uml:inheritance-hierarchie}
+\end{figure}
+
+Es können viele Klassen von einer Superklasse erben und eine Subklasse kann wiederum
+selber Supperklasse weiterer Subklassen sein. So ergibt sich am Schluss eine
+Vererbungshierarchie. In Java besteht aus \underline{einem} Klassenbaum, in welchem
+die Klasse \texttt{Object} dir Mutter aller Klassen representiert. Im Gegensatz zu
+anderen Programmiersprachen ist in Java nur eine Einfachvererbung (\emph{single
+inheritance}) möglich.
+
+Uns bestens bekannt ist vermutlich die Vererbungshierarchie in der Biologie. In
+Abbildung~\ref{uml:inheritance-hierarchie} (Seite~\pageref{uml:inheritance-hierarchie})
+sehen wir einen kleinen Ausschnitt aus dieser Welt.
+
+
+Bis \emph{dato} konnten wir einige Aspekte festhalten, die uns die Vererbung
+bringt:
+
+% -----------------
 \begin{frame}[fragile]
     \frametitle<presentation>{Vererbung $|$ Inheritance}
     \mode<presentation>{\inputminted[frame=single,autogobble,firstline=8,lastline=16]{java}
-        {../java/inheritance/Manager.java}}
+    {../java/inheritance/Employee.java}}
 \end{frame}
 
-Wir wenden an dieser Stelle absichtlich die Unterstützung der
-\href{https://projectlombok.org/features/all}{Lombok} Annotationen an, damit
-der Quelltext etwas übersichtlicher wird.
+\begin{listing}[ht]
+\centering
+\begin{minipage}{0.8\textwidth}
+        \inputminted[frame=single,autogobble,linenos,firstline=8,lastline=16]{java}
+{../java/inheritance/Employee.java}
+\end{minipage}
+    \caption{Klasse: \emph{Employee}}
+\end{listing}
 
-\source{../java/inheritance/Manager.java}{Klasse: \emph{Manager}}
+% -----------------
+\begin{frame}[fragile]
+\frametitle<presentation>{Vererbung $|$ Inheritance}
+\mode<presentation>{\inputminted[frame=single,autogobble,firstline=8,lastline=16]{java}
+{../java/inheritance/Manager.java}}
+\end{frame}
+
+\begin{listing}[ht]
+\centering
+\begin{minipage}{0.8\textwidth}
+        \inputminted[frame=single,autogobble,linenos,firstline=8,lastline=16]{java}
+{../java/inheritance/Manager.java}
+\end{minipage}
+    \caption{Klasse: \emph{Manager}}
+\end{listing}
