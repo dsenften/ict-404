@@ -69,7 +69,9 @@
   \end{figure}
 }
 
-
+\newcommand\bfarticle[1]{%
+    \mode<presentation>{#1}
+    \mode<article>{\textbf{#1}}}
 %
 % Integrieren von Quelldateien im Script
 \newcommand\source[2]{%
