@@ -71,8 +71,30 @@ public class Display {
     /**
      * Aktualisiere die interne Zeichenkette, die die Zeitanzeige h�lt.
      */
-    private void updateDisplay() {
+    private void updateDisplayx() {
         displayString = hours.getDisplayValue() + ":"
                 + minutes.getDisplayValue();
+    }
+
+    private void updateDisplay() {
+        String suffix = " am";
+        int hour = hours.getValue();
+        if (hour >= 12) {
+            hour -= 12;
+            suffix = " pm";
+        }
+        if (hour == 0) hour = 12;
+        displayString = ((hour < 10) ? "0" + hour : hour) + ":"
+                + minutes.getDisplayValue() + suffix;
+    }
+
+    public static void main(String[] args) {
+
+        Display display = new Display(1, 59);
+
+        while (true) {
+            display.updateDisplay();
+            display.clockSignal();
+        }
     }
 }
