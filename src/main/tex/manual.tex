@@ -395,8 +395,12 @@ seiner einfachsten Form (s. Listing~\ref{lst:hello-world}, Seite~\pageref{lst:he
 
 \mode*
 \begin{listing}[ht]
-    \inputminted[frame=single,linenos,samepage]{java}
-    {../java/academy/HelloWorld.java}
+    \begin{center}
+        \begin{minipage}{0.8\textwidth}
+            \inputminted[frame=single,linenos,samepage]{java}
+            {../java/academy/HelloWorld.java}
+        \end{minipage}
+    \end{center}
     \caption{Erstes Programm: \emph{HelloWorld}}
     \label{lst:hello-world}
 \end{listing}
@@ -409,7 +413,15 @@ Der Aufbau einer Java Datei kann sehr einfach durch eine Metasprache, der sogena
 \href{https://de.wikipedia.org/wiki/Erweiterte_Backus-Naur-Form}{Erweiterte Backus-Naur-Form}
 (EBNF) dargestellt werden.
 
-\inputminted[firstline=41,lastline=46]{antlr}{Java.g4}
+\begin{listing}[h]
+    \begin{center}
+        \begin{minipage}{0.8\textwidth}
+            \inputminted[firstline=41,lastline=46,frame=single,linenos]{antlr}{Java.g4}
+        \end{minipage}
+    \end{center}
+    \caption{Syntaktischer Aufbau einer Java-Datei}
+    \label{antlr:java-file}
+\end{listing}
 
 
 
@@ -420,15 +432,17 @@ Der Aufbau einer Java Datei kann sehr einfach durch eine Metasprache, der sogena
     Objekte (Daten und Methoden).
 
     \begin{table}[ht]
-        \centering
-        \begin{tabular}{p{3cm}|c|c|c|c}
-            Modifier & Class & Package & Subclass & Universe \\ \hline
-            \mintinline{java}{private}   & x & & &          \\
-            \texttt{default}             & x & x & &          \\
-            \mintinline{java}{protected} & x & x & x &          \\
-            \mintinline{java}{public}    & x & x & x & x
-        \end{tabular}
+        \begin{center}
+            \begin{tabular}{p{3cm}|c|c|c|c}
+                Modifier & Class & Package & Subclass & Universe \\ \hline
+                \mintinline{java}{private}   & x & & &          \\
+                \texttt{default}             & x & x & &          \\
+                \mintinline{java}{protected} & x & x & x &          \\
+                \mintinline{java}{public}    & x & x & x & x
+            \end{tabular}
+        \end{center}
         \mode<article>{\caption{Sichtbarkeit von Objekten}}
+        \label{tab:access-level}
     \end{table}
 
 \end{frame}
@@ -485,7 +499,7 @@ label={ex:calculator}]
 \subsection{Instanzen erzeugen}
 \label{subsec:create-instance}
 
-Anhand des Beispieles aus Übung~\ref{ex:calculator} können wir sehr schön aufzeigen,
+Anhand des Beispieles aus Übung~\ref{lst:example-calculator} können wir sehr schön aufzeigen,
 wie ein Objekt einer Bestimmten Klasse erzeugt wird.
 
 \mode<presentation>
@@ -574,9 +588,40 @@ nach dem Standard \href{https://de.wikipedia.org/wiki/IEEE_754}{IEEE 754} abgele
 \section{Klassendefinitionen}
 \label{sec:class-definitions}
 
+In Listing~\ref{antlr:java-file} (Seite~\pageref{antlr:java-file}) haben wir mit Hilfe
+der Metasprache \href{https://de.wikipedia.org/wiki/Erweiterte_Backus-Naur-Form}{EBNF}
+den Aufbau einer Java-Datei erläutert.
+
+An dieser Stelle wollen wir uns nun dem syntaktischen Aufbau einer Klasse widmen. Die komplette
+Syntax von Java ist in der Datei '\texttt{./src/main/tex/Java.g4}' zu finden.\footnote{Für die
+korrekte Darstellung dieser Datei muss allenfalls noch das
+\href{https://github.com/antlr/intellij-plugin-v4}{ANTLR v4} Plugin via
+\href{https://www.jetbrains.com/help/idea/managing-plugins.html}{\emph{Plugin Manager}}
+installiert werden.}
+
+\begin{frame}
+    \frametitle<presentation>{Syntaktischer Aufbau einer Klasse}
+    \begin{center}
+        \mode<presentation>{%
+        \inputminted[firstline=90,lastline=95,frame=single]{antlr}{Java.g4}}
+    \end{center}
+\end{frame}
+
+\begin{listing}[h]
+    \begin{center}
+        \begin{minipage}{0.8\textwidth}
+            \inputminted[firstline=90,lastline=103,frame=single,linenos]{antlr}{Java.g4}
+        \end{minipage}
+    \end{center}
+    \caption{Syntaktischer Aufbau einer Klasse}
+    \label{antlr:java-class}
+\end{listing}
+
+
+Die zentralen Konzepte einer Klasse bestehen aus folgenden Elementen:
+% -----------------
 \begin{frame}[fragile]
     \frametitle<presentation>{Wichtige Konzepte}
-
     \begin{itemize}
         \item Eigenschaften
         \item Methoden
@@ -584,7 +629,6 @@ nach dem Standard \href{https://de.wikipedia.org/wiki/IEEE_754}{IEEE 754} abgele
         \item Parameter
         \item Zuweisungen
     \end{itemize}
-
 \end{frame}
 
 
@@ -607,8 +651,8 @@ Referenzen. Java übergibt jedoch keine Methodenargumente als Referenz,
 sondern übergibt sie als Wert.
 
 Hierzu das folgende Beispiel:
-\inputminted[frame=single,autogobble,linenos,firstline=7,lastline=11]{java}
-        {../java/parameters/PassByValue.java}
+\inputminted[frame=single,autogobble,linenos,firstline=7,lastline=11,samepage]{java}
+{../java/parameters/PassByValue.java}
 
 Wenn \texttt{badSwap()} zurückkehrt, behalten die als Argumente übergebenen
 Variablen ihre ursprünglichen Werte bei. Die Methode wird auch fehlschlagen,
@@ -616,14 +660,12 @@ wenn wir den Argumenttyp von \texttt{int} auf \texttt{Object} ändern, da Java
 auch Objektreferenzen nach Wert übergibt.
 
 Wie sieht es hiermit aus:
-
 \begin{listing}[ht]
-    \centering
     \begin{minipage}{0.8\textwidth}
-        \inputminted[frame=single,autogobble,linenos,firstline=13,lastline=30]{java}
+        \inputminted[frame=single,autogobble,linenos,firstline=13,lastline=30]{java}
         {../java/parameters/PassByValue.java}
     \end{minipage}
-    \caption{Pass-by reference or pass-by value?}
+    \caption{Pass-by reference or pass-by value?}
 \end{listing}
 
 
@@ -918,30 +960,31 @@ wie Vererbung und Polymorphie eine zentrale Rolle.
 \mode*
 
 
-\begin{figure}[ht]
-    \centering
-    \begin{tikzpicture}
-        \umlemptyclass{Animal}
+\begin{figure}[t]
+    \begin{center}
+        \begin{tikzpicture}
+            \umlemptyclass{Animal}
 
-        \umlemptyclass[below left=1cm and 1cm of Animal,anchor=north]{Mammal}
-        \umlemptyclass[below right=1cm and 1cm of Animal,anchor=north]{Bird}
-        \umlVHVinherit{Mammal}{Animal}
-        \umlVHVinherit{Bird}{Animal}
+            \umlemptyclass[below left=1cm and 1cm of Animal,anchor=north]{Mammal}
+            \umlemptyclass[below right=1cm and 1cm of Animal,anchor=north]{Bird}
+            \umlVHVinherit{Mammal}{Animal}
+            \umlVHVinherit{Bird}{Animal}
 
-        \umlemptyclass[below left=1cm and 1cm of Mammal,anchor=north]{Dog}
-        \umlemptyclass[below right=1cm and 1cm of Mammal,anchor=north]{Cat}
-        \umlVHVinherit{Dog}{Mammal}
-        \umlVHVinherit{Cat}{Mammal}
+            \umlemptyclass[below left=1cm and 1cm of Mammal,anchor=north]{Dog}
+            \umlemptyclass[below right=1cm and 1cm of Mammal,anchor=north]{Cat}
+            \umlVHVinherit{Dog}{Mammal}
+            \umlVHVinherit{Cat}{Mammal}
 
-        \umlemptyclass[below right=1cm and 1cm of Bird,anchor=north]{Chicken}
-        \umlVHVinherit{Chicken}{Bird}
+            \umlemptyclass[below right=1cm and 1cm of Bird,anchor=north]{Chicken}
+            \umlVHVinherit{Chicken}{Bird}
 
-        \umlemptyclass[below left=1cm and 1cm of Dog,anchor=north]{Doberman}
-        \umlemptyclass[below right=1cm and 1cm of Dog,anchor=north]{Poodle}
-        \umlVHVinherit{Doberman}{Dog}
-        \umlVHVinherit{Poodle}{Dog}
+            \umlemptyclass[below left=1cm and 1cm of Dog,anchor=north]{Doberman}
+            \umlemptyclass[below right=1cm and 1cm of Dog,anchor=north]{Poodle}
+            \umlVHVinherit{Doberman}{Dog}
+            \umlVHVinherit{Poodle}{Dog}
 
-    \end{tikzpicture}
+        \end{tikzpicture}
+    \end{center}
     \caption{Klassen Hierarchie}
     \label{uml:inheritance-hierarchie}
 \end{figure}
@@ -957,9 +1000,11 @@ Uns bestens bekannt ist vermutlich die Vererbungshierarchie in der Biologie. In
 Abbildung~\ref{uml:inheritance-hierarchie} (Seite~\pageref{uml:inheritance-hierarchie})
 sehen wir einen kleinen Ausschnitt aus dieser Welt.
 
-
-Bis \emph{dato} konnten wir einige Aspekte festhalten, die uns die Vererbung
-bringt:
+Bevor wir die Vererbung genauer ansehen, wollen wir kurz betrachten, wie Vererbung in Java
+ausgedrückt wird. In Listing~\ref{lst:employee} ist ein Ausschnitt der (Super-) Klasse
+(\emph{parent class}) \texttt{Employee}. An dieser Klasse ist wie immer nichts aussergewöhliches
+festzustellen. Sie hat de Aufbau wie immer mit dem Namen der Klasse, Eigenschaften (Attributen)
+und Methoden.
 
 % -----------------
 \begin{frame}[fragile]
@@ -969,26 +1014,126 @@ bringt:
 \end{frame}
 
 \begin{listing}[ht]
-\centering
-\begin{minipage}{0.8\textwidth}
-        \inputminted[frame=single,autogobble,linenos,firstline=8,lastline=16]{java}
-{../java/inheritance/Employee.java}
-\end{minipage}
-    \caption{Klasse: \emph{Employee}}
+    \begin{center}
+        \begin{minipage}{0.8\textwidth}
+            \inputminted[frame=single,autogobble,linenos,firstline=8,lastline=16]{java}
+            {../java/inheritance/Employee.java}
+        \end{minipage}
+    \end{center}
+    \caption{Superklasse: \emph{Employee}}
+    \label{lst:employee}
 \end{listing}
+
+
+Doch wie sieht es aus mit der spezialisierten (Sub-) Klasse? Wenn wir von dem\emph{Keyword}
+\texttt{extends} absehen ist auch an der Klasse \texttt{Manager} nichts
+ausswergewöhnliches festzustellen. Die Klausel '\texttt{extends Employee}' gibt an,
+dass diese Klasse eine Subklasse der Klasse \texttt{Employee} ist. Zweitens definiert
+die Klasse \texttt{Manager} nur Attribute, die spezifisch für Objekte der Klasse
+\texttt{Manager} sind. In diesem Fall sprechen wir vom Attribut \texttt{department}.
+
+Sämtliche Eigenschaften (Attribute) der Supper-Klasse werden geerbt. Diese müssen
+wir nicht nicht noch einmal aufführen.
 
 % -----------------
 \begin{frame}[fragile]
-\frametitle<presentation>{Vererbung $|$ Inheritance}
-\mode<presentation>{\inputminted[frame=single,autogobble,firstline=8,lastline=16]{java}
-{../java/inheritance/Manager.java}}
+    \frametitle<presentation>{Vererbung $|$ Inheritance}
+    \mode<presentation>{\inputminted[frame=single,autogobble,firstline=8,lastline=16]{java}
+    {../java/inheritance/Manager.java}}
 \end{frame}
 
 \begin{listing}[ht]
-\centering
-\begin{minipage}{0.8\textwidth}
-        \inputminted[frame=single,autogobble,linenos,firstline=8,lastline=16]{java}
-{../java/inheritance/Manager.java}
-\end{minipage}
-    \caption{Klasse: \emph{Manager}}
+    \begin{center}
+        \begin{minipage}{0.8\textwidth}
+            \inputminted[frame=single,autogobble,linenos,firstline=8,lastline=16]{java}
+            {../java/inheritance/Manager.java}
+        \end{minipage}
+    \end{center}
+    \caption{Subklasse: \emph{Manager}}
+    \label{lst:manager}
 \end{listing}
+
+
+% ===========================================================================
+\subsection{Vererbung und Zugriffsrechte}
+\label{subsec:inheritance-access}
+
+Wir im vorangehenden Abschnitt beschrieben erbt eine Subklasse sämtliche Eigenschaften
+und Methoden der Superklasse. Dies heisst aber nicht automatisch, dass diese Objekte
+direkt sichtbar sind. Auch hier gib es eine Art Privatsphäre zwischen den beiden Klassen.
+Private Objekte bleiben auch in diesem Fall privat. Die in Tabelle~\ref{tab:access-level}
+(Seite~\pageref{tab:access-level}) vorgestellten Zugriffsrechte gelten natürlich auch hier.
+Daraus folgt, wenn wir in einer Subklasse auf private Objekte der Supperklasse zugreifen
+möchten, dann muss die Superklasse entsprechende Methoden zur Verfügung stellen.
+
+
+\subsection{Initialisierung von Subklassen}
+\label{subsec:init-subclasses}
+
+Wenn wir Objekte erzeugen, dann sorgt ein Konstruktor dafür, dass alle Attribute des Objektes
+in erstellt und gemäss den Regeln initialisiert werden. Wie sieht dies im Falle von Subklassen aus?
+
+Wenn wir ein Objekt vom Typ \texttt{Employee} erzeugen, dann übergeben wir mehrere Parameter
+an den Konstruktor dieser Klasse: den Vor- und den Nachnamen einer Person. Siehe hierzu
+auch unser Listing~\ref{lst:employee} (Seite~\pageref{lst:employee}).
+
+Wenn wir nun ein Objekt vom Type \texttt{Manager} erzeugen, dann übergeben wir neben den
+Werten für Vor- und Nachname dieser Person auch noch die Abteilung (\texttt{department}), für
+welches dieser Manager verantwortlich ist. Da die Attribute für Vor- und Nachnamen Teil
+der Superklasse sind müssen wir nun den Konstruktor der Superklasse mit den entsprechenden
+Werten aufrufen mit:
+
+\mintinline{java}{super(firstName, LastName);}
+
+Wichtig: Der Aufruf des Superkonstruktors muss immer an erster Stelle stehen. Falls
+Wir diesen Aufruf nicht aufführen, dann wir an dieser Stelle in jedem Fall der
+\emph{Default}-Konstruktor (ohne Argumente) aufgerufen.
+
+% -----------------
+\begin{Exercise}[%
+title={Initialisierung von Subklassen},
+label={ex:init-subclasses}]
+
+    \begin{frame}[fragile]
+        \frametitle<presentation>{Übung: Initialisierung von Subklassen}
+        Versuche mit Hilfe des \emph{Debuggers} die Initialisierung aller Objekte in der
+        Vererbungshierarchie \texttt{Employee} und \texttt{Manager} nachzuvollziehen und
+        zu verstehen.
+
+        Was passiert beispielsweise, wenn wir in der Klasse \texttt{Employee} folgende
+        Zeile verwendet hätten:
+
+        \mintinline{java}{private String firsName = "undefined";}
+    \end{frame}
+
+    Versuche auch eine weitere Spezialisierung (\texttt{Engineer}) mit Hilfe des
+    \emph{Debuggers} zu verstehen. In welcher Reihenfolge werden welche Objekte initialisiert?
+
+\end{Exercise}
+
+\begin{listing}[t]
+    \begin{center}
+        \begin{minipage}{0.8\textwidth}
+            \inputminted[frame=single,autogobble,linenos,firstline=12]{java}
+            {../java/inheritance/Engineer.java}
+        \end{minipage}
+    \end{center}
+    \caption{Initialisierung von Subklassen}
+\end{listing}
+
+
+\begin{Exercise}[%
+title={Vererbungshierarchie},
+label={ex:inheritance-tree}]
+
+    Ordne die folgenden Begriffe in einer Vererbungshierarchie an: Apfel, Eiscreme, Brot,
+    Frucht, Nahrungsmittel, Haferflocken, Orange, Dessert, Schockopudding, Baguette.
+    
+\end{Exercise}
+
+
+% ===========================================================================
+\subsection{Weitere Techniken zur Abstraktion}
+\label{subsec:interfaces}
+
+
