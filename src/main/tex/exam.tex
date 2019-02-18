@@ -137,9 +137,16 @@
         ist, und \texttt{false} liefert, wenn \texttt{a} und \texttt{b} beide \texttt{false}
         oder beide \texttt{true} sind\footnote{Dieser Ausdruck bezeichnet man auch als
         exklusives Oder}.
-
-        \makeemptybox{5cm}
         \addpoints
+
+        \ifprintanswers
+        \begin{solution}
+            Die einfachste Lösung ist:
+            \mintinline{text}{a != b}
+        \end{solution}
+        \else\makeemptybox{2in}
+        \fi
+
 
         % -----------------------------------------------
         \question[10] Ändern Sie die 24-Stunden-Anzeige in eine 12-Stunden-Anzeige
@@ -149,8 +156,27 @@
         % updateDisplay()
         \inputminted[autogobble,firstline=74,lastline=77]
         {java}{../java/time/Display.java}
-        \makeemptybox{10cm}
         \addpoints
+
+        \ifprintanswers
+        \begin{solution}
+            \begin{minted}[autogobble]{java}
+                private void updateDisplay() {
+                    String suffix = " am";
+                    int hour = hours.getValue();
+                    if (hour >= 12) {
+                        hour -= 12;
+                        suffix = " pm";
+                    }
+                    if (hour == 0) hour = 12;
+                    displayString = ((hour < 10) ? "0" + hour : hour) + ":"
+                            + minutes.getDisplayValue() + suffix;
+                }
+            \end{minted}
+        \end{solution}
+        \else\makeemptybox{2in}
+        \fi
+
 
         % -----------------------------------------------
         \newpage
@@ -206,7 +232,15 @@
         \inputminted[autogobble,linenos]{java}{../java/academy/calculator/InputValidator.java}
 
         Was ist das Resultat, wenn ich dieses Programm (Zeile 25) starte:
-        \makeemptybox{\fill}
+
+        \ifprintanswers
+        \begin{solution}
+            Die Ausgabe ist:
+
+            \mintinline{text}{[-3] Negative Zahlen sind nicht erlaubt.}
+        \end{solution}
+        \else\makeemptybox{\fill}
+        \fi
 
     \end{questions}
 
