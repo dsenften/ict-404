@@ -19,7 +19,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}[2011/06/27]
 \ProvidesClass{talent-factory}
-  [2019/01/11 v1.0 A package containing Telent-Factory specific definitions]
+[2019/01/11 v1.0 A package containing Telent-Factory specific definitions]
 
 \RequirePackage[german]{babel}
 \selectlanguage{german}
@@ -39,13 +39,13 @@
 \RequirePackage[german]{fancyref}
 \RequirePackage{hyperref}
 \hypersetup{
-	colorlinks  = true,
-	linkcolor   = black,
-	filecolor   = magenta,
-	urlcolor    = blue,
-	citecolor   = blue,
-	anchorcolor = blue,
-	pdfpagemode = FullScreen,
+colorlinks = true,
+linkcolor = black,
+filecolor = magenta,
+urlcolor = blue,
+citecolor = blue,
+anchorcolor = blue,
+pdfpagemode = FullScreen,
 }
 
 \RequirePackage{minted}
@@ -60,37 +60,40 @@
 
 
 \newcommand\image[2]{%
-  \begin{figure}[ht]
-	\centering		
+\begin{figure}[ht]
+    \centering
     \mode<presentation>{\includegraphics[width=6cm]{../../../images/#1.png}}
     \mode<article>{\includegraphics[width=12cm]{../../../images/#1.png}}
     \mode<article>{\caption{#2}}
     \label{fig:#1}
-  \end{figure}
+\end{figure}
 }
 
-
+\newcommand\bfarticle[1]{%
+\mode<presentation>{#1}
+\mode<article>{\textbf{#1}}}
 %
 % Integrieren von Quelldateien im Script
 \newcommand\source[2]{%
-    \begin{listing}[ht]
-        \centering
+\begin{listing}[ht]
+    \begin{center}
         \begin{minipage}{0.8\textwidth}
             \inputminted[frame=single,autogobble,linenos]{java}{#1}
         \end{minipage}
         \caption{#2}
-    \end{listing}}
+    \end{center}
+\end{listing}}
 
 %
 % Diese Redefinition für die Integration von Bildern war notwendig,
 % da die Version '\image' in der Umgebung 'Exercise' nicht funktioniert.
 \newcommand\minibox[2]{%
-    \begin{minipage}{\textwidth}
-        \centering
-        \includegraphics[width=10cm]{../../../images/#1.png}
-        \captionof{figure}{#2}
-        \label{fig:#1}
-    \end{minipage}
+\begin{minipage}{\textwidth}
+    \centering
+    \includegraphics[width=10cm]{../../../images/#1.png}
+    \captionof{figure}{#2}
+    \label{fig:#1}
+\end{minipage}
 }
 
 \endinput

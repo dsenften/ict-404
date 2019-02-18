@@ -37,4 +37,11 @@ class ManagerTest {
         String expected = "Manager(super=Employee(firstName=Daniel, lastName=Senften), department=Enginering)";
         assertEquals(expected, manager.toString());
     }
+
+    @Test
+    void testTypeCasting() {
+        Employee employee = manager;
+        String expected = "Enginering";
+        assertEquals(expected, ((Manager) employee).getDepartment());
+    }
 }
