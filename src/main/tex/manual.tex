@@ -353,8 +353,8 @@ folgen einer klaren Namenskonvention, auch bekannt unter
         \begin{minipage}[b]{0.4\textwidth}
             \begin{minted}[frame=single,autogobble]{java}
                 public class Person {
-                    // Eigenschaften
-                    // Methoden
+                // Eigenschaften
+                // Methoden
                 }
             \end{minted}
         \end{minipage}
@@ -407,7 +407,6 @@ seiner einfachsten Form (s. Listing~\ref{lst:hello-world}, Seite~\pageref{lst:he
 
 Typischerweise wir eine Klasse in Java in einer Datei unter dem selben Namen abgelegt.
 Hierbei ist wichtig die Gross- und Kleinschreibung zu beachten.
-
 
 
 Der Aufbau einer Java Datei kann sehr einfach durch eine Metasprache, der sogenannten
@@ -704,6 +703,8 @@ label={ex:course}]
 
     \end{frame}
 
+\end{Exercise}
+
 % =============================================================================
 %                                 CHAPTER
 % =============================================================================
@@ -731,15 +732,16 @@ Code.
 
 
 \begin{listing}[ht]
-    \centering
-    \begin{minipage}{0.45\textwidth}
-        \inputminted[frame=single,linenos]{java}{../java/generics/CacheString.java}
-    \end{minipage}
-    \begin{minipage}{0.45\textwidth}
-        \inputminted[frame=single]{java}{../java/generics/CacheShirt.java}
-    \end{minipage}
-    \caption{Einfacher \emph{Cache} ohne \emph{Generics}}
-    \label{lst:non-generic-classes}
+    \begin{center}
+        \begin{minipage}{0.45\textwidth}
+            \inputminted[frame=single,lixnenos]{java}{../java/generics/CacheString.java}
+        \end{minipage}
+        \begin{minipage}{0.45\textwidth}
+            \inputminted[frame=single]{java}{../java/generics/CacheShirt.java}
+        \end{minipage}
+        \caption{Einfacher \emph{Cache} ohne \emph{Generics}}
+        \label{lst:non-generic-classes}
+    \end{center}
 \end{listing}
 
 
@@ -1106,19 +1108,22 @@ label={ex:init-subclasses}]
         \mintinline{java}{private String firsName = "undefined";}
     \end{frame}
 
-    Versuche auch eine weitere Spezialisierung (\texttt{Engineer}) mit Hilfe des
-    \emph{Debuggers} zu verstehen. In welcher Reihenfolge werden welche Objekte initialisiert?
+    Versuche auch eine weitere Spezialisierung (\texttt{Engineer},
+    Listing~\ref{lst:subclass-engineer}, Seite\pageref{lst:subclass-engineer})
+    mit Hilfe des \emph{Debuggers} zu verstehen.
+    In welcher Reihenfolge werden welche Objekte initialisiert?
 
 \end{Exercise}
 
 \begin{listing}[t]
     \begin{center}
         \begin{minipage}{0.8\textwidth}
-            \inputminted[frame=single,autogobble,linenos,firstline=12]{java}
+            \inputminted[frame=single,autogobble,linenos,firstline=13]{java}
             {../java/inheritance/Engineer.java}
         \end{minipage}
     \end{center}
     \caption{Initialisierung von Subklassen}
+    \label{lst:subclass-engineer}
 \end{listing}
 
 
@@ -1135,5 +1140,39 @@ label={ex:inheritance-tree}]
 % ===========================================================================
 \subsection{Weitere Techniken zur Abstraktion}
 \label{subsec:interfaces}
+
+\mode<presentation>
+\begin{frame}
+    \frametitle{Definition einer Schnittstellen $|$ \emph{Interface}}
+    \inputminted[frame=single,firstline=3]{java}
+    {../java/inheritance/ElectronicDevice.java}
+\end{frame}
+
+\mode<presentation>
+\begin{frame}
+    \frametitle{Implementation einer S hnittstelle}
+    \inputminted[frame=single,firstline=3]{java}
+    {../java/inheritance/Television.java}
+\end{frame}
+
+\mode*
+\begin{listing}[ht]
+    \begin{center}
+        \begin{minipage}{0.8\textwidth}
+            \inputminted[frame=single,autogobble,linenos,firstline=3]{java}
+                        {../java/inheritance/ElectronicDevice.java}
+        \end{minipage}
+        \vskip0.5em
+        \begin{minipage}{0.8\textwidth}
+            \inputminted[frame=single,autogobble,linenos,firstline=3]{java}
+                        {../java/inheritance/Television.java}
+        \end{minipage}
+    \end{center}
+    \caption{Deklaration und Implementation einer Schnittstelle}
+    \label{lst:interfaces}
+\end{listing}
+
+
+
 
 

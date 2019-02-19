@@ -69,17 +69,20 @@
   \end{figure}
 }
 
-
+\newcommand\bfarticle[1]{%
+\mode<presentation>{#1}
+\mode<article>{\textbf{#1}}}
 %
 % Integrieren von Quelldateien im Script
 \newcommand\source[2]{%
-    \begin{listing}[ht]
-        \centering
+\begin{listing}[ht]
+    \begin{center}
         \begin{minipage}{0.8\textwidth}
             \inputminted[frame=single,autogobble,linenos]{java}{#1}
         \end{minipage}
         \caption{#2}
-    \end{listing}}
+    \end{center}
+\end{listing}}
 
 %
 % Diese Redefinition für die Integration von Bildern war notwendig,
