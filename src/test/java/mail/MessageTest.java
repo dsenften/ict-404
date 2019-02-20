@@ -3,7 +3,11 @@ package mail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * User: Daniel Senften <daniel@senften.org>
@@ -17,10 +21,17 @@ class MessageTest {
     private String receiver;
     private String text;
 
+    private final ByteArrayOutputStream outContent =
+            new ByteArrayOutputStream();
+
     @BeforeEach
     void setUp() {
         sender = "Peter";
-        message = new Message(sender,receiver,text);
+        receiver = "Pan";
+        text = "Text Meldung";
+        
+        message = new Message(sender, receiver, text);
+        System.setOut(new PrintStream(outContent));
     }
 
     @Test
@@ -41,6 +52,9 @@ class MessageTest {
 
     @Test
     void print() {
-        // TODO To be done
+        message.print();
+
+        String expected = "Von: Peter\nAn: Pan\nText: Text Meldung\n";
+        assertEquals(expected, outContent.toString());
     }
 }
