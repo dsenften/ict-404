@@ -4,6 +4,7 @@ package mail;
  * Eine Klasse, die einfache Nachrichten modelliert. Eine Message hat
  * einen Absender und einen Empfänger und enthält Text.
  */
+@SuppressWarnings("WeakerAccess")
 public class Message
 {
     // Der Absender der Message
