@@ -1,6 +1,11 @@
 \documentclass[12pt,a4paper]{exam}
 \usepackage{natbib}
 
+\printanswers % If you want to print answers
+%\noprintanswers % If you don't want to print answers
+
+\renewcommand{\solutiontitle}{\noindent\textbf{Lösung:}\enspace}
+
 \RequirePackage{talent-factory}
 \RequirePackage[top=3cm,bottom=2cm,left=2cm,right=1.5cm,headsep=10pt,a4paper]{geometry} % Page margins
 
@@ -26,9 +31,9 @@
     \noindent
     \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r @{\extracolsep{6pt}} l}
         \textbf{\class}           & \textbf{Name:} & \makebox[2in]{\hrulefill} \\
-        \textbf{\examnum}         &                & \\
-        \textbf{\examdate}        &                & \\
-        \textbf{Zeit: \timelimit} & Dozent:        & \makebox[2in]{Daniel Senften}
+        \textbf{\examnum}         & & \\
+        \textbf{\examdate}        & & \\
+        \textbf{Zeit: \timelimit} & Dozent: & \makebox[2in]{Daniel Senften}
     \end{tabular*}\\
     \rule[1ex]{\textwidth}{1pt}
 
@@ -52,7 +57,7 @@
     \noindent
     \rule[1ex]{\textwidth}{1pt}
 
-% ===========================================================================
+    % ===========================================================================
 
     \begin{questions}
 
@@ -77,9 +82,20 @@
 
         % setValue()
         \inputminted[autogobble,firstline=53,lastline=57]
-            {java}{../java/time/NumberDisplay.java}
-        \makeemptybox{5cm}
+        {java}{../java/time/NumberDisplay.java}
         \addpoints
+
+        \ifprintanswers
+        \begin{solution}
+            \begin{itemize}
+                \item Mit einem ungültigen Wert passiert nicht.
+                \item Nein, dies ist definitiv keine gute Lösung.
+                \item Es sollte ein \emph{ErrorHandling} eingebaut werden.
+            \end{itemize}
+        \end{solution}
+        \else\makeemptybox{2in}
+        \fi
+
 
         % -----------------------------------------------
         \question[4] Was würde passieren, wenn wir den Oparator \texttt{>=} in der Methode
@@ -87,8 +103,16 @@
         Weise:
 
         \mintinline{java}{if((value > 0) && (value < limit))}
-        \makeemptybox{5cm}
         \addpoints
+
+        \ifprintanswers
+        \begin{solution}
+            Der Wert '0' könnte nie übergeben werden. Dies wird allerdings nicht
+            durch eine entsprechende Fehlermeldung unterstütz.
+        \end{solution}
+        \else\makeemptybox{2in}
+        \fi
+
 
         % -----------------------------------------------
         {%
@@ -99,10 +123,10 @@
         \addpoints
         \begin{checkboxes}
             \choice \mintinline{java}{! (4 < 5)}
-            \choice \mintinline{java}{! false}
+            \CorrectChoice \mintinline{java}{! false}
             \choice \mintinline{java}{(2 > 2) || ((4 == 4) && (1 < 0))}
             \choice \mintinline{java}{(2 > 2) || (4 == 4) && (1 < 0)}
-            \choice \mintinline{java}{(34 != 33) && ! false}
+            \CorrectChoice \mintinline{java}{(34 != 33) && ! false}
         \end{checkboxes}
         }%
 
@@ -113,9 +137,16 @@
         ist, und \texttt{false} liefert, wenn \texttt{a} und \texttt{b} beide \texttt{false}
         oder beide \texttt{true} sind\footnote{Dieser Ausdruck bezeichnet man auch als
         exklusives Oder}.
-
-        \makeemptybox{5cm}
         \addpoints
+
+        \ifprintanswers
+        \begin{solution}
+            Die einfachste Lösung ist:
+            \mintinline{text}{a != b}
+        \end{solution}
+        \else\makeemptybox{2in}
+        \fi
+
 
         % -----------------------------------------------
         \question[10] Ändern Sie die 24-Stunden-Anzeige in eine 12-Stunden-Anzeige
@@ -124,9 +155,28 @@
 
         % updateDisplay()
         \inputminted[autogobble,firstline=74,lastline=77]
-            {java}{../java/time/Display.java}
-        \makeemptybox{10cm}
+        {java}{../java/time/Display.java}
         \addpoints
+
+        \ifprintanswers
+        \begin{solution}
+            \begin{minted}[autogobble]{java}
+                private void updateDisplay() {
+                    String suffix = " am";
+                    int hour = hours.getValue();
+                    if (hour >= 12) {
+                        hour -= 12;
+                        suffix = " pm";
+                    }
+                    if (hour == 0) hour = 12;
+                    displayString = ((hour < 10) ? "0" + hour : hour) + ":"
+                            + minutes.getDisplayValue() + suffix;
+                }
+            \end{minted}
+        \end{solution}
+        \else\makeemptybox{2in}
+        \fi
+
 
         % -----------------------------------------------
         \newpage
@@ -135,7 +185,16 @@
         \mintinline{java}{Integer}) erstellt und anschliessend die Methode
         \mintinline{java}{add()} aufgerufen werden.
         \inputminted[autogobble,linenos,firstline=3]{java}{../java/generics/Cache.java}
-        \makeemptybox{2in}
+
+        \ifprintanswers
+        \begin{solution}
+            \begin{minted}[autogobble]{java}
+                Cache<Integer> myCache = new Chache<>();
+                myCache.add(123); // autoboxing
+            \end{minted}
+        \end{solution}
+        \else\makeemptybox{2in}
+        \fi
 
         % -----------------------------------------------
         {%
@@ -145,9 +204,9 @@
         \addpoints
         \begin{checkboxes}
             \choice \mintinline{java}{public static main(String[] args)}
-            \choice \mintinline{java}{public static void main(String... args)}
+            \CorrectChoice \mintinline{java}{public static void main(String... args)}
             \choice \mintinline{java}{public void main(String[] args)}
-            \choice \mintinline{java}{public static void main(String args[])}
+            \CorrectChoice \mintinline{java}{public static void main(String args[])}
         \end{checkboxes}
         }%
 
@@ -173,7 +232,15 @@
         \inputminted[autogobble,linenos]{java}{../java/academy/calculator/InputValidator.java}
 
         Was ist das Resultat, wenn ich dieses Programm (Zeile 25) starte:
-        \makeemptybox{\fill}
+
+        \ifprintanswers
+        \begin{solution}
+            Die Ausgabe ist:
+
+            \mintinline{text}{[-3] Negative Zahlen sind nicht erlaubt.}
+        \end{solution}
+        \else\makeemptybox{\fill}
+        \fi
 
     \end{questions}
 

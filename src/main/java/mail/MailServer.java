@@ -8,6 +8,7 @@ import java.util.Iterator;
  * Ein simples Modell eines Mail-Servers. Der Server kann Nachrichten
  * entgegen nehmen und auf Anfrage an Mail-Klienten weiterleiten.
  */
+@SuppressWarnings("WeakerAccess")
 public class MailServer
 {
     // Speicherstruktur für die Nachrichten, die auf dem Server

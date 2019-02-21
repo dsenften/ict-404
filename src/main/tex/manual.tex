@@ -732,15 +732,16 @@ Code.
 
 
 \begin{listing}[ht]
-    \centering
-    \begin{minipage}{0.45\textwidth}
-        \inputminted[frame=single,linenos]{java}{../java/generics/CacheString.java}
-    \end{minipage}
-    \begin{minipage}{0.45\textwidth}
-        \inputminted[frame=single]{java}{../java/generics/CacheShirt.java}
-    \end{minipage}
-    \caption{Einfacher \emph{Cache} ohne \emph{Generics}}
-    \label{lst:non-generic-classes}
+    \begin{center}
+        \begin{minipage}{0.45\textwidth}
+            \inputminted[frame=single,lixnenos]{java}{../java/generics/CacheString.java}
+        \end{minipage}
+        \begin{minipage}{0.45\textwidth}
+            \inputminted[frame=single]{java}{../java/generics/CacheShirt.java}
+        \end{minipage}
+        \caption{Einfacher \emph{Cache} ohne \emph{Generics}}
+        \label{lst:non-generic-classes}
+    \end{center}
 \end{listing}
 
 
@@ -1036,6 +1037,7 @@ Sämtliche Eigenschaften (Attribute) der Supper-Klasse werden geerbt. Diese müs
 wir nicht nicht noch einmal aufführen.
 
 % -----------------
+
 \begin{frame}[fragile]
     \frametitle<presentation>{Vererbung $|$ Inheritance}
     \mode<presentation>{\inputminted[frame=single,autogobble,firstline=8,lastline=16]{java}
@@ -1116,7 +1118,7 @@ label={ex:init-subclasses}]
 \begin{listing}[t]
     \begin{center}
         \begin{minipage}{0.8\textwidth}
-            \inputminted[frame=single,autogobble,linenos,firstline=12]{java}
+            \inputminted[frame=single,autogobble,linenos,firstline=13]{java}
             {../java/inheritance/Engineer.java}
         \end{minipage}
     \end{center}
@@ -1131,12 +1133,46 @@ label={ex:inheritance-tree}]
 
     Ordne die folgenden Begriffe in einer Vererbungshierarchie an: Apfel, Eiscreme, Brot,
     Frucht, Nahrungsmittel, Haferflocken, Orange, Dessert, Schockopudding, Baguette.
-    
+
 \end{Exercise}
 
 
 % ===========================================================================
 \subsection{Weitere Techniken zur Abstraktion}
 \label{subsec:interfaces}
+
+\mode<presentation>
+\begin{frame}
+    \frametitle{Definition einer Schnittstellen $|$ \emph{Interface}}
+    \inputminted[frame=single,firstline=3]{java}
+    {../java/inheritance/ElectronicDevice.java}
+\end{frame}
+
+\mode<presentation>
+\begin{frame}
+    \frametitle{Implementation einer S hnittstelle}
+    \inputminted[frame=single,firstline=3]{java}
+    {../java/inheritance/Television.java}
+\end{frame}
+
+\mode*
+\begin{listing}[ht]
+    \begin{center}
+        \begin{minipage}{0.8\textwidth}
+            \inputminted[frame=single,autogobble,linenos,firstline=3]{java}
+                        {../java/inheritance/ElectronicDevice.java}
+        \end{minipage}
+        \vskip0.5em
+        \begin{minipage}{0.8\textwidth}
+            \inputminted[frame=single,autogobble,linenos,firstline=3]{java}
+                        {../java/inheritance/Television.java}
+        \end{minipage}
+    \end{center}
+    \caption{Deklaration und Implementation einer Schnittstelle}
+    \label{lst:interfaces}
+\end{listing}
+
+
+
 
 
