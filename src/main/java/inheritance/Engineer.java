@@ -9,12 +9,21 @@ import java.util.List;
 
 @Getter
 @ToString
+@SuppressWarnings("WeakerAccess")
 public class Engineer extends Employee {
 
-    List<String> skills = new ArrayList<>();
+    List<String> skills;
 
     {
-        skills = Arrays.asList("Java", "C", "C++");
+        /*
+         * The list returned when you call Arrays.asList is a thin
+         * wrapper over the array, not a copy. The list returned is
+         * fixed size: attempting to call add will throw an
+         * UnsupportedOperationException exception. Therefore we
+         * have to convert it to a 'real' ArrayList first :-)
+         */
+        skills = new ArrayList<>(
+                Arrays.asList("Java", "C", "C++"));
     }
 
     public Engineer(String firstName, String lastName) {
