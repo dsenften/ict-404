@@ -19,19 +19,30 @@
 
     % TODO In der endgültigen Version des Dokumentes den Befehl auskommentieren
     \fxsetup{draft}
-    
-    \setmonofont{Verdana}
+
+    \setmainfont{Verdana}
+    \DeclareGraphicsExtensions{.pdf,.jpg,.tif}
+    \maketitle
+    \pagestyle{fancy}
+    \newpage
+    \tableofcontents % Inhaltsverzeichnis
+
+    \newpage
+    \listoffigures   % Abbildungsverzeichnis
+    \listoftables    % Tabellenverzeichnis
+    \listofexercises % Liste der Übungen
+
+    \renewcommand{\listoflistingscaption}{Programmbeispiele}
+    \listoflistings
+
+    \listoffixmes
+
+    \parindent0em\parskip1em
+    \newpage
+
+
     \newmintedfile{java}{frame=single,linenos,samepage}
 
     \input{manual.tex}
-
-    \newpage\appendix
-    \section{Übungen und Programmbeispiele}
-    \listofexercises
-
-    \renewcommand{\listoflistingscaption}{Programmbeispiele}
-    \newpage\listoflistings
-
-    \newpage\listoffixmes
 
 \end{document}
