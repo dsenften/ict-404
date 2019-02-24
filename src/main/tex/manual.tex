@@ -287,15 +287,27 @@ label={ex:installation-intellij}]
     Werkzeuge nutzen, die wir vorgängig installieren müssen.
 
     \begin{enumerate}
-        \item \href{https://www.jetbrains.com/idea}{IntelliJ IDEA}
+        \item \href{https://www.jetbrains.com/idea}{IntelliJ IDEA}. Mit dieser IDE
+        machen wir unsere Entwicklungen zu einem angenehmen Erlebnis.
         \item Git für \href{https://git-scm.com/download/mac}{Mac},
         \href{https://git-scm.com/download/win}{Windows} oder
         \href{https://git-scm.com/download/linux}{Linux}.
+        Mit der Versionskontrolle \href{https://git-scm.com/book/de/v2/}{Git}
+        verwalten wir all unsere Dokumente wie Quellcode, Skript, Folien und
+        Prüfungen.
         \item \TeX\ Live für \href{http://tug.org/cgi-bin/mactex-download/MacTeX.pkg}{Mac},
         \href{http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe}{Windows} oder
         \href{http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz}{Linux}.
-        \item \href{https://www.python.org/downloads/}{Python v7.3.2}
-        \item \href{http://pygments.org/}{Pygments}
+        Dies ist die Wurzel des \emph{Comprehensive \TeX\ Archive Network} Verzeichnisbaums.
+        \item \href{https://www.python.org/downloads/}{Python} ist eine Programmiersprache,
+        mit der Sie schneller arbeiten und Ihre Systeme effektiver integrieren können.
+        \item Dies ist die Heimat von \href{http://pygments.org/}{Pygments}.
+        Es handelt sich um einen generischen Syntax-\emph{Highlighter}, der für den
+        Einsatz in Code-Hosting, Foren, Wikis oder anderen Anwendungen geeignet ist.
+        Unterstützt werden mehr als 300 Programmiersprachen.
+        \item \href{https://cygwin.com/}{Cygwin} ist eine grosse Sammlung von GNU- und
+        Open-Source-Tools, die eine ähnliche Funktionalität wie eine
+        Linux-Distribution unter Windows bieten.
     \end{enumerate}
 
 \end{Exercise}
@@ -751,7 +763,7 @@ Code.
     {../java/generics/Cache.java}}
 \end{frame}
 
-\source{../java/generics/Cache.java}{Definieren einer generischen Klasse}
+\source{../java/generics/Cache.java}{Definieren einer generischen Klasse}{generic-class}
 
 Durch die Verwendung generischer Klassen können wir dieses Problem sehr elegant
 lösen. Die spezielle Schreibweise der Klasse \texttt{Cache} verwenden wir in
@@ -1105,7 +1117,7 @@ label={ex:init-subclasses}]
         Was passiert beispielsweise, wenn wir in der Klasse \texttt{Employee} folgende
         Zeile verwendet hätten:
 
-        \mintinline{java}{private String firsName = "undefined";}
+        \mintinline{java}{private String firstName = "undefined";}
     \end{frame}
 
     Versuche auch eine weitere Spezialisierung (\texttt{Engineer},
@@ -1160,12 +1172,12 @@ label={ex:inheritance-tree}]
     \begin{center}
         \begin{minipage}{0.8\textwidth}
             \inputminted[frame=single,autogobble,linenos,firstline=3]{java}
-                        {../java/inheritance/ElectronicDevice.java}
+            {../java/inheritance/ElectronicDevice.java}
         \end{minipage}
         \vskip0.5em
         \begin{minipage}{0.8\textwidth}
             \inputminted[frame=single,autogobble,linenos,firstline=3]{java}
-                        {../java/inheritance/Television.java}
+            {../java/inheritance/Television.java}
         \end{minipage}
     \end{center}
     \caption{Deklaration und Implementation einer Schnittstelle}
@@ -1174,5 +1186,297 @@ label={ex:inheritance-tree}]
 
 
 
+% =============================================================================
+%                                 CHAPTER
+% =============================================================================
+
+\section{Lambda Funktionen}
+\label{sec:lambda}
+
+Lambda-Ausdrückcke in Java sind Methoden ohne Namen. Sie bestehen aus einer Liste
+von formalen Parametern, einem Pfeil \texttt{->} und einem Funktionsrumpf.
+Im Gegensatz zu Methoden werden der Rückgabetyp und Exceptions nicht spezifiziert,
+sondern vom Compiler ergänzt.
+
+Die Syntax für Lambda-Ausdrücke ist sehr vielseitig; die folgende Tabelle zeigt
+typische Beispiele:
+
+\begin{table}[ht]
+    \begin{center}
+        \begin{tabular}{p{3cm}cll}
+
+            \mintinline{java}{(int x)}        & \texttt{->} & \mintinline{java}{x + 1} & \mintinline{java}{// Parameter mit expliziter Typangabe} \\
+            \mintinline{java}{(x)}            & \texttt{->} & \mintinline{java}{x + 1} & \mintinline{java}{// Parameter ohne explizite Typangabe} \\
+            \mintinline{java}{x}              & \texttt{->} & \mintinline{java}{x + 1} & \mintinline{java}{// Parameter ohne explizite Typangabe} \\
+            \mintinline{java}{(int x, int y)} & \texttt{->} & \mintinline{java}{x + y} & \mintinline{java}{// Zwei Parameter mit expliziter Typangabe} \\
+            \mintinline{java}{(x,y)}          & \texttt{->} & \mintinline{java}{x + y} & \mintinline{java}{// Zwei Parameter ohne expliziter Typangabe} \\
+            \mintinline{java}{()}             & \texttt{->} & \mintinline{java}{3}     & \mintinline{java}{// Leere Parameterliste} \\
+
+        \end{tabular}
+    \end{center}
+    \mode<article>{\caption{Typische Lambda Ausdrücke}}
+    \label{tab:lambda-examples}
+\end{table}
+
+% -----------------
+
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Allgemeine Schreibweise}
+
+    \begin{itemize}
+        \item Lambdas bringen uns anonyme Funktionstypen. Allgemein formuliert
+        sieht ein Lambda Ausdruck wie folgt aus.
+
+        \begin{minted}[frame=single,autogobble]{text}
+            (parameters) -> { body }
+        \end{minted}
+        \vskip1em
+        \item Hier wein einfachstes Beispiel mit zwei Argumenten $x$ und $y$.
+        \begin{minted}[frame=single,autogobble]{text}
+            (x,y) -> x + y
+        \end{minted}
+    \end{itemize}
+\end{frame}
+
+\mode*
+Viele Interfaces innerhalb des JDK deklarieren nur eine einzige Methode, wie beispielsweise
+\href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Runnable.html}{Runnable},
+\href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Comparator.html#compare(T,T)}{Comparator<T>} oder
+\href{https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/event/ActionListener.html#actionPerformed(java.awt.event.ActionEvent)}{ActionListener}.
+Ein ActionListener ist eine \emph{Callback}-Logik, die unabhängig vom Definitionszeitpunkt
+ausgeführt wird. Das geschieht in der Regel in Form einer anonymen inneren Klasse, deren Instanz
+man einem Handler übergibt.
 
 
+% ------------------
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Das Funktionale Interface}
+    \mode<presentation>{Ein funbktionales Interface ist ein Interface mit einer Methode.}
+
+    \inputminted[frame=single,firstline=7,lastline=10]{java}
+    {../java/lambda/function/ActionListener.java}
+
+    \mode<presentation>{\vskip1em
+    Ein Lambda Ausdruck repräsentiert eine Instanz (Implementation) eines
+    funktionalen Interfaces.}
+\end{frame}
+
+
+% ------------------
+
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Ein weiteres Beispiel}
+
+    \inputminted[frame=single,firstline=4,lastline=6]{java}
+    {../java/lambda/Processor.java}
+    \inputminted[frame=single,firstline=8,lastline=14]{java}
+    {../java/lambda/Processor.java}
+\end{frame}
+
+\mode*
+\source{../java/lambda/Processor.java}{Ein eigenes, funktionales Interface}{functional-interface}
+
+In Listing~\ref{lst:functional-interface} (Seite~\pageref{lst:functional-interface}) definieren
+wir unser erstes funktionales Interface \texttt{MyInterface} mit einer Methode
+\mintinline{java}{myFunction()}. Die Funktion selber deklarieren wir auf Zeile 11 des Programmcodes,
+wobei die Ausführung erst beim Aufruf auf Zeile 13 stattfindet.
+
+% ------------------
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Ein generisches, funktionales Interface}
+    Die Funktionalität eines funktionalen Interfaces und somit auch eines Lambda
+    Ausdruckes kann durch die Verwendung von generischen Typen erhöht werden.
+
+    \inputminted[frame=single,firstline=4,lastline=8]{java}
+    {../java/lambda/function/Comparator.java}
+\end{frame}
+
+
+% ------------------
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Einige \emph{built-in} Interfaces}
+    Dies sind nur einige Beispiele der bereits vorhandenen (\emph{built-in}),
+    funktionalen Interfaces.
+
+    \begin{itemize}
+        \item \href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Runnable.html}{java.lang.Runnable} $\Rightarrow$ \texttt{run()}
+        \item \href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/Callable.html#call()}{java.util.concurrent.Collable} $\Rightarrow$ \texttt{call()}
+        \item \href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Comparator.html#compare(T,T)}{java.util.Comparator} $\Rightarrow$ \texttt{compare​(T o1, T o2)}
+        \item \href{https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/event/ActionListener.html#actionPerformed(java.awt.event.ActionEvent)}{java.awt.event.ActionListener} $\Rightarrow$ \texttt{actionPerformed(ActionEvent e)}
+    \end{itemize}
+
+\end{frame}
+
+
+% ------------------
+
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Lambdas anstelle eines funktionalen Intertfaces}
+
+    \inputminted[frame=single,firstline=8,lastline=13]{java}
+    {../java/lambda/ThreadExample.java}
+    \inputminted[frame=single,firstline=16,lastline=18]{java}
+    {../java/lambda/ThreadExample.java}
+\end{frame}
+
+\mode*
+
+In Listing~\ref{lst:use-lambdas} (Seite~\ref{lst:use-lambdas}) sehen wir die typische implementation
+eines Interfaces in Form einer anonymen Klasse. Gemäss Schnittstellendefinition erwartet der Konstruktor
+der Klasse \href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Thread.html}{Thread}
+ein \href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Runnable.html}{Runnable}
+Objekt als Parameter. Die Implementation dieses Parameterobjektes können wir gerade an Ort und Stelle
+in Form einer anonymen Klasse (Zeile 8-13) implementieren.
+
+Obwohl diese Programmierung sehr weit verbreitet ist, ist die Lesbarkeit dieses Codes bestimmt nicht
+unbedingt perfekt. Da es sich beim
+\href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Runnable.html}{Runnable}
+um ein funktionales Interface (ein Interface mit einer Methode) handelt kann dieser Teil des Codes durch
+einen Lambda Ausdruck (Zeile 16-18) ersetzt werden. Programme werden auf diese Weise wesentlich lesbarer und
+auch wartbarer.
+
+\source{../java/lambda/ThreadExample.java}{Lambdas anstelle eines funktionalen Intertfaces}{use-lambdas}
+
+
+% ------------------
+
+\begin{frame}[fragile]
+    \frametitle<presentation>{Weitere \emph{built-in} Interfaces}
+    Im Package \texttt{java.util.function} sind eine Reihe weiterer, vordefinierter,
+    funktionalen Interfaces aufgeführt:
+
+    \begin{itemize}
+        \item \href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/Predicate.html}{Predicate<T>} -
+        Stellt ein Prädikat (boolesches Wert) für ein Argument dar.
+        \item \href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/Consumer.html}{Consumer<T>} -
+        Stellt eine Operation dar, die ein einzelnes Eingabeargument akzeptiert und kein Ergebnis zurückgibt.
+        \item \href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/Function.html}{Function<T,R>} -
+        Stellt eine Funktion dar, die ein Argument akzeptiert und ein Ergebnis liefert.
+        \item \href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/Supplier.html}{Supplier<T>} -
+        Stellt einen Lieferanten für Ergebnisse dar.
+    \end{itemize}
+\end{frame}
+
+
+% ===========================================================================
+\subsection{Predicate<T>}
+\label{subsec:predicate}
+
+Ein Prädikat ist eine Aussage über einen Gegenstand, die wahr oder falsch.
+Die Frage mit
+\href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Character.html#isDigit(char)}
+{Character.isDigit('a')}, ob das Zeichen 'a' eine Ziffer ist,
+wird mit falsch beantwortet. Somit ist diese Funktion ein Prädikat, weil es über einen
+Gegenstand, einem Zeichen, eine Wahrheitsaussage fällen kann.
+
+Flexibler sind Prädikate, wenn sie als Objekte repräsentiert werden, weil sie
+dann an unterschiedliche Stellen wiederverwendet werden können, wenn etwa über
+ein Prädikat bestimmt, was aus einer Sammlung gelöscht werden soll oder ob
+mindestens ein Element in einer Sammlung ist, was ein Prädikat erfüllt.
+
+In Listing~\ref{lst:predicate} (Seite~\ref{lst:predicate}) verwenden wir nun
+die Definition eines
+\href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/Predicate.html}
+{Prädikats} und implementieren die in Form eines Lambda Ausdruckes (Zeil 25). Unsere Funktion
+'filte()' (Zeile 23) können wir beliebig oft verwenden und jeweils mit einem anderen Liste und einem
+anderen Prädikat (Lambda Ausdruck) aufrufen.
+
+Die Implementation der Methoder 'filte()' selber (Zeile 11-20) zeiht die ganze Flexibilität
+der generischen Anwendung der übergebenen Liste, wie auch das anzuwendende Prädikat.
+
+% ------------------
+
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Beispiel: \texttt{Predicate<T>}}
+
+    \only<1>{\inputminted[frame=single,firstline=22,lastline=28]{java}
+    {../java/lambda/function/PredicateExample.java}}
+    \only<2>{\inputminted[frame=single,firstline=11,lastline=20]{java}
+    {../java/lambda/function/PredicateExample.java}}
+\end{frame}
+
+\mode*
+\source{../java/lambda/function/PredicateExample.java}{Beispiel: \texttt{Predicate<T>}}{predicate}
+
+
+% ===========================================================================
+\subsection{Function<T,R>}
+\label{subsec:function}
+
+Funktionen im Sinne der funktionalen Programmierung können in verschiedenen
+Ausprägungen vorkommen: mit Parameterliste, mit Rückgabewerten oder ohne.
+Doch im Grunde sind es Spezialformen, und die funktionale Schnittstelle
+\href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/Function.html}
+{Function} ist die allgemeinste, die zu einem Argument
+ein Ergebnis liefert.
+
+In seiner einfachsten Form sieht eine mögliche Verwendung wie folgt aus:
+
+\begin{minted}[autogobble]{java}
+    Function<Double, Double> max = a -> Math.abs( a );
+    System.out.println( max.apply( -12. ) );  // 12.0
+\end{minted}
+
+Durch diese Möglichkeit muss beim API-Design nicht mehr eine einzelne Funktion
+angeboten werden, sondern Klassen könnten sie auch als Function-Objekte anbieten.
+
+In Listing~\ref{lst:function} (Seite~\pageref{lst:function}) sehen wir die Implementation
+einer solchen Methode in Zeile 11-12, welche als Paramater eine
+\href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/Function.html}
+{Function} mit generischen Typen erwartet.
+
+% ------------------
+
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Beispiel: \texttt{Function<T,R>}}
+
+    \only<1>{\inputminted[frame=single,firstline=20,lastline=26]{java}
+    {../java/lambda/function/FunctionExample.java}}
+    \only<2>{\inputminted[frame=single,firstline=11,lastline=18]{java}
+    {../java/lambda/function/FunctionExample.java}}
+\end{frame}
+
+\mode*
+\source{../java/lambda/function/FunctionExample.java}{Beispiel: \texttt{Function<T,R>}}{function}
+
+Die Definition der implementierten Funktion selbst wird als Lambda Ausdruck in
+Zeile 23 definiert und der Funktion 'map()' übergeben.
+
+
+% ===========================================================================
+\subsection{Consumer<T>}
+\label{subsec:consumer}
+
+Im JDK zeigt sich der Typ
+\href{https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/function/Consumer.html}
+{Consumer}
+in der Regel als Argument einer Methode 'forEach(Consumer)', die Datenquellen abläuft und für
+jedes Element 'accept()' aufruft. Interessant ist die Methode am Typ Iterable, denn die
+wichtigen Collection-Datenstrukturen wie ArrayList implementieren diese Schnittstelle.
+So lässt sich einfach über alle Daten laufen und ein Stück Code für jedes Element
+ausführen. Auch Iterator hat eine vergleichbare Methode, da heisst sie 'forEachRemaining(Consumer)'.
+
+In Listing~\ref{lst:consumer} (Seite~\pageref{lst:consumer}) sehen wir eine mögliche Implementation
+der erwähnten'forEach()' Methode, wie sie im JDK sehr of angewendet wurde.
+% ------------------
+
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Beispiel: \texttt{Consumer<T>}}
+
+    \only<1>{\inputminted[frame=single,firstline=17,lastline=21]{java}
+    {../java/lambda/function/ConsumerExample.java}}
+    \only<2>{\inputminted[frame=single,firstline=10,lastline=15]{java}
+    {../java/lambda/function/ConsumerExample.java}}
+\end{frame}
+
+\mode*
+\source{../java/lambda/function/ConsumerExample.java}{Beispiel: \texttt{Consumer<T>}}{consumer}
