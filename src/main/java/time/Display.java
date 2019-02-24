@@ -11,6 +11,7 @@ package time;
  * Stunden erhöhen sich, wenn das Minutenlimit einer Stunde erreicht
  * ist.
  */
+@SuppressWarnings("ALL")
 public class Display {
     private NumberDisplay hours;
     private NumberDisplay minutes;

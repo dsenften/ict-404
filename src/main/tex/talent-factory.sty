@@ -74,13 +74,14 @@ pdfpagemode = FullScreen,
 \mode<article>{\textbf{#1}}}
 %
 % Integrieren von Quelldateien im Script
-\newcommand\source[2]{%
+\newcommand\source[3]{%
 \begin{listing}[ht]
     \begin{center}
         \begin{minipage}{0.8\textwidth}
             \inputminted[frame=single,autogobble,linenos]{java}{#1}
         \end{minipage}
         \caption{#2}
+        \label{lst:#3}
     \end{center}
 \end{listing}}
 
