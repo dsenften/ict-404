@@ -60,18 +60,6 @@
   \renewcommand{\headrulewidth}{0pt} % and the line
 }
 
-\AtBeginDocument{%
-  \setmainfont{Verdana}
-  \DeclareGraphicsExtensions{.pdf,.jpg,.tif}
-  \maketitle
-  \pagestyle{fancy}
-  \newpage
-  \tableofcontents % Inhaltsverzeichnis
-  \listoffigures   % Abbildungsverzeichnis
-  \listoftables    % Tabellenverzeichnis
-  \parindent0em\parskip1em
-  \newpage}
-
 \parindent0em
 
 \endinput
