@@ -2,9 +2,8 @@ package figures;
 
 import java.awt.*;
 
-@SuppressWarnings("WeakerAccess")
-public class HomeSweetHome
-{
+@SuppressWarnings({"WeakerAccess", "unused"})
+public class HomeSweetHome {
     private Square wall;
     private Square window;
     private Triangle roof;
@@ -13,6 +12,7 @@ public class HomeSweetHome
     public static void main(String[] args) {
 
         HomeSweetHome homeSweetHome = new HomeSweetHome();
+        homeSweetHome.changeColor();
         homeSweetHome.draw();
 
         //noinspection InfiniteLoopStatement
@@ -23,12 +23,24 @@ public class HomeSweetHome
             Canvas.getCanvas().pause(1000);
             homeSweetHome.changeColor();
         }
+
+
     }
+
+    private void moveRight() {
+        int distance = 100;
+        for (int i = 0; i < distance; i++) {
+            wall.moveHorizontal(1);
+            window.moveHorizontal(1);
+            roof.moveHorizontal(1);
+        }
+    }
+
+
     /**
      * Zeichne das Bild.
      */
-    public void draw()
-    {
+    public void draw() {
         wall = new Square();
         wall.moveHorizontal(-140);
         wall.moveVertical(20);
@@ -43,7 +55,7 @@ public class HomeSweetHome
         window.setVisible();
 
         roof = new Triangle();
-        roof.changeSize(60, 180);
+        roof.setSize(-60, -180);
         roof.moveHorizontal(20);
         roof.moveVertical(-60);
         roof.setVisible();
@@ -59,9 +71,8 @@ public class HomeSweetHome
     /**
      * Ändere die Darstellung in schwarz-weiß.
      */
-    public void setBlackAndWhite()
-    {
-        if(wall != null)   // nur wenn schon gezeichnet wurde ...
+    public void setBlackAndWhite() {
+        if (wall != null)   // nur wenn schon gezeichnet wurde ...
         {
             wall.setColor(Color.BLACK);
             window.setColor(Color.WHITE);
@@ -73,9 +84,8 @@ public class HomeSweetHome
     /**
      * Ändere die Darstellung in Farbe.
      */
-    public void changeColor()
-    {
-        if(wall != null)   // nur wenn schon gezeichnet wurde ...
+    public void changeColor() {
+        if (wall != null)   // nur wenn schon gezeichnet wurde ...
         {
             wall.setColor(Color.RED);
             window.setColor(Color.BLACK);
