@@ -3,6 +3,7 @@ package collections;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class LowerBoundWildcard {
 
     private static void addNumbers(List<? super Integer> list) {

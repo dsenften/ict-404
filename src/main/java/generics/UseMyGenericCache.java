@@ -1,5 +1,6 @@
 package generics;
 
+@SuppressWarnings("unused")
 public class UseMyGenericCache {
 
     public static void main(String[] args) {
