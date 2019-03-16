@@ -18,7 +18,7 @@ public class Employee extends Person {
         super(firstName, lastName);
         empployeeID = ++numberOfEmployees;
     }
-
+    
     public void addSkills(Competency competency) {
         skills.add(competency);
     }

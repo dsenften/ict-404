@@ -66,11 +66,9 @@ public class FieldStatistics {
      *
      * @param animalClass Klasse der Tierart, für die erhöht werden soll.
      */
-    public void increaseCounter(Class animalClass) {
+    public void increase(Class animalClass) {
         Counter counter = this.counter.get(animalClass);
         if (counter == null) {
-            // Wir haben noch keinen Z�hler f�r
-            // diese Spezies - also neu anlegen
             counter = new Counter(animalClass.getName());
             this.counter.put(animalClass, counter);
         }
@@ -111,7 +109,7 @@ public class FieldStatistics {
      * Füchse und Hasen in das Field gesetzt werden, sondern
      * jeweils bei der Abfrage der Zählerstände berechnet.
      *
-     * @param field das Field, für das die Statistik erstellt
+     * @param field das Feld, für das die Statistik erstellt
      *             werden soll.
      */
     private void determineCounter(Field field) {
@@ -120,7 +118,7 @@ public class FieldStatistics {
             for (int column = 0; column < field.getWidth(); column++) {
                 Object animal = field.getObjectAt(row, column);
                 if (animal != null) {
-                    increaseCounter(animal.getClass());
+                    increase(animal.getClass());
                 }
             }
         }

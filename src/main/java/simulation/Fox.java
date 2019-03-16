@@ -1,39 +1,32 @@
 package simulation;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * Ein simples Modell eines Fuchses.
  * Füchse altern, bewegen sich, fressen Hasen und sterben.
  */
-@SuppressWarnings("WeakerAccess")
+
 public class Fox extends Animal {
 
     // Das Alter, in dem ein Fuchs gebärfähig wird.
-    private static final int BIRTH_AGE = 15;
+    private static final int BREEDING_AGE = 15;
 
     // Das Höchstalter eines Fuchses.
     private static final int MAX_AGE = 150;
 
     // Die Wahrscheinlichkeit, mit der ein Fox Nachwuchs gebärt.
-    private static final double BIRTH_PROBABILITY = 0.08;
+    private static final double BREEDING_PROBABILITY = 0.08;
 
     // Die maximale Grösse eines Wurfes (Anzahl der Jungen).
-    private static final int MAX_BIRTH_SIZE = 2;
+    private static final int MAX_LITTER_SIZE = 2;
 
     // Der Nährwert eines einzelnen Hasen. Letztendlich ist
     // dies die Anzahl der Schritte, die ein Fuchs bis zur
     // nächsten Mahlzeit laufen kann.
-    private static final int NUTRITIONAL_VALUE = 9;
-
-    // Ein gemeinsamer Zufallsgenerator, der die Geburten steuert.
-    private static final Random rand = Randomizer.getRandomizer();
+    private static final int RABBIT_FOOD_VALUE = 9;
 
     // Individuelle Eigenschaften (Instanzfelder).
-
-    // Das Alter dieses Fuchses.
-    private int age;
 
     // Der Futter-Level, der durch das Fressen von Hasen erhöht wird.
     private int foodLevel;
@@ -52,10 +45,10 @@ public class Fox extends Animal {
         super(field, position);
         if (randomAge) {
             age = rand.nextInt(MAX_AGE);
-            foodLevel = rand.nextInt(NUTRITIONAL_VALUE);
+            foodLevel = rand.nextInt(RABBIT_FOOD_VALUE);
         } else {
             age = 0;
-            foodLevel = NUTRITIONAL_VALUE;
+            foodLevel = RABBIT_FOOD_VALUE;
         }
     }
 
@@ -72,14 +65,14 @@ public class Fox extends Animal {
         if (isAlive()) {
             giveBirth(animals);
             // In die Richtung bewegen, in der Futter gefunden wurde.
-            Position newPosition = findFood();
-            if (newPosition == null) {
+            Position location = findFood();
+            if (location == null) {
                 // kein Futter - zufällig bewegen
-                newPosition = getField().freePosition(getPosition());
+                location = getField().freeAdjacentLocation(getPosition());
             }
             // Ist Bewegung m�glich?
-            if (newPosition != null) {
-                setPosition(newPosition);
+            if (location != null) {
+                setLocation(location);
             } else {
                 // Überpopulation
                 die();
@@ -117,16 +110,16 @@ public class Fox extends Animal {
      */
     private Position findFood() {
         Field field = getField();
-        List<Position> nachbarPositionen =
-                field.neighbourPosition(getPosition());
-        for (Position pos : nachbarPositionen) {
-            Object tier = field.getObjectAt(pos);
-            if (tier instanceof Rabbit) {
-                Rabbit rabbit = (Rabbit) tier;
+        List<Position> adjacent =
+                field.adjacentLocations(getPosition());
+        for (Position position : adjacent) {
+            Object animal = field.getObjectAt(position);
+            if (animal instanceof Rabbit) {
+                Rabbit rabbit = (Rabbit) animal;
                 if (rabbit.isAlive()) {
                     rabbit.die();
-                    foodLevel = NUTRITIONAL_VALUE;
-                    return pos;
+                    foodLevel = RABBIT_FOOD_VALUE;
+                    return position;
                 }
             }
         }
@@ -137,18 +130,18 @@ public class Fox extends Animal {
      * Prüfe, ob dieser Fuchs in diesem Schritt gebären kann.
      * Neugeborene kommen in freie Nachbarpositionen.
      *
-     * @param animals eine Liste zum Zurückliefern neugeborener Füchse.
+     * @param foxes eine Liste zum Zurückliefern neugeborener Füchse.
      */
-    private void giveBirth(List<Animal> animals) {
+    private void giveBirth(List<Animal> foxes) {
         // Neugeborene kommen in freie Nachbarpositionen.
         // Freie Nachbarpositionen abfragen.
         Field field = getField();
-        List<Position> frei = field.freePositions(getPosition());
-        int geburten = pregnant();
-        for (int b = 0; b < geburten && frei.size() > 0; b++) {
-            Position pos = frei.remove(0);
-            Fox fox = new Fox(false, field, pos);
-            animals.add(fox);
+        List<Position> free = field.getFreeAdjacentLocations(getPosition());
+        int births = breed();
+        for (int b = 0; b < births && free.size() > 0; b++) {
+            Position pos = free.remove(0);
+            Fox young = new Fox(false, field, pos);
+            foxes.add(young);
         }
     }
 
@@ -156,22 +149,22 @@ public class Fox extends Animal {
      * Erzeuge eine Zahl für die Wurfgrösse, wenn der Fuchs
      * gebären kann.
      *
-     * @return Wurfgrösse (kann null sein).
+     * @return Wurfgrösse (kann '0' sein).
      */
-    private int pregnant() {
-        int birthSize = 0;
-        if (canGiveBirth() && rand.nextDouble() <= BIRTH_PROBABILITY) {
-            birthSize = rand.nextInt(MAX_BIRTH_SIZE) + 1;
+    private int breed() {
+        int births = 0;
+        if (canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
         }
-        return birthSize;
+        return births;
     }
 
     /**
      * Ein Fox kann gebären, wenn er das gebärfähige
      * Alter erreicht hat.
      */
-    private boolean canGiveBirth() {
-        return age >= BIRTH_AGE;
+    private boolean canBreed() {
+        return age >= BREEDING_AGE;
     }
 
 }

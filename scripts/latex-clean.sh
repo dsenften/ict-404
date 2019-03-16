@@ -22,6 +22,5 @@ find .. -name "*.class" -exec rm "{}" \;
 find .. -name "*.ctxt" -exec rm "{}" \;
 
 # Generated .pdf files
-rm -f exam.pdf
-rm -f main.article.pdf
-rm -f main.beamer.pdf
+rm -f exam*.pdf
+rm -f main.*.pdf

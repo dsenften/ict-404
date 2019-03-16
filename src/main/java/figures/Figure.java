@@ -16,12 +16,12 @@ public abstract class Figure {
     protected boolean isVisible;
 
     /**
-     * Zeichne dieses Triangle mit seinen aktuellen Werten auf den Bildschirm.
+     * Zeichne diese Figur mit seinen aktuellen Werten auf den Bildschirm.
      */
     protected abstract void draw();
 
     /**
-     * Bewege dieses Triangle langsam horizontal um 'entfernung'
+     * Bewege diese Figur langsam horizontal um 'distance'
      * Bildschirmpunkte.
      */
     public void moveSlowly(int distance) {
@@ -41,35 +41,35 @@ public abstract class Figure {
     }
 
     /**
-     * Bewege diese Person einige Bildschirmpunkte nach oben.
+     * Bewege diese Figur einige Bildschirmpunkte nach oben.
      */
     public void moveUp() {
         moveVertical(-20);
     }
 
     /**
-     * Bewege diese Person einige Bildschirmpunkte nach unten.
+     * Bewege diese Figur einige Bildschirmpunkte nach unten.
      */
     public void moveDown() {
         moveVertical(20);
     }
 
     /**
-     * Bewege dieses Triangle einige Bildschirmpunkte nach rechts.
+     * Bewege diese Figur einige Bildschirmpunkte nach rechts.
      */
     public void moveRight() {
         moveHorizontal(20);
     }
 
     /**
-     * Bewege dieses Triangle einige Bildschirmpunkte nach links.
+     * Bewege diese Figur einige Bildschirmpunkte nach links.
      */
     public void moveLeft() {
         moveHorizontal(-20);
     }
 
     /**
-     * Bewege dieses Triangle horizontal um 'entfernung' Bildschirmpunkte.
+     * Bewege diese Figur horizontal um 'entfernung' Bildschirmpunkte.
      */
     public void moveHorizontal(int distance) {
         xPosition += distance;
@@ -77,7 +77,7 @@ public abstract class Figure {
     }
 
     /**
-     * Bewege dieses Triangle vertikal um 'distance' Bildschirmpunkte.
+     * Bewege diese Figur vertikal um 'distance' Bildschirmpunkte.
      */
     public void moveVertical(int distance) {
         yPosition += distance;
@@ -85,8 +85,7 @@ public abstract class Figure {
     }
 
     /**
-     * Ändere die Farbe dieses Dreiecks in 'neueFarbe'. Gültige Angaben sind
-     * "rot", "gelb", "blau", "gruen", "lila" und "schwarz".
+     * Ändere die Farbe dieser Figur in 'color'.
      */
     public void setColor(Color color) {
         this.color = color;

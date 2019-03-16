@@ -1023,14 +1023,14 @@ und Methoden.
 \begin{frame}[fragile]
     \frametitle<presentation>{Vererbung $|$ Inheritance}
     \mode<presentation>{\inputminted[frame=single,autogobble,firstline=8,lastline=16]{java}
-    {../java/inheritance/Employee.java}}
+    {../java/academy/inheritance/Employee.java}}
 \end{frame}
 
 \begin{listing}[ht]
     \begin{center}
         \begin{minipage}{0.8\textwidth}
             \inputminted[frame=single,autogobble,linenos,firstline=8,lastline=16]{java}
-            {../java/inheritance/Employee.java}
+            {../java/academy/inheritance/Employee.java}
         \end{minipage}
     \end{center}
     \caption{Superklasse: \emph{Employee}}
@@ -1053,14 +1053,14 @@ wir nicht nicht noch einmal aufführen.
 \begin{frame}[fragile]
     \frametitle<presentation>{Vererbung $|$ Inheritance}
     \mode<presentation>{\inputminted[frame=single,autogobble,firstline=8,lastline=16]{java}
-    {../java/inheritance/Manager.java}}
+    {../java/academy/inheritance/Manager.java}}
 \end{frame}
 
 \begin{listing}[ht]
     \begin{center}
         \begin{minipage}{0.8\textwidth}
             \inputminted[frame=single,autogobble,linenos,firstline=8,lastline=16]{java}
-            {../java/inheritance/Manager.java}
+            {../java/academy/inheritance/Manager.java}
         \end{minipage}
     \end{center}
     \caption{Subklasse: \emph{Manager}}
@@ -1131,7 +1131,7 @@ label={ex:init-subclasses}]
     \begin{center}
         \begin{minipage}{0.8\textwidth}
             \inputminted[frame=single,autogobble,linenos,firstline=13]{java}
-            {../java/inheritance/Engineer.java}
+            {../java/academy/inheritance/Engineer.java}
         \end{minipage}
     \end{center}
     \caption{Initialisierung von Subklassen}
@@ -1291,7 +1291,7 @@ wobei die Ausführung erst beim Aufruf auf Zeile 13 stattfindet.
     Die Funktionalität eines funktionalen Interfaces und somit auch eines Lambda
     Ausdruckes kann durch die Verwendung von generischen Typen erhöht werden.
 
-    \inputminted[frame=single,firstline=4,lastline=8]{java}
+    \inputminted[frame=single,firstline=4,lastline=8,samepage]{java}
     {../java/lambda/function/Comparator.java}
 \end{frame}
 
@@ -1421,7 +1421,7 @@ In seiner einfachsten Form sieht eine mögliche Verwendung wie folgt aus:
 
 \begin{minted}[autogobble]{java}
     Function<Double, Double> max = a -> Math.abs( a );
-    System.out.println( max.apply( -12. ) );  // 12.0
+    System.out.println( max.apply( -12. ) ); // 12.0
 \end{minted}
 
 Durch diese Möglichkeit muss beim API-Design nicht mehr eine einzelne Funktion
@@ -1480,3 +1480,113 @@ der erwähnten'forEach()' Methode, wie sie im JDK sehr of angewendet wurde.
 
 \mode*
 \source{../java/lambda/function/ConsumerExample.java}{Beispiel: \texttt{Consumer<T>}}{consumer}
+
+
+% =============================================================================
+%                                 CHAPTER
+% =============================================================================
+
+\section{Programmbeispiele}
+\label{sec:program-examples}
+
+\subsection{Simulationen}
+
+% -------------------------------------
+\mode<presentation>
+\begin{frame}[fragile]
+    \frametitle<presentation>{Das Projekt Füchse und Hasen}
+
+    \begin{figure}[ht]
+        \begin{center}
+            \only<1>{\includegraphics[height=7cm]{images/simulation-field.png}}
+            \only<2>{\includegraphics[height=7cm]{images/simulation-diagram.png}}
+        \end{center}
+    \end{figure}
+
+\end{frame}
+\mode*
+
+\image{simulation-diagram}{Das Projekt Füchse und Hasen}
+
+In dieser Simulation betrachten wir die Population von Füchsen und Hasen
+in einem abgeschlossenen Feld. Sie ist ein Beispiel für sogenannte
+\emph{Jäger-Beute-Simulationen}. Die zentralen Klassen für unser Beispiel
+sind \textbf{Simulator}, \textbf{Animal} und die entsprechenden Spezialisierungen
+\textbf{Fox} und \textbf{Rabbit}.
+
+In Abbildung~\ref{fig:simulation-diagram} auf Seite~\pageref{fig:simulation-diagram}
+ist das zugehörige Klassendiagramm abgebildet.
+
+Die Klasse \textbf{Simulator} stellt den Anfangszustand der Simulation her
+und kontrolliert ihren Ablauf. Der Simulator hält Sammlungen von Füchsen und
+Hasen gibt diesen Tieren wiederholt die Möglichkeit, einen Schrittt ihres
+Lebenszyklus zu durchleben. In jedem Schritt darf jeder Fuchs und jeder
+Hase die Aktionen durchführen, die charakteristisch sind für sein Verhalten.
+Nach jedem Scrhritt wird der aktuelle Zustand des Feldes auf dem Bildschirm
+angezeigt.
+
+Zusammenfassung der Funktionen der vorhandenen Klassen:
+
+% -------------------------------------
+\begin{frame}[fragile]
+    \frametitle<presentation>{Beschreibung der Klassen}
+
+    \begin{itemize}
+        \item\textbf{Field} repräsentiert ein zweidimensionales begrenztes Feld.
+            \mode<article>{Das Feld besteht aus einer festgelegten Anzahl von
+                Positionen, die in Zeilen und Spalten angelegt sind. Eine
+                Position kann von höchstens einem Tier eingenommen werden.
+                Jede Position im Feld hält eine Referenz auf ein Tier oder
+                ist leer.}
+        \item\textbf{Position} repräsentiert eine zweidimensionale Position
+            innerhalb des Feldes.
+            \mode<article>{Eine Position wird durch einen Zeilen- und
+                Spaltenwert definiert.}
+        \item Die Zufallssteuerung (\textbf{Randomize}) gibt uns eine gewisse
+            Kontrolle über diejenigen Aspekte der Simulation, die auf
+            Zufallszahlen basieren (z.B.~die Geburt neuer Tiere).
+        \item Die Klassen \textbf{SimulationView}, \textbf{FieldStatistics} und
+            \textbf{Counter} kümmern sich um die grafische Darstellung
+            der Simulation.
+            \mode<article>{Die Ansicht der Simulation zeigt den Zustand des
+            Feldes und der Zähler für die beteiligten Arten (die Anzahl der
+            Füchse und Hasen).}
+    \end{itemize}
+\end{frame}
+
+\begin{Exercise}[%
+title={Verstehen der Simulation},
+label={ex:simulation}]
+
+    \begin{ExePart}
+        Erzeugen Sie ein \textbf{Simulatior} Objekt mit dem parameterlosen
+        Konstruktor, so dass der Anfangszustand der Simulation
+        (Schritt: 0) angezeigt wird. Die zahlreichen Rechtecke repräsentieren
+        die verschiedenen Tierarten (Füchse und Hasen).
+
+        Ändert sich die Anzahl der Füchse, wenn Sie die Methode
+        \textbf{simulateStep()} einmal aufrufen?
+    \end{ExePart}
+
+
+    \begin{ExePart}
+        Ändert sich die Anzahl der Füchse mit jedem Schritt? Welche natürlichen
+        Prozesse werden Ihrer Meinung nach modelliert, die die Anzahl der Füchse
+        erhöhen oder reduzieren?
+    \end{ExePart}
+
+
+    \begin{ExePart}
+        Rufen Sie die Methode \textbf{simulate()} so auf, dass ein grösserer
+        Zeitraum von 50 bis 100 Schritten simuliert wird.
+
+        Verändern sich die Zahlen der Füchse und Hasen in ähnlicher Weise?
+    \end{ExePart}
+
+
+    \begin{ExePart}
+        Welche Änderungen beobachten Sie, wenn Sie die Simulation für einen sehr
+        grossen Zeitraumlaufen lassen, etwa für 4'000 Schritte?
+    \end{ExePart}
+
+\end{Exercise}

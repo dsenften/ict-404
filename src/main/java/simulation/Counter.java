@@ -1,11 +1,10 @@
 package simulation;
 
 /**
- * Diese Klasse definiert Zähler für die Akteurstypen
- * in einer Simulation.
- * Ein Zähler wird über einen Namen identifiziert und
- * zählt, wieviele Akteure des Typs innerhalb der Simulation
- * jeweils existieren.
+ * Diese Klasse definiert einen Zähler für die Akteurstypen
+ * in einer Simulation. Ein Zähler wird über einen Namen
+ * identifiziert und zählt, wieviele Akteure des Typs
+ * innerhalb der Simulation jeweils existieren.
  */
 @SuppressWarnings("WeakerAccess")
 public class Counter {
@@ -19,7 +18,7 @@ public class Counter {
     /**
      * Initialisiere mit dem Namen des Typs.
      *
-     * @param name Ein Name, z.B. "Fox".
+     * @param name Ein Name, z.B. "Fuchs".
      */
     public Counter(String name) {
         this.name = name;
