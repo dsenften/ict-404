@@ -77,11 +77,6 @@ public class Display {
                 + minutes.getDisplayValue();
     }
 
-    private void updateBinaryDisplay() {
-        displayString = hours.getBinaryValue() + ":"
-                        + minutes.getBinaryValue();
-    }
-
     private void updateDisplay12() {
         String suffix = " am";
         int hour = hours.getValue();
@@ -99,7 +94,7 @@ public class Display {
         Display display = new Display(14, 45);
 
         while (true) {
-            display.updateBinaryDisplay();
+            display.updateDisplay24();
             display.clockSignal();
         }
     }
