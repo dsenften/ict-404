@@ -45,6 +45,23 @@ public class NumberDisplay {
         }
     }
 
+    public String getBinaryDisplayValue() {
+        int len = Integer.SIZE - Integer.numberOfLeadingZeros(limit);
+        byte[] buf = new byte[len];
+        formatUnsignedInt(value, buf, len);
+        return new String(buf);
+    }
+
+    private void formatUnsignedInt(int val, byte[] buf, int len) {
+        int charPos = len;
+        int radix = 1 << 1;
+        int mask = radix - 1;
+        do {
+            buf[--charPos] = (byte) ascii[val & mask];
+            val >>>= 1;
+        } while (charPos > 0);
+    }
+
     /**
      * Setze den Wert der Anzeige auf den angegebenen 'value'.
      * Wenn der angegebene Wert unter null oder über dem Limit liegt,
@@ -63,4 +80,16 @@ public class NumberDisplay {
     public void incrementValue() {
         value = (value + 1) % limit;
     }
+
+    /**
+     * All possible chars for representing a number as a String
+     */
+    private static final char[] ascii = {
+        '0' , '1' , '2' , '3' , '4' , '5' ,
+        '6' , '7' , '8' , '9' , 'a' , 'b' ,
+        'c' , 'd' , 'e' , 'f' , 'g' , 'h' ,
+        'i' , 'j' , 'k' , 'l' , 'm' , 'n' ,
+        'o' , 'p' , 'q' , 'r' , 's' , 't' ,
+        'u' , 'v' , 'w' , 'x' , 'y' , 'z'
+    };
 }

@@ -24,7 +24,7 @@ public class Display {
     public Display() {
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
-        updateDisplay24();
+        updateBinaryDisplay(); // updateDisplay24();
     }
 
     /**
@@ -49,7 +49,7 @@ public class Display {
         if (minutes.getValue() == 0) {  // Limit wurde erreicht!
             hours.incrementValue();
         }
-        updateDisplay24();
+        updateBinaryDisplay(); // updateDisplay24();
     }
 
     /**
@@ -59,7 +59,7 @@ public class Display {
     public void setWatch(int hour, int minute) {
         this.hours.setValue(hour);
         this.minutes.setValue(minute);
-        updateDisplay24();
+        updateBinaryDisplay(); // updateDisplay24();
     }
 
     /**
@@ -89,13 +89,9 @@ public class Display {
                 + minutes.getDisplayValue() + suffix;
     }
 
-    public static void main(String[] args) {
-
-        Display display = new Display(14, 45);
-
-        while (true) {
-            display.updateDisplay24();
-            display.clockSignal();
-        }
+    private void updateBinaryDisplay() {
+        displayString = hours.getBinaryDisplayValue() + ":"
+                + minutes.getBinaryDisplayValue();
     }
+
 }
