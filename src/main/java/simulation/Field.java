@@ -7,7 +7,7 @@ import java.util.Random;
 
 /**
  * Ein rechteckiges Gitter von Feldpositionen.
- * Jede Position kann ein einzelnes Animal aufnehmen.
+ * Jede Position kann ein einzelnes Tier aufnehmen.
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class Field {
@@ -18,10 +18,10 @@ public class Field {
     private int hight, width;
 
     // Speicher für die Tiere
-    private Object[][] feld;
+    private Object[][] field;
 
     /**
-     * Erzeuge ein Field mit den angegebenen Dimensionen.
+     * Erzeuge ein Feld mit den angegebenen Dimensionen.
      *
      * @param hight die Höhe des Feldes.
      * @param width die Breite des Feldes.
@@ -29,16 +29,16 @@ public class Field {
     public Field(int hight, int width) {
         this.hight = hight;
         this.width = width;
-        feld = new Object[hight][width];
+        field = new Object[hight][width];
     }
 
     /**
-     * Räume das Field.
+     * Räume das Field und initialisiere es mit 'null' Werten.
      */
     public void clear() {
         for (int row = 0; row < hight; row++) {
             for (int column = 0; column < width; column++) {
-                feld[row][column] = null;
+                field[row][column] = null;
             }
         }
     }
@@ -49,7 +49,7 @@ public class Field {
      * @param position die zu leerende Position
      */
     public void clear(Position position) {
-        feld[position.getRow()][position.getColumn()] = null;
+        field[position.getRow()][position.getColumn()] = null;
     }
 
     /**
@@ -74,7 +74,7 @@ public class Field {
      * @param position die Position, an der das Animal platziert werden soll.
      */
     public void place(Object animal, Position position) {
-        feld[position.getRow()][position.getColumn()] = animal;
+        field[position.getRow()][position.getColumn()] = animal;
     }
 
     /**
@@ -97,7 +97,7 @@ public class Field {
      * dort kein Animal eingetragen ist.
      */
     public Object getObjectAt(int row, int column) {
-        return feld[row][column];
+        return field[row][column];
     }
 
     /**
@@ -111,7 +111,7 @@ public class Field {
      * auch die gegebene Position selbst sein.
      */
     public Position randomPosition(Position position) {
-        List<Position> neighbour = neighbourPosition(position);
+        List<Position> neighbour = adjacentLocations(position);
         return neighbour.get(0);
     }
 
@@ -122,9 +122,9 @@ public class Field {
      *                 zu liefern ist.
      * @return eine Liste freier Nachbarpositionen.
      */
-    public List<Position> freePositions(Position position) {
+    public List<Position> getFreeAdjacentLocations(Position position) {
         List<Position> free = new LinkedList<>();
-        List<Position> neighbour = neighbourPosition(position);
+        List<Position> neighbour = adjacentLocations(position);
         for (Position next : neighbour) {
             if (getObjectAt(next) == null) {
                 free.add(next);
@@ -142,9 +142,9 @@ public class Field {
      *                 zu liefern ist.
      * @return eine gültige Position innerhalb der Feldgrenzen.
      */
-    public Position freePosition(Position position) {
+    public Position freeAdjacentLocation(Position position) {
         // Die verfügbaren freien Nachbarpositionen
-        List<Position> free = freePositions(position);
+        List<Position> free = getFreeAdjacentLocations(position);
         if (free.size() > 0) {
             return free.get(0);
         } else {
@@ -153,16 +153,15 @@ public class Field {
     }
 
     /**
-     * Liefert eine gemischte Liste von Nachbarpositionen
-     * zu der gegebenen Position. Diese Liste enthält nicht die gegebene
-     * Position selbst. Alle Positionen liegen innerhalb des Feldes.
+     * Liefert eine gemischte Liste von Nachbarpositionen zu der gegebenen
+     * Position. Diese Liste enthält nicht die gegebene Position selbst.
+     * Alle Positionen liegen innerhalb des Feldes.
      *
      * @param position die Position, für die Nachbarpositionen zu liefern sind.
      * @return eine Liste der Nachbarpositionen zur gegebenen Position.
      */
-    public List<Position> neighbourPosition(Position position) {
-        assert position != null : "Keine Position an Nachbarpostionen übergeben";
-        // Die Liste der zurueckzuliefernden Positionen
+    public List<Position> adjacentLocations(Position position) {
+
         List<Position> positions = new LinkedList<>();
 
         int row = position.getRow();
@@ -171,17 +170,23 @@ public class Field {
         for (int rowDifference = -1; rowDifference <= 1; rowDifference++) {
             int nextRow = row + rowDifference;
             if (nextRow >= 0 && nextRow < hight) {
-                for (int columnDifference = -1; columnDifference <= 1; columnDifference++) {
+                for (int columnDifference = -1;
+                     columnDifference <= 1;
+                     columnDifference++) {
                     int nextColumn = column + columnDifference;
-                    // Ungueltige Positionen und Ausgangsposition ausschliessen.
-                    if (nextColumn >= 0 && nextColumn < width && (rowDifference != 0 || columnDifference != 0)) {
+
+                    // Ungültige Positionen und Ausgangsposition ausschliessen.
+                    if (nextColumn >= 0 &&
+                            nextColumn < width &&
+                            (rowDifference != 0 || columnDifference != 0)) {
                         positions.add(new Position(nextRow, nextColumn));
                     }
                 }
             }
         }
-        // Mische die Liste. Verschiedene andere Methoden verlassen sich darauf,
-        // dass die Liste ungeordnet ist.
+
+        // Mische die Liste. Verschiedene andere Methoden verlassen sich
+        // darauf, dass die Liste ungeordnet ist.
         Collections.shuffle(positions, rand);
 
         return positions;
@@ -189,8 +194,6 @@ public class Field {
 
     /**
      * Liefere die Höhe dieses Feldes.
-     *
-     * @return die Höhe dieses Feldes.
      */
     public int getHeight() {
         return hight;
@@ -198,8 +201,6 @@ public class Field {
 
     /**
      * Liefere die Breite dieses Feldes.
-     *
-     * @return die Breite dieses Feldes.
      */
     public int getWidth() {
         return width;

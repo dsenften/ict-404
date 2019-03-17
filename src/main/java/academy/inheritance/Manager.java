@@ -1,4 +1,4 @@
-package inheritance;
+package academy.inheritance;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -6,6 +6,7 @@ import lombok.ToString;
 @Getter
 @ToString(callSuper=true)
 public class Manager extends Employee {
+
     private final String department;
 
     public Manager(String firstName, String lastName,

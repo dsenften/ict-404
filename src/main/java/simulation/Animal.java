@@ -1,6 +1,7 @@
 package simulation;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Animal ist eine abstrakte Superklasse für Tiere.
@@ -9,7 +10,13 @@ import java.util.List;
  */
 @SuppressWarnings("WeakerAccess")
 public abstract class Animal {
-    
+
+    // Ein gemeinsamer Zufallsgenerator, der die Geburten steuert.
+    protected static final Random rand = Randomizer.getRandomizer();
+
+    // Das Alter des Tieres
+    protected int age;
+
     // Ist dieses Tier noch lebendig?
     private boolean alive;
 
@@ -28,7 +35,7 @@ public abstract class Animal {
     public Animal(Field field, Position position) {
         alive = true;
         this.field = field;
-        setPosition(position);
+        setLocation(position);
     }
 
     /**
@@ -49,7 +56,7 @@ public abstract class Animal {
     }
 
     /**
-     * Anzeigen, dass das Tier nicht mehr laenger lebendig ist
+     * Anzeigen, dass das Tier nicht mehr länger lebendig ist
      * Es wird aus dem Field entfernt.
      */
     protected void die() {
@@ -63,8 +70,6 @@ public abstract class Animal {
 
     /**
      * Liefere die Position dieses Tieres.
-     *
-     * @return die Position dieses Tieres.
      */
     protected Position getPosition() {
         return position;
@@ -75,7 +80,7 @@ public abstract class Animal {
      *
      * @param position Die neue Position des Tieres.
      */
-    protected void setPosition(Position position) {
+    protected void setLocation(Position position) {
         if (this.position != null) {
             field.clear(this.position);
         }

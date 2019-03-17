@@ -1,4 +1,4 @@
-package inheritance;
+package academy.inheritance;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,27 +21,21 @@ class ManagerTest {
 
     @Test
     void testToString() {
-        String expected = "Manager(super=Employee(firstName=Daniel, lastName=Senften), department=Enginering)";
+        String expected = "Manager(super=Person(firstName=Daniel, lastName=Senften), department=Enginering)" ;
         assertEquals(expected, manager.toString());
     }
 
     @Test
     void testDepartment() {
-        String expected = "Enginering";
+        String expected = "Enginering" ;
         assertEquals(expected, manager.getDepartment());
     }
 
     @Test
-    void testInheritance() {
-        Employee employee = manager;
-        String expected = "Manager(super=Employee(firstName=Daniel, lastName=Senften), department=Enginering)";
-        assertEquals(expected, manager.toString());
-    }
-
-    @Test
+    @SuppressWarnings("CastCanBeRemovedNarrowingVariableType")
     void testTypeCasting() {
         Employee employee = manager;
-        String expected = "Enginering";
+        String expected = "Enginering" ;
         assertEquals(expected, ((Manager) employee).getDepartment());
     }
 }

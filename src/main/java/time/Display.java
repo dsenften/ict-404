@@ -24,7 +24,7 @@ public class Display {
     public Display() {
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
-        updateDisplay();
+        updateBinaryDisplay(); // updateDisplay24();
     }
 
     /**
@@ -49,7 +49,7 @@ public class Display {
         if (minutes.getValue() == 0) {  // Limit wurde erreicht!
             hours.incrementValue();
         }
-        updateDisplay();
+        updateBinaryDisplay(); // updateDisplay24();
     }
 
     /**
@@ -59,7 +59,7 @@ public class Display {
     public void setWatch(int hour, int minute) {
         this.hours.setValue(hour);
         this.minutes.setValue(minute);
-        updateDisplay();
+        updateBinaryDisplay(); // updateDisplay24();
     }
 
     /**
@@ -72,12 +72,12 @@ public class Display {
     /**
      * Aktualisiere die interne Zeichenkette, die die Zeitanzeige h�lt.
      */
-    private void updateDisplayx() {
+    private void updateDisplay24() {
         displayString = hours.getDisplayValue() + ":"
                 + minutes.getDisplayValue();
     }
 
-    private void updateDisplay() {
+    private void updateDisplay12() {
         String suffix = " am";
         int hour = hours.getValue();
         if (hour >= 12) {
@@ -89,13 +89,9 @@ public class Display {
                 + minutes.getDisplayValue() + suffix;
     }
 
-    public static void main(String[] args) {
-
-        Display display = new Display(1, 59);
-
-        while (true) {
-            display.updateDisplay();
-            display.clockSignal();
-        }
+    private void updateBinaryDisplay() {
+        displayString = hours.getBinaryDisplayValue() + ":"
+                + minutes.getBinaryDisplayValue();
     }
+
 }

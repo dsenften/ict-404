@@ -1,42 +1,35 @@
 package simulation;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * Ein einfaches Modell eines Hasen.
  * Ein Hase altert, bewegt sich, gebärt Nachwuchs und stirbt.
  */
-@SuppressWarnings("WeakerAccess")
+
 public class Rabbit extends Animal {
 
     // Das Alter, in dem ein Rabbit gebärfähig wird.
-    private static final int BIRTH_AGE = 5;
+    private static final int BREEDING_AGE = 5;
 
     // Das Höchstalter eines Hasen.
     private static final int MAX_AGE = 40;
 
     // Die Wahrscheinlichkeit, mit der ein Hase Nachwuchs gebärt.
-    private static final double BIRTH_PROBABILITY = 0.12;
+    private static final double BREEDING_PROBABILITY = 0.12;
 
     // Die maximale Grösse eines Wurfes (Anzahl der Jungen)
-    private static final int MAX_BIRTH_SIZE = 4;
-
-    // Ein gemeinsamer Zufallsgenerator, der die Geburten steuert.
-    private static final Random rand = Randomizer.getRandomizer();
+    private static final int MAX_LITTER_SIZE = 4;
 
     // Individuelle Eigenschaften eines Hasen (Instanzfelder).
-
-    // Das Alter dieses Hasen.
-    private int age;
 
     /**
      * Erzeuge einen neuen Hasen. Ein neuer Hase kann das Alter 0
      * (neugeboren) oder ein zufälliges Alter haben.
      *
-     * @param randomAge soll der Rabbit ein zufälliges Alter haben?
-     * @param field      das aktuelle belegte Field
-     * @param position  die Position im Field
+     * @param randomAge soll der Hase ein zufälliges Alter haben?
+     * @param field     das aktuelle belegte Feld
+     * @param position  die Position im Feld
      */
     public Rabbit(boolean randomAge, Field field, Position position) {
         super(field, position);
@@ -57,12 +50,12 @@ public class Rabbit extends Animal {
         increaseAge();
         if (isAlive()) {
             giveBirth(animals);
+
             // nur in das nächste Field setzen, wenn eine Position frei ist
-            Position newPosition = getField().freePosition(getPosition());
-            if (newPosition != null) {
-                setPosition(newPosition);
+            Position location = getField().freeAdjacentLocation(getPosition());
+            if (location != null) {
+                setLocation(location);
             } else {
-                // Überpopulation
                 die();
             }
         }
@@ -86,10 +79,8 @@ public class Rabbit extends Animal {
      * @param animals eine Liste zum Zurückliefern der neugeborenen Hasen.
      */
     private void giveBirth(List<Animal> animals) {
-        // Neugeborene kommen in freie Nachbarpositionen.
-        // Freie Nachbarpositionen abfragen.
         Field field = getField();
-        List<Position> free = field.freePositions(getPosition());
+        List<Position> free = field.getFreeAdjacentLocations(getPosition());
         int birth = pregnant();
         for (int b = 0; b < birth && free.size() > 0; b++) {
             Position pos = free.remove(0);
@@ -102,12 +93,12 @@ public class Rabbit extends Animal {
      * Erzeuge eine Zahl für die Wurfgrösse, wenn der Hase
      * gebären kann.
      *
-     * @return Wurfgrösse (kann null sein).
+     * @return Wurfgrösse (kann '0' sein).
      */
     private int pregnant() {
         int birthSize = 0;
-        if (canGiveBirth() && rand.nextDouble() <= BIRTH_PROBABILITY) {
-            birthSize = rand.nextInt(MAX_BIRTH_SIZE) + 1;
+        if (canGiveBirth() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            birthSize = rand.nextInt(MAX_LITTER_SIZE) + 1;
         }
         return birthSize;
     }
@@ -117,6 +108,6 @@ public class Rabbit extends Animal {
      * Alter erreicht hat.
      */
     private boolean canGiveBirth() {
-        return age >= BIRTH_AGE;
+        return age >= BREEDING_AGE;
     }
 }

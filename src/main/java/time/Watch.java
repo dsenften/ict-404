@@ -78,7 +78,7 @@ public class Watch {
     private void displayWindow() {
         window = new JFrame("Watch");
         JPanel contentPane = (JPanel) window.getContentPane();
-        contentPane.setBorder(new EmptyBorder(1, 60, 1, 60));
+        contentPane.setBorder(new EmptyBorder(1, 120, 1, 120));
 
         showMenu(window);
 
@@ -86,7 +86,7 @@ public class Watch {
         contentPane.setLayout(new BorderLayout(12, 12));
 
         // Das mittige Anzeigefeld erzeugen
-        label = new JLabel("00:00", SwingConstants.CENTER);
+        label = new JLabel("00000:000000", SwingConstants.CENTER);
         Font displayFont = label.getFont().deriveFont(96.0f);
         label.setFont(displayFont);
         //imagePanel.setBorder(new EtchedBorder());
@@ -188,5 +188,9 @@ public class Watch {
             } catch (InterruptedException ignored) {
             }
         }
+    }
+
+    public static void main(String[] args) {
+        Watch watch = new Watch();
     }
 }

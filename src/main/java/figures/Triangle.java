@@ -3,11 +3,12 @@ package figures;
 import java.awt.*;
 
 /**
- * Ein Triangle, das manipuliert werden kann und sich selbst auf einer Canvas
+ * Ein Dreieck, das manipuliert werden kann und sich selbst auf einer Canvas
  * zeichnet.
  */
 
-public class Triangle {
+@SuppressWarnings("WeakerAccess")
+public class Triangle extends Figure {
 
     // Höhe des Dreieckes
     private int height;
@@ -15,20 +16,10 @@ public class Triangle {
     // Breite des Dreieckes
     private int width;
 
-    // Position des Dreieckes auf der Canvas
-    private int xPosition;
-    private int yPosition;
-
-    // Farbe des Dreieckes
-    private Color color;
-
-    // Ist das Dreieck sichtbar?
-    private boolean isVisible;
-
     /**
-     * Erzeuge ein Triangle mit einer Standardfarbe an einer Standardposition.
+     * Erzeuge ein Dreieck mit einer Standardfarbe an einer Standardposition.
      */
-     public Triangle() {
+    public Triangle() {
         height = 60;
         width = 70;
         xPosition = 210;
@@ -38,112 +29,19 @@ public class Triangle {
     }
 
     /**
-     * Mache dieses Triangle sichtbar. Wenn es bereits sichtbar ist, tue nichts.
+     * Ändere die Höhe in 'height' und die Breite in 'width'. Beide
+     * Angaben müssen grösser gleich '0' sein.
      */
-     public void setVisible() {
-        isVisible = true;
-        draw();
-    }
-
-    /**
-     * Mache dieses Triangle unsichtbar. Wenn es bereits unsichtbar ist, tue
-     * nichts.
-     */
-    public void setInvisible() {
-        delete();
-        isVisible = false;
-    }
-
-    /**
-     * Bewege dieses Triangle einige Bildschirmpunkte nach rechts.
-     */
-    public void moveRight() {
-        moveHorizontal(20);
-    }
-
-    /**
-     * Bewege dieses Triangle einige Bildschirmpunkte nach links.
-     */
-    public void moveLeft() {
-        moveHorizontal(-20);
-    }
-
-    /**
-     * Bewege dieses Triangle einige Bildschirmpunkte nach oben.
-     */
-    public void moveUp() {
-        moveVertical(-20);
-    }
-
-    /**
-     * Bewege dieses Triangle einige Bildschirmpunkte nach unten.
-     */
-    public void moveDown() {
-        moveVertical(20);
-    }
-
-    /**
-     * Bewege dieses Triangle horizontal um 'entfernung' Bildschirmpunkte.
-     */
-    public void moveHorizontal(int distance) {
-        delete();
-        xPosition += distance;
-        draw();
-    }
-
-    /**
-     * Bewege dieses Triangle vertikal um 'entfernung' Bildschirmpunkte.
-     */
-    public void moveVertical(int distance) {
-        delete();
-        yPosition += distance;
-        draw();
-    }
-
-    /**
-     * Bewege dieses Triangle langsam horizontal um 'entfernung'
-     * Bildschirmpunkte.
-     */
-    public void moveSlowly(int distance) {
-        int delta;
-
-        if (distance < 0) {
-            delta = -1;
-            distance = -distance;
-        } else {
-            delta = 1;
-        }
-
-        for (int i = 0; i < distance; i++) {
-            xPosition += delta;
-            draw();
-        }
-    }
-
-    /**
-     * Ändere die Höhe in 'neueHoehe' und die Breite in 'neueBreite'. Beide
-     * Angaben müssen größer gleich Null sein.
-     */
-    public void changeSize(int height, int width) {
-        delete();
+    public void setSize(int height, int width) {
         this.height = height;
         this.width = width;
         draw();
     }
 
     /**
-     * Ändere die Farbe dieses Dreiecks in 'neueFarbe'. Gültige Angaben sind
-     * "rot", "gelb", "blau", "gruen", "lila" und "schwarz".
+     * Zeichne dieses Dreieck mit seinen aktuellen Werten auf den Bildschirm.
      */
-    public void setColor(Color color) {
-        this.color = color;
-        draw();
-    }
-
-    /**
-     * Zeichne dieses Triangle mit seinen aktuellen Werten auf den Bildschirm.
-     */
-    private void draw() {
+    protected void draw() {
         if (isVisible) {
             Canvas canvas = Canvas.getCanvas();
             int[] xpoints = {xPosition, xPosition + (width / 2),
@@ -154,13 +52,4 @@ public class Triangle {
         }
     }
 
-    /**
-     * Lösche dieses Triangle vom Bildschirm.
-     */
-    private void delete() {
-        if (isVisible) {
-            Canvas canvas = Canvas.getCanvas();
-            canvas.remove(this);
-        }
-    }
 }

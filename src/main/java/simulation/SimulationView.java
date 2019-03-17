@@ -15,7 +15,7 @@ import java.util.Map;
  * der Methode setColor definiert werden.
  */
 @SuppressWarnings("WeakerAccess")
-public class Simulationsansicht extends JFrame {
+public class SimulationView extends JFrame {
 
     // Die Farbe für leere Positionen
     private static final Color EMPTY_COLOR = Color.white;
@@ -29,22 +29,22 @@ public class Simulationsansicht extends JFrame {
     private JLabel stepLabel, population;
     private FieldView fieldView;
 
-    // Eine Map für die Farben der Simulationsteilnehmer
+    // Eine Liste für die Farben der Simulationsteilnehmer
     private Map<Class, Color> colors;
 
     // Ein Statistik-Objekt zur Berechnung und Speicherung
     // von Simulationsdaten
-    private FieldStatistics stats;
+    private FieldStatistics statistics;
 
     /**
-     * Erzeuge eine Ansicht mit der gegebenen Breite und H�he.
+     * Erzeuge eine Ansicht mit der gegebenen Breite und Höhe.
      *
      * @param height Die Höhe der Simulation.
      * @param width  Die Breite der Simulation.
      */
-    public Simulationsansicht(int height, int width) {
+    public SimulationView(int height, int width) {
 
-        stats = new FieldStatistics();
+        statistics = new FieldStatistics();
         colors = new LinkedHashMap<>();
 
         setTitle("Simulation von Füchsen und Hasen");
@@ -55,10 +55,11 @@ public class Simulationsansicht extends JFrame {
 
         fieldView = new FieldView(height, width);
 
-        Container inhalt = getContentPane();
-        inhalt.add(stepLabel, BorderLayout.NORTH);
-        inhalt.add(fieldView, BorderLayout.CENTER);
-        inhalt.add(population, BorderLayout.SOUTH);
+        Container container = getContentPane();
+        container.add(stepLabel, BorderLayout.NORTH);
+        container.add(fieldView, BorderLayout.CENTER);
+        container.add(population, BorderLayout.SOUTH);
+
         pack();
         setVisible(true);
     }
@@ -79,7 +80,6 @@ public class Simulationsansicht extends JFrame {
     private Color getColor(Class animalClass) {
         Color color = colors.get(animalClass);
         if (color == null) {
-            // für die gegebene Klasse ist keine Farbe definiert
             return UNDEFINED_COLOR;
         } else {
             return color;
@@ -97,7 +97,7 @@ public class Simulationsansicht extends JFrame {
             setVisible(true);
 
         stepLabel.setText(STEP_PREFIX + step);
-        stats.reset();
+        statistics.reset();
 
         fieldView.prepareView();
 
@@ -105,16 +105,16 @@ public class Simulationsansicht extends JFrame {
             for (int column = 0; column < field.getWidth(); column++) {
                 Object animal = field.getObjectAt(row, column);
                 if (animal != null) {
-                    stats.increaseCounter(animal.getClass());
+                    statistics.increase(animal.getClass());
                     fieldView.drawField(column, row, getColor(animal.getClass()));
                 } else {
                     fieldView.drawField(column, row, EMPTY_COLOR);
                 }
             }
         }
-        stats.countCompleted();
+        statistics.countCompleted();
 
-        population.setText(POPULATION_PREFIX + stats.getInfo(field));
+        population.setText(POPULATION_PREFIX + statistics.getInfo(field));
         fieldView.repaint();
     }
 
@@ -123,18 +123,18 @@ public class Simulationsansicht extends JFrame {
      *
      * @return true wenn noch mehr als eine Spezies lebendig ist.
      */
-    public boolean istAktiv(Field field) {
-        return stats.isActive(field);
+    public boolean isActiv(Field field) {
+        return statistics.isActive(field);
     }
 
     /**
      * Liefere eine grafische Ansicht eines rechteckigen Feldes.
      * Dies ist eine geschachtelte Klasse (eine Klasse, die
      * innerhalb einer anderen Klasse definiert ist), die eine
-     * eigene grafische Komponente f�r die Benutzungsschnittstelle
+     * eigene grafische Komponente für die Benutzungsschnittstelle
      * definiert. Diese Komponente zeigt das Field an.
-     * Dies ist fortgeschrittene GUI-Technik - Sie k�nnen sie
-     * f�r Ihr Projekt ignorieren, wenn Sie wollen.
+     * Dies ist fortgeschrittene GUI-Technik - Sie können sie
+     * für Ihr Projekt ignorieren, wenn Sie wollen.
      */
     private class FieldView extends JPanel {
         private static final long serialVersionUID = 20060330L;
@@ -157,7 +157,7 @@ public class Simulationsansicht extends JFrame {
         }
 
         /**
-         * Der GUI-Verwaltung mitteilen, wie gro� wir sein wollen.
+         * Der GUI-Verwaltung mitteilen, wie gross wir sein wollen.
          * Der Name der Methode ist durch die GUI-Verwaltung festgelegt.
          */
         public Dimension getPreferredSize() {
@@ -167,11 +167,11 @@ public class Simulationsansicht extends JFrame {
 
         /**
          * Bereite eine neue Zeichenrunde vor. Da die Komponente
-         * in der Gr��e ge�ndert werden kann, muss der Ma�stab neu
+         * in der Grsse geändert werden kann, muss der Massstab neu
          * berechnet werden.
          */
         public void prepareView() {
-            if (!size.equals(getSize())) {  // Gr��e wurde ge�ndert...
+            if (!size.equals(getSize())) {
                 size = getSize();
                 image = fieldView.createImage(size.width, size.height);
                 g = image.getGraphics();

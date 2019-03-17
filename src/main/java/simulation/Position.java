@@ -4,7 +4,7 @@ package simulation;
  * Objekte dieser Klasse repräsentieren
  * Positionen in einem rechteckigen Field.
  */
-@SuppressWarnings("WeakerAccess")
+
 public class Position {
 
     private int row;
@@ -24,6 +24,7 @@ public class Position {
     /**
      * Prüfung auf Datengleichheit.
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof Position) {
             Position position = (Position) obj;
@@ -39,6 +40,7 @@ public class Position {
      *
      * @return eine Stringdarstellung dieser Position.
      */
+    @Override
     public String toString() {
         return row + "," + column;
     }
@@ -52,7 +54,7 @@ public class Position {
      * @return einen Hash-Code für diese Position.
      */
     public int hashCode() {
-        return (row << 16) + column;
+            return (row << 16) + column;
     }
 
     /**
