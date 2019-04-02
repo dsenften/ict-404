@@ -43,7 +43,7 @@ public class BooleanOperators {
 
         System.out.println("[1] = '" + baseConverter(x, 2) + "'");
         System.out.println("[2] = '" + baseConverter(y, 2) + "'");
-        System.out.println("    → '0" + baseConverter(result, 2) + "'");
+        System.out.println("    → '" + baseConverter(result, 2) + "'");
 
         System.out.println();
     }

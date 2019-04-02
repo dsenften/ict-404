@@ -10,7 +10,7 @@ import java.util.List;
 public class Employee extends Person {
 
     private static int numberOfEmployees;
-    private static int empployeeID;
+    protected static int empployeeID;
 
     private List<Competency> skills = new ArrayList<>();
 
@@ -18,7 +18,7 @@ public class Employee extends Person {
         super(firstName, lastName);
         empployeeID = ++numberOfEmployees;
     }
-    
+
     public void addSkills(Competency competency) {
         skills.add(competency);
     }
@@ -29,5 +29,9 @@ public class Employee extends Person {
 
     protected enum Competency {
         Bash, JavaScript, Pascal, Python
+    }
+
+    protected int getNumberOfEmployees() {
+        return numberOfEmployees;
     }
 }

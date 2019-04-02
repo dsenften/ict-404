@@ -29,6 +29,11 @@ class EmployeeTest {
     }
 
     @Test
+    void testGetEmployeeID() {
+        int expected = employee.getNumberOfEmployees();
+        assertEquals(expected, Employee.empployeeID);
+    }
+    @Test
     void testToString() {
         String expected = "Person(firstName=Daniel, lastName=Senften)" ;
         assertEquals(expected, employee.toString());
