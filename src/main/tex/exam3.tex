@@ -1,0 +1,338 @@
+\documentclass[12pt,a4paper]{exam}
+\usepackage{natbib}
+
+\printanswers % If you want to print answers
+%\noprintanswers % If you don't want to print answers
+
+\renewcommand{\solutiontitle}{\noindent\textbf{Lösung:}\enspace}
+
+\RequirePackage{talent-factory}
+\RequirePackage[top=3cm,bottom=2cm,left=2cm,right=1.5cm,headsep=10pt,a4paper]{geometry} % Page margins
+
+\newcommand{\class}{Modul 404}
+\newcommand{\examnum}{Test 3}
+\newcommand{\examdate}{19.03.2019}
+\newcommand{\timelimit}{45 Minuten}
+
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{\class}{\examnum\ - Seite \thepage\ / \numpages}{\examdate}
+\runningheadrule
+
+\begin{document}
+
+    \setmainfont{Verdana}
+    \parindent0em\parskip1em
+
+    % Deutsche Schreibweise diverser Labels
+    \pointpoints{Punkt}{Punkte}
+
+
+    \noindent
+    \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r @{\extracolsep{6pt}} l}
+        \textbf{\class}           & \textbf{Name:} & \makebox[2in]{\hrulefill} \\
+        \textbf{\examnum}         & & \\
+        \textbf{\examdate}        & & \\
+        \textbf{Zeit: \timelimit} & Dozent: & \makebox[2in]{Daniel Senften}
+    \end{tabular*}\\
+    \rule[1ex]{\textwidth}{1pt}
+
+    Dieser Test besteht aus \numpages\ Seiten (inkl. Titelseite) und
+    \numquestions\ Fragen. Wenn alle Fragen richtig beantwortet werden,
+    dann sind maximal \numpoints\ möglich.
+
+
+    \begin{center}
+        \textbf{Punktetabelle}\footnote{Diese Tabelle wird durch den Dozenten
+        nach der Prüfung ausgefüllt.} \\ \vskip1em
+        \addpoints
+
+        \hqword{Aufgabe}
+        \hpword{Punkte}
+        \htword{\textbf{Total}}
+        \hsword{Erreicht}
+        \gradetable[h][questions]
+    \end{center}
+
+    \noindent
+    \rule[1ex]{\textwidth}{1pt}
+
+    % ===========================================================================
+
+    \begin{questions}
+
+        \question[10] Gegeben sind beiden Klassen \textbf{Employee} und
+        \textbf{Engineer}. Zeichne das vollständige Klassendiagramm (UML).
+
+        \inputminted[autogobble,frame=single,firstline=10]{java}
+        {../java/academy/inheritance/Employee.java}
+
+        \inputminted[autogobble,frame=single,firstline=10]{java}
+        {../java/academy/inheritance/Engineer.java}
+
+        \ifprintanswers
+        \begin{solution}
+            \begin{center}
+                \begin{tikzpicture}
+
+                    \umlclass[width=8cm]{Employee}{%
+                    numberOfEmployees : int \\
+                    empployeeID : int \\
+                    skills : List<Competency>}{%
+                    addSkills() : void \\
+                    getSkills() : List<Competency>}
+
+                    \umlclass[y=-5cm,width=8cm]{Engineer}{%
+                    projects : List<String>}
+                    {getProjects() : List<String>}
+
+                    \umlVHVinherit{Engineer}{Employee}
+
+                \end{tikzpicture}
+            \end{center}
+        \end{solution}
+        \else\makeemptybox{\fill}
+        \fi
+
+        \addpoints
+
+        % -----------------------------------------------
+        \newpage
+        \question[10] Denken Sie an unser Projekt \emph{Simulation}, in welchem
+        wir auch die Klasse \textbf{Position} kennen gelernt haben.
+
+        Wie testen Sie die folgende Funktion auf ihre Richtigkeit?
+
+        % setValue()
+        \inputminted[autogobble,firstline=28,lastline=36]
+        {java}{../java/simulation/Position.java}
+
+        \ifprintanswers
+        \begin{solution}
+            \inputminted[autogobble,firstline=14,lastline=22]
+            {java}{../../test/java/simulation/PositionTest.java}
+            \inputminted[autogobble,firstline=24,lastline=28]
+            {java}{../../test/java/simulation/PositionTest.java}
+        \end{solution}
+        \else\makeemptybox{5cm}
+        \fi
+
+        \addpoints
+
+        % -----------------------------------------------
+        \question[4] Wir haben das Projekt \emph{Zeit} mit der Darstellung einer
+        Zeitangabe kennen gelernt. Hierbei kam auch die folgende Funktion vor:
+
+        \inputminted[autogobble,firstline=70,lastline=74]
+        {java}{../java/time/NumberDisplay.java}
+
+        Was würde passieren, wenn wir den Oparator \texttt{<} in der Methode
+        \mintinline{java}{setValue()} durch \texttt{<=} ersetzen würden, und zwar auf folgende
+        Weise:
+
+        \mintinline{java}{if((value >= 0) && (value <= limit))}
+
+        \ifprintanswers
+        \begin{solution}
+            Der Wert könnte somit identisch mit dem Wert für \textbf{limit} sein.
+            Es wäre somit die Zeitangabe \fbox{24:60} möglich, welche aber nicht
+            existiert.
+        \end{solution}
+        \else\makeemptybox{\fill}\newpage
+        \fi
+
+        \addpoints
+
+        % -----------------------------------------------
+        \checkboxchar{$\Box$} % changing checkbox style locally
+        \question[6] Die boolsche Algebra ist ein sehr wichtiger Bestandteil in der
+        Softwareentwicklung. Sie kommt in vielen Ausdrücken wie \textbf{for}-Schleifen,
+        \textbf{while}-Schleifen$\ldots$ vor.
+
+        Welche der folgenden Ausdrücke liefern den Wert \texttt{true}?
+
+        \addpoints
+        \begin{checkboxes}
+            \CorrectChoice \mintinline{java}{(d || (d && f) == d)}
+            \CorrectChoice \mintinline{java}{(d && (d || f) == d)}
+            \CorrectChoice \mintinline{java}{(x || (y && !y) == x)}
+            \CorrectChoice \mintinline{java}{(x && (y || !y) == x)}
+            \CorrectChoice \mintinline{java}{s || !s}
+            \choice \mintinline{java}{s && !s}
+        \end{checkboxes}
+
+        % -----------------------------------------------
+        \question[10] Beim unserem Projekt \emph{Time} wird die Zeit im Dezimalformat
+        dargestellt, wie in \fbox{14:45}. Ändern Sie diese Anzeige in ein binäres
+        Format, so dass diese Zeit als \fbox{01110:101101} dargestellt wird.
+
+        Aktuelle Funktion:
+
+        % updateDisplay()
+        \inputminted[autogobble,firstline=75,lastline=78]
+        {java}{../java/time/Display.java}
+        \inputminted[autogobble,firstline=40,lastline=46]
+        {java}{../java/time/NumberDisplay.java}
+
+
+        \addpoints
+        \ifprintanswers
+        \begin{solution}
+            Dies ist nur eine der Möglichkeiten. Sie sieht etwas komplexer
+            aus, da mit dieser Funktion gleichzeitig die maximale
+            Anzahl der führenden '0' berücksichtigt wird.
+            \inputminted[autogobble,firstline=92,lastline=95]
+            {java}{../java/time/Display.java}
+            \inputminted[autogobble,firstline=48,lastline=53]
+            {java}{../java/time/NumberDisplay.java}
+        \end{solution}
+        \else\makeemptybox{\fill}\newpage
+        \fi
+
+
+        % -----------------------------------------------
+        \question[10]
+        Mit der folgender Klasse aus dem Package \textbf{java.util} sollen
+        Objekte vom Typ \textbf{Engineer} verwaltet werden. Erstelle eine
+        entsprechende Liste und füge anschliessend ein Element mit der
+        Funktion \textbf{add()} hinzu.
+
+        \inputminted[autogobble,linenos,firstline=8,lastline=12]
+        {java}{../java/collections/ArrayList.java}
+        \inputminted[autogobble,linenos,firstline=22]
+        {java}{../java/collections/ArrayList.java}
+
+        \ifprintanswers
+        \begin{solution}
+            \begin{minted}[autogobble]{java}
+                ArrayList<Engineer> list = new ArrayList<>();
+                list.add(new Engineer("Daniel", "Senften"));
+            \end{minted}
+        \end{solution}
+        \else\makeemptybox{5cm}\newpage
+        \fi
+
+        % -----------------------------------------------
+        \question
+        Objekte und Klassen bauen auf folgenden (nicht abschliessenden) Konzepten auf.
+        Was verstehen wir unter den einzelnen Punkten. Gefragt ist eine kurze, stichwortartige
+        Umschreibung. Gib für jeden Punkt ein konkretes Beispiel.
+
+        \begin{parts}
+            \part[3] Klasse
+            \part[3] Objekt
+            \part[3] Eigenschaft
+            \part[3] Methode
+            \part[3] Datentyp
+        \end{parts}
+
+        \addpoints
+
+        \ifprintanswers
+        \begin{solution}
+            Viele Begriffe der objektorientierten Programmierung sind unter
+            \href{https://de.wikipedia.org/wiki/Kategorie:Objektorientierte_Programmierung}
+            {Wikipedia} sehr gut beschrieben.
+            \begin{description}
+                \item[Klasse]
+                Unter einer Klasse (auch Objekttyp genannt) versteht man
+                in der objektorientierten Programmierung ein abstraktes
+                Modell bzw. einen Bauplan für eine Reihe von ähnlichen
+                Objekten.
+
+                Konkrete Beispiele:
+                \begin{minted}[autogobble]{java}
+                    public class Person {}
+                    public class Employee {}
+                \end{minted}
+
+                \item[Objekt] Ein Objekt (auch Instanz genannt) bezeichnet in
+                der objektorientierten Programmierung (OOP) ein Exemplar
+                eines bestimmten Datentyps oder einer bestimmten Klasse.
+                Objekte sind konkrete Ausprägungen („Instanzen“) eines
+                Objekttyps und werden während der Laufzeit erzeugt
+                (Instanziierung). Sie sind nicht nur zu ihren eigenen
+                Klassen, sondern auch zu den entsprechenden Basisklassen
+                zuweisungskompatibel.
+
+                In den folgenden Beispielen sind \textbf{person} und \textbf{employee}
+                konkrete Objekte (Instanzen) der Klassen \textbf{Person}
+                und \textbf{Employee}.
+                \begin{minted}[autogobble]{java}
+                    Person person = new Person();
+                    Employee employee = new Employee();
+                \end{minted}
+
+                \item[Eigenschaft] Auch Attribut genannt, gilt im Allgemeinen als
+                Merkmal, Kennzeichen, Informationsdetail etc., das einem
+                konkreten Objekt zugeordnet ist. Dabei wird unterschieden
+                zwischen der Bedeutung (z.B.~``Augenfarbe'') und der konkreten
+                Ausprägung (z.B.~``blau'') des Attributs.
+
+                So hat ein Objekt der Klasse \textbf{Person} möglicherweise
+                folgende Eigenschaften:
+
+                \begin{minted}[autogobble]{java}
+                    private String firstName;
+                    private String lastName;
+                    private Date birthDate;
+                \end{minted}
+
+                \item[Methode] Methoden sind Unterprogramme (in der Form von Funktionen
+                oder Prozeduren), die das Verhalten von Objekten beschreiben und
+                implementieren. Über die Methoden des Objekts können Objekte
+                untereinander in Verbindung treten.
+
+                \begin{minted}[autogobble]{java}
+                    public void startEngine() {
+                        if (sufficientGasolineAvailable) {
+                            // let's start the engine
+                        }
+                    }
+                \end{minted}
+
+                \item[Datentyp] Formal bezeichnet ein Datentyp oder eine Datenart
+                in der Informatik die Zusammenfassung von Objektmengen mit
+                den darauf definierten Operationen. Dabei werden durch den
+                Datentyp des Datensatzes unter Verwendung einer sogenannten
+                Signatur ausschliesslich die Namen dieser Objekt- und
+                Operationsmengen spezifiziert.
+
+                Hier einige Beispiele:
+                \begin{minted}[autogobble]{java}
+                    Integer // Datentyp für ganzzahlige Operationen
+                    String  // Datentyp für Operationen mit beliebigen Zeichenketten
+                \end{minted}
+
+            \end{description}
+        \end{solution}
+        \else\makeemptybox{\fill}
+        \fi
+
+
+        % -----------------------------------------------
+        \newpage
+        \question[10]
+        Gegeben ist die folgende Klasse:
+        \inputminted[autogobble,linenos,firstline=163,lastline=193]
+        {java}{../java/simulation/Field.java}
+
+        Was ist das Resultat dieser Funktion, wenn sie mit folgendem
+        Ausdruck aufgerufen wird?
+        \begin{minted}[autogobble]{java}
+            List<Position> liste = adjacentLocations(new Position(0, 12));
+        \end{minted}
+
+        \ifprintanswers
+        \begin{solution}
+            Die Resultat '\textbf{liste}' enthält 5 \textbf{Position}
+            Objekte mit den Werten $[0,11]$, $[0,13]$, $[1,11]$, $[1,12]$ und
+            $[1,13]$, wobei die Reihenfolge dieser Objekte zufällig angeordnet
+            sein wird.
+        \end{solution}
+        \else\makeemptybox{\fill}
+        \fi
+
+    \end{questions}
+
+\end{document}

@@ -1,0 +1,258 @@
+\documentclass[12pt,a4paper]{exam}
+\usepackage{natbib}
+
+%\printanswers % If you want to print answers
+%\noprintanswers % If you don't want to print answers
+
+\renewcommand{\solutiontitle}{\noindent\textbf{Lösung:}\enspace}
+
+\RequirePackage{talent-factory}
+\RequirePackage[top=3cm,bottom=2cm,left=2cm,right=1.5cm,headsep=10pt,a4paper]{geometry} % Page margins
+
+\newcommand{\class}{Modul 404}
+\newcommand{\examnum}{Test 2}
+\newcommand{\examdate}{14.03.2019}
+\newcommand{\timelimit}{45 Minuten}
+
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{\class}{\examnum\ - Seite \thepage\ / \numpages}{\examdate}
+\runningheadrule
+
+\begin{document}
+
+    \setmainfont{Verdana}
+    \parindent0em\parskip1em
+
+    % Deutsche Schreibweise diverser Labels
+    \pointpoints{Punkt}{Punkte}
+
+
+    \noindent
+    \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r @{\extracolsep{6pt}} l}
+        \textbf{\class}           & \textbf{Name:} & \makebox[2in]{\hrulefill} \\
+        \textbf{\examnum}         & & \\
+        \textbf{\examdate}        & & \\
+        \textbf{Zeit: \timelimit} & Dozent: & \makebox[2in]{Daniel Senften}
+    \end{tabular*}\\
+    \rule[1ex]{\textwidth}{1pt}
+
+    Dieser Test besteht aus \numpages\ Seiten (inkl. Titelseite) und
+    \numquestions\ Fragen. Wenn alle Fragen richtig beantwortet werden,
+    dann sind maximal \numpoints\ möglich.
+
+
+    \begin{center}
+        \textbf{Punktetabelle}\footnote{Diese Tabelle wird durch den Dozenten
+        nach der Prüfung ausgefüllt.} \\ \vskip1em
+        \addpoints
+
+        \hqword{Aufgabe}
+        \hpword{Punkte}
+        \htword{\textbf{Total}}
+        \hsword{Erreicht}
+        \gradetable[h][questions]
+    \end{center}
+
+    \noindent
+    \rule[1ex]{\textwidth}{1pt}
+
+    % ===========================================================================
+
+    \begin{questions}
+
+        \question[10] Gegeben sind folgende beiden Klassen. Zeichne das vollständige
+        Klassen Diagramm (UML).
+
+        \begin{minipage}{0.45\textwidth}
+            \inputminted[autogobble,linenos,frame=single]{java}{../java/academy/One.java}
+        \end{minipage}
+        \begin{minipage}{0.49\textwidth}
+            \inputminted[autogobble,frame=single]{java}{../java/academy/Two.java}
+        \end{minipage}
+        \makeemptybox{5cm}
+
+        \addpoints
+
+        % -----------------------------------------------
+        \newpage
+        \question Denken Sie an unser Projekt \emph{Figuren zeichnen}, in welchem
+        wir ein farbiges Haus (inkl. Sonne) dargestellt und bewegt haben.
+        \begin{parts}
+            \part[3] Was würde passieren, wenn wir die Methode 'setSize()' mit
+            negativen Werten aufrufen?
+            \part[3] Ist das eine gute Lösung?
+            \part[3] Können Sie sich eine bessere Lösung vorstellen vorstellen?
+        \end{parts}
+
+
+        % setValue()
+        \inputminted[autogobble,firstline=31,lastline=39]
+        {java}{../java/figures/Triangle.java}
+
+        \ifprintanswers
+        \begin{solution}
+            \begin{itemize}
+                \item Das dargestellte Dach würde auf dem Kopf (auf dem Spitz) stehen.
+                \item Nein, gemäss Kommentar dürfen keine negativen Werte übergeben werden.
+                \item Es muss ein \emph{ErrorHandling} eingebaut werden.
+            \end{itemize}
+        \end{solution}
+        \else\makeemptybox{2in}
+        \fi
+
+        \addpoints
+
+        % -----------------------------------------------
+        \question[4] Heute haben wir das Projekt \emph{Zeit} mit der Darstellung einer
+        Zeitangabe kennen gelernt. Hierbei kam auch die folgende Funktion vor:
+
+        \inputminted[autogobble,firstline=58,lastline=62]
+        {java}{../java/time/NumberDisplay.java}
+
+        Was würde passieren, wenn wir den Oparator \texttt{>=} in der Methode
+        \mintinline{java}{setValue()} durch \texttt{>} ersetzen würden, und zwar auf folgende
+        Weise:
+
+        \mintinline{java}{if((value > 0) && (value < limit))}
+
+        \ifprintanswers
+        \begin{solution}
+            Der Wert '0' könnte nie übergeben werden. Dies wird allerdings nicht
+            durch eine entsprechende Fehlermeldung unterstützt.
+        \end{solution}
+        \else\makeemptybox{\fill}
+        \fi
+
+        \addpoints
+
+        % -----------------------------------------------
+        \newpage
+        \checkboxchar{$\Box$} % changing checkbox style locally
+        \question[5] Die boolsche Algebra ist ein sehr wichtiger Bestandteil in der
+        Softwareentwicklung. Sie kommt in vielen Ausdrücken wie \textbf{for}-Schleifen,
+        \textbf{while}-Schleifen$\ldots$ vor.
+
+        Welche der folgenden Ausdrücke liefern den Wert \texttt{true}?
+
+        \addpoints
+        \begin{checkboxes}
+            \choice \mintinline{java}{! (4 < 5)}
+            \CorrectChoice \mintinline{java}{! false}
+            \choice \mintinline{java}{(2 > 2) || ((4 == 4) && (1 < 0))}
+            \choice \mintinline{java}{(2 > 2) || (4 == 4) && (1 < 0)}
+            \CorrectChoice \mintinline{java}{(34 != 33) && ! false}
+        \end{checkboxes}
+
+        % -----------------------------------------------
+        \question[5] Schreiben Sie einen Ausdruck mit zwei boolschen Variablen \texttt{a}
+        und \texttt{b}, der \texttt{true} liefert, wenn nur genau eine von beiden \texttt{true}
+        ist, und \texttt{false} liefert, wenn \texttt{a} und \texttt{b} beide \texttt{false}
+        oder beide \texttt{true} sind\footnote{Dieser Ausdruck bezeichnet man auch als
+        exklusives Oder}.
+        \addpoints
+
+        \ifprintanswers
+        \begin{solution}
+            Die einfachste Lösung ist:
+            \mintinline{text}{a != b}
+        \end{solution}
+        \else\makeemptybox{2in}
+        \fi
+
+
+        % -----------------------------------------------
+        \question[10] Beim unserem Projekt \emph{Time} wird die Zeit im Dezimalformat
+        dargestellt, wie in \fbox{14:45}. Ändern Sie diese Anzeige in ein binäres
+        Format, so dass diese Zeit als \fbox{01110:101101} dargestellt wird.
+
+        Aktuelle Funktion:
+
+        % updateDisplay()
+        \inputminted[autogobble,firstline=75,lastline=78]
+        {java}{../java/time/Display.java}
+
+        \inputminted[autogobble,firstline=41,lastline=47]
+        {java}{../java/time/NumberDisplay.java}
+
+
+        \addpoints
+
+        \ifprintanswers
+        \begin{solution}
+            Dies ist die einfachste Variante$\ldots$
+
+            \inputminted[autogobble,firstline=49,lastline=51]
+            {java}{../java/time/NumberDisplay.java}
+        \end{solution}
+        \else\makeemptybox{3in}
+        \fi
+
+
+        % -----------------------------------------------
+        \question[10]
+        Mit folgender Klasse soll ein Objekt eines bestimmten Datentyps (z.B.
+        \mintinline{java}{Integer}) erstellt und anschliessend die Methode
+        \mintinline{java}{add()} aufgerufen werden.
+        \inputminted[autogobble,linenos,firstline=3]{java}{../java/generics/Cache.java}
+
+        \ifprintanswers
+        \begin{solution}
+            \begin{minted}[autogobble]{java}
+                Cache<Integer> myCache = new Chache<>();
+                myCache.add(123); // autoboxing
+            \end{minted}
+        \end{solution}
+        \else\makeemptybox{3in}
+        \fi
+
+        % -----------------------------------------------
+        \newpage
+
+        \checkboxchar{$\Box$} % changing checkbox style locally
+        \question[4] Welches sind korrekte Definitionen der \mintinline{java}{main()} Methode,
+        damit das Programm gestartet werden kann.
+
+        \begin{checkboxes}
+            \choice \mintinline{java}{public static main(String[] args)}
+            \CorrectChoice \mintinline{java}{public static void main(String... args)}
+            \choice \mintinline{java}{public void main(String[] args)}
+            \CorrectChoice \mintinline{java}{public static void main(String args[])}
+        \end{checkboxes}
+
+        \addpoints
+
+        % -----------------------------------------------
+        \question[10]
+        Objekte und Klassen bauen auf folgenden (nicht abschliessenden) Konzepten auf.
+        Was verstehen wir unter den einzelnen Punkten. Gefragt ist eine kurze, stichwortartige
+        Umschreibung von:
+        \begin{itemize}
+            \item Klasse
+            \item Objekt
+            \item Eigenschaft
+            \item Methode
+            \item Datentyp
+        \end{itemize}
+        \makeemptybox{\fill}
+
+        % -----------------------------------------------
+        \newpage
+        \question[10]
+        Gegeben ist die folgende Klasse:
+        \inputminted[autogobble,linenos]{java}{../java/academy/calculator/InputValidator.java}
+
+        Was ist das Resultat, wenn ich dieses Programm (Zeile 25) starte:
+
+        \ifprintanswers
+        \begin{solution}
+            Die Ausgabe ist:
+
+            \mintinline{text}{[-3] Negative Zahlen sind nicht erlaubt.}
+        \end{solution}
+        \else\makeemptybox{\fill}
+        \fi
+
+    \end{questions}
+
+\end{document}
